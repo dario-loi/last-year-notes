@@ -1,0 +1,418 @@
+\documentclass[openright, twoside, twocolumn]{report}
+\usepackage{amsmath}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{quotchap}
+\usepackage{epigraph}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{bookmark}
+\usepackage{thmtools}
+\usepackage[para]{footmisc}
+\usepackage{booktabs}
+
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+% 
+% Theorems 
+% 
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+% Main theorem style
+\declaretheorem[style=definition,numberwithin=section,thmbox=S]{theorem,definition}
+\declaretheorem[thmbox=M,numberwithin=section]{lemma,corollary,proposition}
+
+\declaretheorem[shaded={rulecolor=ProcessBlue,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{remark,observation}
+
+\declaretheorem[style=remark,shaded={rulecolor=Red,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{example}
+
+\declaretheorem[style=remark,shaded={rulecolor=SpringGreen,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{exercise}
+
+%Solution referring to exercise
+\declaretheorem[style=remark,shaded={rulecolor=SpringGreen,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
+
+%%%
+%
+%   MARGIN NOTES SETUP
+%
+%%%
+
+\usepackage{marginnote}
+
+%%%
+%
+%   PGFPLOT SETUP
+%
+%%%
+
+\usepackage{pgfplots}
+\pgfplotsset{width=8cm, compat=1.18}
+
+\usepackage{cleveref}
+
+%%%
+%
+%   TITLE PAGE HEADER
+%
+%%%
+
+\renewcommand\epigraphflush{flushright}
+\renewcommand\epigraphsize{\normalsize}
+\setlength\epigraphwidth{0.7\textwidth}
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+\makeatletter                       
+\def\printauthor{%                  
+    {\large \@author}}              
+\makeatother
+\author{%
+    \begin{align*}
+        \text{Dario Loi, Student, Department of Computer Science}& \\
+        \text{Applied Computer Science \& Artificial Intelligence}& \\
+        \texttt{loi.1940849@studenti.uniroma1.it}\vspace{20pt}&
+    \end{align*}
+    }
+
+% The following code is borrowed from: https://tex.stackexchange.com/a/86310/10898
+
+\newcommand\titlepagedecoration{%
+\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+
+\coordinate (aux1) at ([yshift=-15pt]current page.north east);
+\coordinate (aux2) at ([yshift=-410pt]current page.north east);
+\coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
+\coordinate (aux4) at ([yshift=-150pt]current page.north east);
+
+\begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
+\draw
+  (aux1) -- coordinate (a)
+  ++(225:5) --
+  ++(-45:5.1) coordinate (b);
+\draw[shorten <= -10pt]
+  (aux3) --
+  (a) --
+  (aux1);
+\draw[opacity=0.6,titlepagecolor,shorten <= -10pt]
+  (b) --
+  ++(225:2.2) --
+  ++(-45:2.2);
+\end{scope}
+\draw[titlepagecolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
+  (aux4) --
+  ++(225:0.8) --
+  ++(-45:0.8);
+\begin{scope}[titlepagecolor!70,line width=6pt,rounded corners=8pt]
+\draw[shorten <= -10pt]
+  (aux2) --
+  ++(225:3) coordinate[pos=0.45] (c) --
+  ++(-45:3.1);
+\draw
+  (aux2) --
+  (c) --
+  ++(135:2.5) --
+  ++(45:2.5) --
+  ++(-45:2.5) coordinate[pos=0.3] (d);   
+\draw 
+  (d) -- +(45:1);
+\end{scope}
+\end{tikzpicture}%
+}
+
+%%%
+%
+%   FANCY HEADER DEFINITION
+%
+%%%
+
+\usepackage{fancyhdr, lastpage}
+\usepackage{titlesec}
+\usepackage{emptypage}
+\pagestyle{fancy}
+
+\fancyhead[LE,RO]{Dario Loi}
+\fancyhead[RE,LO]{Business \& Computer Science}
+
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{Page \thepage}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+\fancypagestyle{plain}{
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhf{}
+  \fancyfoot[CE,CO]{\leftmark}
+  \fancyfoot[LE,RO]{}
+}
+
+%%%
+%
+% HYPERREF SETUP
+%
+%%%
+
+% Leave it out if you wanna look formal
+%\DeclareTextFontCommand{\emph}{\bfseries}
+
+\usepackage{hyperref}
+  \hypersetup{
+      colorlinks=true,
+      linkcolor=blue,
+      filecolor=magenta,      
+      urlcolor=cyan,
+      pdftitle={Business \& Computer Science},
+      pdfpagemode=,
+      }
+
+%%%
+%
+%   TITLE PAGE MACRO
+%
+%%%
+
+\newcommand\mktitlepage{
+    \begin{titlepage}
+        \noindent
+        \titlefont Business \& Computer Science \par
+        \epigraph{INSERT A QUOTE
+        %
+        \leavevmode %IF ENUMERATE || ITEMIZE
+        %
+        }%
+        {\textit{CITY DATE}\\ \textsc{QUOTE AUTHOR}}
+        \null\vfill
+        \vspace*{1cm}
+        \noindent
+        \hfill
+        \begin{minipage}{0.35\linewidth}
+            \begin{flushright}
+                \printauthor
+            \end{flushright}
+        \end{minipage}
+        %
+        \begin{minipage}{0.02\linewidth}
+            \rule{1pt}{125pt}
+        \end{minipage}
+        \titlepagedecoration
+    \end{titlepage}
+}
+
+\usepackage[a4paper, left = 3.0cm, right=3.0cm, bottom = 2.0cm, top = 4.0cm, marginparwidth=0.2cm, marginparsep=2mm, heightrounded, twoside=true]{geometry}
+
+
+%%%
+%
+% Macroes
+%
+%%%
+
+\newcommand{\sequence}[2]{
+        \{ #1_1, #1_2, \dots, #1_#2 \}
+}
+
+%Common Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+%insert code snippet
+\NewDocumentCommand{\code}{v}{%
+\texttt{#1}%
+}
+
+\newcommand{\chapterquote}[3]{ % Quote, Author, Date %
+    \begin{flushleft}
+            \textit{
+                \`\`#1\`\`
+            }
+        \end{flushleft}
+        \begin{flushright} 
+            --- #2, \textit{#3}
+        \end{flushright}
+}
+
+\begin{document}
+    
+    \mktitlepage
+    
+    
+    \tableofcontents
+    \newpage
+
+    \newgeometry{a4paper, outer = 2.2cm, inner=3.4cm, bottom = 2.5cm, top = 2.5cm, marginparwidth=2.2cm, marginparsep=2mm, heightrounded, twoside=true}
+
+    \chapter{Course Introduction}
+
+    \section{Course Aims} 
+    
+    Despite what the name might make you think, the course is \emph{still} a practical one, it aims to introduce how 
+    computers work in a real world scenario, such as a company.
+
+    \paragraph{The Purpose of a Computer} 
+    Through the lens of this course, the purpose of a software is to improve the company's efficency and throughput, everything 
+    is evaluated through a framework of costs and profits, hence, even something as simple as buying a pen must be evaluated
+    at multiple levels, from the cost of the pen itself, to the cost of the time spent by the employee to go to the store and buy it.
+
+    \section{Course Structure}
+    
+    The course is usually organized in two parts, alternating on a weekly basis:
+
+    \begin{table}[h!]
+      \rowcolors{2}{gray!25}{white}
+      \centering
+      \begin{tabular}{c c}
+          \rowcolor{gray!50}
+          % Header
+          $Day$ &  $Purpose$ \\
+         %End Header
+          Tuesday &  Lecture \\
+          Thursday & Seminars\\
+      \end{tabular}
+      \caption{Course Structure}
+      \label{tab:struct}
+    \end{table}
+    
+    Naturally, the seminars are \emph{included} in the course's materials and are hence expected
+
+    The exam is also split into multiple sections:
+
+    \begin{table}[h!]
+      \rowcolors{2}{gray!25}{white}
+      \centering
+      \begin{tabular}{c c}
+          \rowcolor{gray!50}
+          % Header
+          Part & Contents  \\
+         %End Header
+          Written & 30 to 50 closed questions  \\
+          Oral & Optional, to raise marks \\
+      \end{tabular}
+      \caption{Exam Structure}
+      \label{tab:label}
+    \end{table}
+
+    The general information about the course is available at the \href{http://wwwusers.di.uniroma1.it/~cilli/}{official course page}.
+
+
+    \section{Information Systems} 
+    
+    As studied in the first unit of \emph{Data Management \& Analysis}, an information system is a set of components that allows an organization 
+    to collect, process, store and distribute information, it is \emph{not} necessarily something software-based, it can even be 
+    a file cabinet!
+
+    \begin{definition}\label{def:is}
+      An Information System is something that \emph{Manages} the flow of information in an organization.
+    \end{definition}
+
+    \paragraph{Information} 
+    Naturally, information is something \emph{abstract} and \emph{immaterial}, it is naturally difficult to manage, but it is possible 
+    to construct a set of rules, conventions and tools that allow us to represent it in a way that is \emph{manageable}, this process 
+    is the \emph{Flow}, and hence, as defined above, these systems are called \emph{Information Systems}.
+
+    \paragraph{Computers}
+    When a computer is involved, the Information System is naturally labeled a Computer Information System, or \emph{CIS} for short. 
+    
+
+    This chapter aims to give us the following capabilities
+
+    \begin{itemize}
+      \item Define what an Information System is
+      \item Describe the history of Information Systems
+      \item Describe the basic argument behind the article \emph{Does IT matter?} by Nicholas Carr. 
+    \end{itemize}
+
+    An information system is made up of \emph{Three} main components:
+
+    \begin{itemize}
+      \item People: In charge of decision making and organization
+      \item Technology: Hardware and Software that supports the business
+      \item Processes: Collecting and storing information
+    \end{itemize}
+
+    \paragraph{In General} 
+    This is a pretty broad definition, that allows a wide variety of software to be seen through the lens of an Information System, 
+    from network analyzers, to national healthcare systems, to online education platforms.
+
+    \paragraph{Acronyms} 
+    Depending on the application, an Information System can be called by different acronyms, such as:
+
+    \begin{itemize}
+      \item \textbf{MRP}: \emph{Manufacturing Resource Planning}
+      \item \textbf{CIM}: \emph{Computer Integrated Manufacturing}
+      \item \textbf{SAP}: \emph{Systems, Applications and Products}
+    \end{itemize}
+    
+    \subsection{Anthony's Triangle} 
+    
+    Anthony's triangle is a diagram that categorizes the three purposes of an Information System:
+
+    \begin{enumerate}
+      \item Strategic (\emph{Executive Information System}): for senior management decisions 
+      \item Tactical (\emph{Management Information System}): For middle management decisions
+      \item Operational (\emph{Transaction Processing Systems}): For daily transactions of business
+    \end{enumerate}
+
+    \subsection{Information System Components} 
+    Several Components work together to add value to an organization, they are 
+
+    \begin{enumerate}
+      \item Hardware: The physical components of the system
+      \item Software: The programs that run on the hardware, they can be:
+      \begin{itemize}
+        \item Operating Systems: The programs that manage the hardware
+        \item Application Software: The programs that are used by the users
+      \end{itemize}
+      \item Data: The information that is stored in the system
+      \item People: The users of the systems, both producers and consumers of infomation
+      \item Processes: The procedures that are used to collect, process and store information\footnote{
+        Organizing something in \emph{processes} that is, a series of well-defined steps, brings about a series of 
+        benefits in productivity.
+      }
+    \end{enumerate}
+
+    This is somewhat redundant to what we stated beforehand in \cref{def:is}, but it is important to restate it to 
+    emphasize the fact that the system is composed of both \emph{People} and \emph{Technology}.
+
+    \subsection{Processes}
+    
+    One of the most important components of an Information System is the \emph{Process}, it is 
+    the goal of the Computer Information System to optimize the processes of an organization,
+    bringing about an increase in efficency.
+
+    \paragraph{Processes Formally} 
+    Since processes are an advantageous way to organize work, it is important to spend some time to 
+    also give a formal definition of their nature.
+
+    \begin{definition}
+      \label{def:proc}
+      A process is a series of well-defined steps that are used to achieve a specific goal, it can 
+      be defined as a set of \emph{activities}
+    \end{definition}
+
+    \section{Does IT Matter?}
+    Nicholas Carr, in \emph{Harvard Business Review}, argues that Information Technology is not an \emph{Investment}, 
+    but rather a commodity, so something that must be managed to optimize the company's profits by reducing its 
+    operational costs.
+    
+    \paragraph{IT as a Marketing Tool}
+    It is also interesting to note how a company is percieved as better when it uses IT, and when this IT is 
+    of high quality, therefore IT can be seen as a \emph{Marketing Tool} that can be used to attract customers.
+    
+
+    
+\end{document}
