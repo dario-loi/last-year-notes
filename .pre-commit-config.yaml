@@ -7,14 +7,15 @@ repos:
       - id: american-eg-ie
       - id: cleveref-capitalization
       - id: consistent-spelling
-        args:
+        args: # Force american spelling
             [
               "--emph=et al.",
               "--emph=a priori",
               "--emph=a posteriori",
+              "--regex=colou?r",
+              "--regex=colou?rs",
             ]
       - id: csquotes
-      - id: ensure-labels-for-sections
       - id: no-space-in-cite
       - id: tilde-cite
       - id: unique-labels
