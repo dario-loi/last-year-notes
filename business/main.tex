@@ -11,7 +11,6 @@
 \usepackage[T1]{fontenc}
 \usepackage{xparse}
 \usepackage{hyperref}
-\usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathtools}
 \usepackage{amsthm}
@@ -19,7 +18,7 @@
 \usepackage{thmtools}
 \usepackage[para]{footmisc}
 \usepackage{booktabs}
-
+\usepackage{microtype}
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 % 
@@ -212,7 +211,7 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
     \end{titlepage}
 }
 
-\usepackage[a4paper, left = 3.0cm, right=3.0cm, bottom = 2.0cm, top = 4.0cm, marginparwidth=0.2cm, marginparsep=2mm, heightrounded, twoside=true]{geometry}
+\usepackage[a4paper, left = 3.0cm, right=4.2cm, bottom = 2.0cm, top = 4.0cm, marginparwidth=1.0cm, marginparsep=2mm, heightrounded, twoside=true]{geometry}
 
 
 %%%
@@ -447,7 +446,257 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
     This, provided that the company has a sufficient amount of jobs to be executed, allows for a continuous
     flow of work, and hence, a higher level of productivity.
 
+    \chapter{Process Modeling}
 
+    \section{Modeling Business} 
     
+    In order to properly formalize the concepts that are going to be introduced through the rest 
+    of this course, we will introduce \emph{mathematical models} that allow us to describe the 
+    ebbs end flow of human economy and companies.
+
+    \paragraph{Processes} 
+    These models are called \emph{Processes}, there are certain common classes of projects:
+
+    \begin{enumerate}
+      \item Service
+      \item Support 
+      \item Management and Control
+      \item Physical
+      \item Information 
+      \item Business
+    \end{enumerate}
+
+    \section{Process Descriptors} 
+    
+    These processes are then described by some diagrams:
+
+    \begin{itemize}
+      \item Hierarchical
+      \item State Diagrams (Automata)
+      \item DFD -- Data Flow Diagram
+      \item Wide -- Workflow on an Intelligent and Distributed database Environment
+      \item Action Workflow
+      \item Petri Nets
+    \end{itemize}
+    
+    \subsection{Hierarchical Process Model}
+
+    Everything in a company can be described as a set of \emph{Hierarchies}, that is, a tree of
+    \emph{Processes} that are organized in a \emph{Top-Down} fashion, where the \emph{Top}
+    process is known as \emph{Macroprocess}, the hierarchy goes as follows:
+
+    \begin{enumerate}
+      \item Macroprocess -- Sales
+      \item Process -- Sales Management
+      \item Phase -- Order Processing
+      \item Activity -- Shipment
+      \item Operation -- Pricing, Packaging, etc\dots
+    \end{enumerate}
+    
+    Naturally, these hierarchy together form a \emph{Forest}. 
+
+    \subsection{Data Flow Diagrams} 
+    
+    Data Flow diagrams are what we also call \emph{Flowcharts}, they are a graphical 
+    representation of the flow of the data through the company`s Information Systems, 
+    they are not used often due to them being subject to \emph{spaghettification}, 
+    that is, the diagrams become so complex that they are hard to understand.
+
+    These flowcharts are usually composed of a set of components that are used to represent 
+    the different parts of the system, they are:
+    \begin{itemize}
+      \item Processes -- Circles
+      \item Data Collections -- Rectangles
+      \item Interface -- Bordered Rectangles
+      \item Data Flows -- Directed Arrows
+    \end{itemize}
+
+    \begin{definition}[Data Flow]
+      A \emph{Data Flow} represents any kind of flow in a system, the first component \emph{must} 
+      be a process,the second can be either a process, a data collection or an interface, moreover, 
+      they can be either 
+      \begin{enumerate}
+        \item Structured
+        \item TODO
+      \end{enumerate}
+    \end{definition}
+
+    \paragraph{Data Dictionary} 
+    
+    Usually, to help with readability, we provide a \emph{Data Dictionary} and a textual description of each process, 
+    to help the user understand what the process does.
+
+    \subsection{WIDE}
+
+    Wide Relies on three main components:
+
+    \begin{itemize}
+      \item Process Model
+      \item Information Model
+      \item Organization Model
+    \end{itemize}
+    
+    \paragraph{Process Model}
+    Wide still relies on a \emph{Process} model, it is somewhat similar to an \emph{Activity Diagram} used 
+    to describe Object Oriented Code
+
+    \paragraph{Anti-Spaghetti Techniques}
+    
+    The wide model introduces some more complex components with respect to the DFD model, such as forks and joins, 
+    to better describe the flow of the data through the system with fewer connections between the components.
+    
+    \begin{remark}
+      An analyst's role is to translate the business model in a way that is understandable in layman's terms,
+      that is, when you are describing a process through a graph, strive to be clear, the important thing 
+      is that \emph{People Are Going to Read It}.
+    \end{remark}
+
+    \subsection{Petri Nets}
+
+    Petri Nets are a formal model that is used to describe the flow of data through an Information Systems
+
+    \begin{definition}[Petri Nets]
+      \label{def:petri-nets}
+      A petri net is a $3-\text{Tuple} = (P, T, A)$
+      that forms a \emph{Bipartite Graph}:
+    \[
+      G = (P \cup T, A), A \subseteq (P \times T) \cup (T \times P)
+    .\]
+
+    Where:
+
+    \begin{itemize}
+      \item $P$ is a set of places
+      \item $T$ is a set of transitions
+      \item $A$ is a set of arcs $A \subseteq (P \times T) \cup (T \times P)$
+    \end{itemize}
+
+    There is a set of \emph{Initial Markings} $M_0 \subseteq P$ that are the places that are initially marked,
+    and we have that $M:P \to N$ is a function that maps each place to a non-negative integer, that is, 
+    the number of tokens in the place.
+
+    At the end we reach a set of \emph{Final Markings} $M_f \subseteq P$ that are the places that are marked at the end of the process.
+    \end{definition}
+
+    Essentially, it is a Finite State Automata in which a set of markings indicate the states that are `Firable', once a transition 
+    happens, the markings are updated, and the process continues, so we are effectively running multiple Finite State Machines 
+    in parallel, each with the same topology.
+
+    \paragraph{Terminology}
+    
+    Each transition $t \in  T$  has an input set ${}^{\circ}t \subseteq P$ and an output set $t^{\circ} \subseteq  P$ also called input 
+    and output places, the same notation also applies to places.
+
+    \paragraph{Petri Net Evolution}
+    
+    An enabled transition can \emph{Fire}, deleting a token in each input place and creating a token in each output place:
+
+    \begin{align*}
+      M_0 &= \left( 2, 1, 0, 0, 1 \right)\\
+      M_0 &\to M_1\\
+      M_1 &= \left( 1, 0, 1, 1, 1 \right)
+    \end{align*}
+
+    A \emph{Firable Sequence} is a sequence of transition $\sigma = \langle t_1, t_2, \ldots, t_n \rangle$ where 
+
+    \[
+      M_0 \to^{ t_1} M_1 \to^{ t_2} M_2 \ldots \to^{ t_n} M_n
+    .\]
+
+    For which we can use the closure notation $ M_0 \to^{\sigma} M_n$ to denote the evolution of the markings.
+    
+  \paragraph{Further Definitions} 
+
+    Now, given a net $P = (P, T, A, M_0)$ we have that: 
+    \begin{itemize}
+      \item A \emph{Potentially Firable Transition}  $t \in T$  is such that 
+      \[
+        \exists \tau \in T^{\star} s.t \tau t \text{Is Firable}: M_0 {}^{\tau}\to^{t} 
+      .\]
+      \item A \emph{Potentially Firable Sequence} $\sigma \in T^{\star}$ is such that 
+      there exists a prefix sequence $\tau \in T^{\star}$ such that $\tau \sigma$ is firable (
+        $M_0 \to^{\tau \sigma} M_n$
+        )
+      \item A \emph{Reachable Marking} $M$ is such that 
+      \[
+         \exists \sigma\ s.t\ M_0 \to^{\sigma} M
+      .\]
+      \item $R( M_0)$ is the set of all reachable markings.  
+      \item $P_r$ is the set of reachable places s.t 
+      \[
+        P_r = \left\{ p \in  P | \exists  M \in  R( M_0), M(p) > 0 \right\} 
+      .\]
+    \end{itemize}
+
+    \paragraph{Petri Nets and Automata}
+    
+    We have that Petri nets are a generalization of automata under particular conditions:
+
+    \begin{definition}[Petri Nets and Automatas]
+      A Finite state machine is a petri net where, for each transition $t$ both 
+      the input and the output places have cardinality $1$: 
+      \[
+        \forall  t \in  T, |{}^{\circ}t| = |t^{\circ}| = 1
+      .\]
+    \end{definition}
+    
+    \subsection{Workflow Nets}
+    
+    Workflow nets are a generalization of Petri Nets, in which we have two additional conditions:
+
+    \begin{enumerate}
+      \item A source s.t $|{}^{\circ}t| = 0$ for all $t \in T$\footnote{
+        AI generated math, please check (will fix once the slides are up).
+      }
+      \item A sink s.t $|t^{\circ}| = 0$ for all $t \in T$
+    \end{enumerate}
+    
+    Hence for each node the node is \emph{reachable} from the source and \emph{can reach} the sink.
+
+    \paragraph{Workflow Nets as Models}
+    Workflow nets are more representative of real world systems, since they can model \emph{producers} and 
+    \emph{consumers} in a system, which are widespread in real world systems. 
+    
+
+    \chapter{Petri Nets -- Cont.}
+    \section{Introduction} 
+    Petri nets are, as aforementionedly introduced, a \emph{Graphical} and \emph{Mathematical} modelling tool, 
+    that is, they are formalizable through math and representable pictorially. 
+
+    \paragraph{Graphical Representation}
+
+    The graphical representation is a bipartite graph, where we have two kind of nodes:
+    
+    \begin{itemize}
+      \item Places
+      \item Transitions
+    \end{itemize}
+
+    The transitions are stylized as \emph{black rectangles}, in order to distinguish them more easily, but they are easily interchangeable 
+    with the usual labeled circles that are used to represent states in a finite state machine.
+
+    Tokens are pictorially represented with dots, however, this is not that scalable, so we can also use mathematical 
+    notations and label a node with a number $n \in \mathbb{N}$ to represent $n$ tokens in the place, be careful with 
+    this representation since it reduces the expressiveness of the model, especially towards non-mathematics oriented 
+    people.
+
+    %%% 
+    % TODO: Add a picture of a petri net, with the places and transitions.
+    %%%
+
+    \paragraph{Matemathical Representation}
+    Since petri nets are just a graph, they can be rigorously formalized, as in \cref{def:petri-nets}, so we omit 
+    the formal definition here to avoid redundancy. 
+
+    \paragraph{Transition Enabling} 
+    
+    We can further complicate a Petri Net by introducing the concept of transition \emph{enabling}: a transition 
+    is enabled if it has enough tokens in its input places to fire, and it is disabled otherwise, naturally, 
+    the firing of the transition removes a token from each input place and adds a token to each output place.
+
+    The system steps in time \emph{discretely}, that is each event happens simultaneously in a single step in 
+    time.
+
+
 
 \end{document}
