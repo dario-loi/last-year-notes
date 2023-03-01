@@ -697,6 +697,27 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
     The system steps in time \emph{discretely}, that is each event happens simultaneously in a single step in 
     time.
 
+    \paragraph{Petri Net Non-Determinism}
+    
+    The evolution of a petri net is not deterministic, that is, there is no guarantee that a transition will fire
+    in a given step, and therefore we cannot predict the next state of the system from the current state.
+    
+    \paragraph{Conflicts} 
+    Whenever we have a set of transition $T$ defined as such:
+
+  \begin{align}
+    T &\coloneqq  \{ t_1, t_2, \ldots, t_n \}\\
+    &s.t \ \exists\, (t_i, t_j) \in T \\
+    &s.t \ t_i \land  t_j \text{ are both enabled}
+  \end{align}
+
+    where the firing of one of $t_i \lor t_j$ would lead to the disabling of 
+    the other, we have a \emph{conflict}, these conflicts are not too dissimilar to what was explored in the 
+    Operating Systems course with the \emph{deadlock} concept\footnote{
+      Specifically the dining philosophers problem.
+    }, these conflicts can be resolved by introducing \emph{priority} to the transitions, that is, we can
+    restructure the mathematical definition to allow for a hierarchy of transitions, or we can simply resolve 
+    the conflict by restructiring the model itself.
 
 
 \end{document}
