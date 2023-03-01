@@ -1,3 +1,5 @@
 {
-    "super-figure.filesToWatch": []
+    "super-figure.filesToWatch": [
+        "/home/dariol/latex/last-year-notes/fig/pnet.svg"
+    ]
 }

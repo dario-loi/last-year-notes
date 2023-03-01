@@ -12,8 +12,6 @@ repos:
               "--emph=et al.",
               "--emph=a priori",
               "--emph=a posteriori",
-              "--regex=colou?r",
-              "--regex=colou?rs",
             ]
       - id: csquotes
       - id: no-space-in-cite
