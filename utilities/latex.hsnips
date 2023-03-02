@@ -1,0 +1,1550 @@
+global
+function math(context) {
+    return  context.scopes.findLastIndex(s => s.startsWith("meta.math")) > context.scopes.findLastIndex(s => s.startsWith("comment") || s.startsWith("meta.text.normal.tex"));
+}
+endglobal
+
+snippet `table([1-9]{1})\ ([1-9]{1})` "Table environment" bA
+\begin{table}[h!]
+  \rowcolors{2}{gray!25}{white}
+	\centering
+	\begin{tabular}{``
+	let len = m[2];
+	let results = "";
+	for(var i=0; i<len-1; i++){
+		results += "c "
+	}
+	results += "c";
+	rv = results;
+	``}
+      \rowcolor{gray!50}
+      % Header
+			``
+			let order = 1;
+			nrow = m[1];
+			ncol = m[2];
+			for (var i=0; i<nrow; i++){
+				for(var j = 0;j <ncol-1;j++){
+					rv += `${snip.tabstop(order+3)} & `;
+					order ++;
+				}	
+				rv += ` ${snip.tabstop(order+3)} \\\\`+ `\\`+ `\n`;
+				order ++;
+        if(i == 0){
+					rv += `     %End Header` + `\n`;
+				}
+				rv += `			`;
+			}	
+			for(var j = 0;j <ncol-1;j++){
+				rv += `${snip.tabstop(order+3)} & `;
+				order ++;
+			}
+			rv += `${snip.tabstop(order+3)}\\\\` + `\\`;
+			``
+	\end{tabular}
+	\caption{${2:caption}}
+	\label{tab:${3:label}}
+\end{table}
+endsnippet
+
+% histplotn m
+% Generate an histogram of n bins of size m 
+snippet `histplot([1-9]{1,})\ ([1-9]{1,})` "histplot" Ab
+\begin{figure}[h!]
+  \centering
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin = $1, xmax = $2,
+        ymin=$3, ymax=$4,
+        minor y tick num = 3,
+        area style,
+        ]
+      \addplot+[ybar interval,mark=no] plot coordinates {``let n = m[1];
+      let bin_size = m[2]
+      let results = "";
+
+      let final = 6;
+      for(var i=0; i<n; i++, final++){
+        results += `(${bin_size * i}, ${snip.tabstop(i+6)}) `;
+      }
+      results += `(${bin_size * n}, ${0})`;
+      rv = results;``};\label{``rv=`${snip.tabstop(final)}`;``}
+    \end{axis}
+    \end{tikzpicture}
+  % tabstop depending on the number of bins
+  \caption{``rv=`${snip.tabstop(final+1)}`;``}
+\end{figure}
+endsnippet
+
+  \begin{tikzpicture}
+ 
+    \begin{axis} [ybar = .05cm,
+        color = black,
+        grid = major,
+        bar width = 12pt,
+        ymin = 0, 
+        ymax = 1000, 
+        enlarge x limits = {abs = .8},
+        enlarge y limits = {value = .25, upper},
+        xticklabels = { A, B, C, D, E }
+      ]
+      \addplot coordinates {(0,512) (1,531) (2,642) (3,999)};
+      
+    \end{axis}
+     
+  \end{tikzpicture}
+
+% barplotn 
+% Generate a catplot of n bars
+snippet `barplot([1-9]{1,})` "barplot" Ab
+\begin{figure}[h!]
+  \centering
+    \begin{tikzpicture}
+    \begin{axis} [ybar = .05cm,
+        color = black,
+        grid = major,
+        bar width = 12pt,
+        ymin = 0, 
+        ymax = ``let n = m[1];
+        n++;
+        n--;
+        rv=`${snip.tabstop(n*2+3)}`;``, 
+        enlarge x limits = {abs = .8},
+        enlarge y limits = {value = .25, upper},
+        xtick = {``
+      let r = "";
+      for(var i=0; i<n-1; i++){
+        r += `${i}, `;
+        }
+        r += `${n-1}`;
+      rv = r;``},
+        xticklabels = {``
+      let res = "";
+      let final = 0;
+      for(var i=0; i<n; i++, final++){
+        res += `${snip.tabstop(i+1)}, `;
+      }
+      rv = res;``}
+      ]
+      \addplot coordinates {``
+      let results = "";
+      for(var i=n; i<n*2; i++, final++){
+        i++;
+        i--; // To avoid stupid dynamic typing
+        results += `(${i-n}, ${snip.tabstop(i+1)})`;
+      }
+      rv = results;``};\label{``rv=`${snip.tabstop(final+1)}`;``}
+    \end{axis}
+    \end{tikzpicture}
+  % tabstop depending on the number of bins
+  \caption{``rv=`${snip.tabstop(final+2)}`;``}
+\end{figure}
+endsnippet
+
+
+
+context math(context)
+snippet `ary([1-9]{1})\ ([1-9]{1})` "Array environment" ibA
+\begin{array}{``
+	let len = m[2];
+	let results = "";
+	for(var i=0; i<len; i++){
+		results += "c"
+	}
+	rv = results;
+	``}
+	``
+	let order = 1;
+	let nrow = m[1];
+	let ncol = m[2];
+	for (var i=0; i<nrow-1; i++){
+		for(var j = 0;j <ncol-1;j++){
+			rv += `${snip.tabstop(order)} & `;
+			order ++;
+		}
+		rv += ` ${snip.tabstop(order)} \\\\`+ `\\`+ `\n` + `	`;
+		order ++;
+	}
+	for(var j = 0;j <ncol-1;j++){
+		rv += `${snip.tabstop(order)} & `;
+		order ++;
+	}
+	rv += ` ${snip.tabstop(order)} \\\\`+ `\\`;
+	``
+\end{array}
+endsnippet
+
+priority 2000
+context math(context)
+snippet `(b|p)mat([1-9]{1})\ ([1-9]{1})` "matrix" iwA
+\begin{``rv = m[1]``matrix}``
+	let order = 1;
+	let nrow = m[2];
+	let ncol = m[3];
+	rv = `\n`;
+	for (var i=0; i<nrow; i++){
+		rv += '	';
+		for(var j = 0;j <ncol-1;j++){
+			rv += `${snip.tabstop(order)} & `;
+			order ++;
+		}
+		rv += ` ${snip.tabstop(order)} \\\\`+ `\\`+ `\n`;
+		order ++;
+	}
+	``\end{``rv = m[1]``matrix}$0
+endsnippet
+
+snippet %-- "------" wA
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+$0
+endsnippet
+
+context math(context)
+snippet `(?<![\\a-zA-Z])opn` "operator" A
+\mathop{\mathrm{$1}}($2) $0
+endsnippet
+
+context math(context)
+snippet `(?<![\\a-zA-Z])opl` "operator" A
+\mathop{\mathrm{$1}}\nolimits_{$2}($3) $0
+endsnippet
+
+snippet wp "with probability" wA
+w.p.\ $0
+endsnippet
+
+context math(context)
+snippet eps "\epsilon" iA
+\epsilon $0
+endsnippet
+
+priority 200
+context math(context)
+snippet veps "\vepsilon" iA
+\varepsilon $0
+endsnippet
+
+priority 100
+context math(context)
+snippet `(?<![\\a-zA-Z])ell` "\ell" A
+\ell $0
+endsnippet
+
+context math(context)
+snippet // "Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+context math(context)
+snippet `((\d+|\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/` "Fraction no ()" A
+\frac{``rv = m[1]``}{$1}$0
+endsnippet
+
+snippet `^.*\)/` "Fraction with ()" Am
+``
+    let str = m[0];
+    str = str.slice(0, -1);
+    let lastIndex = str.length - 1;
+
+    let depth = 0;
+    let i = str.length - 1;
+
+    while (true) {
+        if (str[i] == ')') depth += 1;
+        if (str[i] == '(') depth -= 1;
+        if (depth == 0) break;
+        i -= 1;
+    }
+
+    let results = str.slice(0, i) + "\\frac{" + str.slice(i+1, -1) + "}";
+    rv = results;
+	rv += `{${snip.tabstop(1)}}${snip.tabstop(0)}`;
+    ``
+endsnippet
+
+context math(context)
+snippet `>=|(?<!\\)geq` "greater or equal to" A
+\geq $0
+endsnippet
+
+context math(context)
+snippet `<=|(?<!\\)leq` "less or equal to" A
+\leq $0
+endsnippet
+
+context math(context)
+snippet `!=|(?<!\\)neq` "not equal" A
+\neq $0
+endsnippet
+
+context math(context)
+snippet `\|=|(?<!\\)mdl` "models" A
+\models $0
+endsnippet
+
+context math(context)
+snippet `\|-|(?<!\\)vdh` "models" A
+\vdash $0
+endsnippet
+
+priority 200
+context math(context)
+snippet suc "succeeds" iA
+\succ $0
+endsnippet
+
+context math(context)
+snippet seq "succeeds or equal to" iA
+\succeq $0
+endsnippet
+
+context math(context)
+snippet prec "precedes" iA
+\prec $0
+endsnippet
+
+context math(context)
+snippet peq "precedes or equal to" iA
+\preceq $0
+endsnippet
+
+context math(context)
+snippet == "constan equal" iA
+\equiv $0
+endsnippet
+
+context math(context)
+snippet ~~ "approx equal" iA
+\thickapprox $0
+endsnippet
+
+context math(context)
+snippet ~= "approx equal(2)" iA
+\cong $0
+endsnippet
+
+context math(context)
+snippet ~- "approx equal(3)" iA
+\simeq $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)cir` "composition" A
+\circ $0
+endsnippet
+
+context math(context)
+snippet @> "inclusion" iA
+\hookrightarrow $0
+endsnippet
+
+context math(context)
+snippet || "mid" A
+\mid $0
+endsnippet
+
+context math(context)
+snippet ` ([a-z]|[A-Z]|\\alpha|\\beta|\\gamma|\\delta|\\epsilon|\\zeta|\\eta|\\theta|\\iota|\\kappa|\\lambda|\\mu|\\nu|\\xi|\\pi|\\rho|\\sigma|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega)(\d)` "subscript" A
+ ``rv = m[1]``_``rv = m[2]``$0
+endsnippet
+
+context math(context)
+snippet td "superscript" iA
+^{$1}$0
+endsnippet
+
+context math(context)
+snippet `([A-Za-z\d)}])\_([A-Za-z\d\-+][A-Za-z\d-+])` "auto subscript" A
+`` rv = m[1]``_{``rv = m[2]``$1} $0
+endsnippet
+
+# Letter subscript
+context math(context)
+snippet `([A-Za-z])([A-Za-z])\2{1}` "letter subscript" A
+``rv = m[1]``_``rv = m[2]``$0
+endsnippet
+
+priority 200
+context math(context)
+snippet `([A-Za-z\d)}])\^([A-Za-z\d\-+][A-Za-z\d-+])` "auto supscript" A
+`` rv = m[1]``^{``rv = m[2]``$1} $0
+endsnippet
+
+context math(context)
+snippet `(b|B)(ar)` "bar" A
+\overline{$1} $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(ar)` "bar" A
+\overline{``rv = m[1]``} $0
+endsnippet
+
+
+context math(context)
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(h|H)(t)` "hat" A
+\hat{``rv = m[1]``} $0
+endsnippet
+
+context math(context)
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(f)` "mathbf" A
+\mathbf{``rv = m[1]``} $0
+endsnippet
+
+context math(context)
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(b|B)(m)` "bm" A
+\bm{``rv = m[1]``} $0
+endsnippet
+
+context math(context)
+snippet `(\\?[a-zA-Z]\w*|\\[^(^\s]+\})(,\.|\.,)` "Vector postfix" A
+\vec{``rv = m[1]``} $0
+endsnippet
+
+snippet fig "Figure environment" b
+\begin{figure}[${1:H}]
+	\centering
+	\includegraphics[width=0.8\textwidth]{$2}
+	\caption{$3}
+	\label{fig:$4}
+\end{figure}
+endsnippet
+
+context math(context)
+snippet ... "dots" iA
+\ldots $0
+endsnippet
+
+context math(context)
+snippet => "implies" iA
+\implies $0
+endsnippet
+
+context math(context)
+snippet =< "implied by" iA
+\impliedby $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `(?<!\\)iff` "if and only if" A
+\iff $0
+endsnippet
+
+snippet fm "inline Math" wA
+$${1}$``
+let test = t[1][0];
+if (test != ',' &&  test != '.' &&  test != '-' && test !='?' && test !=' '){
+	rv = ' ';
+}
+else{
+	rv = '';
+}``$2
+endsnippet
+
+snippet dm "display Math" bA
+\[
+	${1}
+.\]$0
+endsnippet
+
+context math(context)
+snippet lr, "<>" iA
+\left\langle $1 \right\\rangle $0
+endsnippet
+
+context math(context)
+snippet lrd "()" iA
+\left( $1 \right) $0
+endsnippet
+
+context math(context)
+snippet set "{}" iA
+\\left\\{ $1 \\right\\} $0
+endsnippet
+
+context math(context)
+snippet lrq "[]" iA
+\left[ $1 \right] $0
+endsnippet
+
+context math(context)
+snippet ceil "ceil" iA
+\lceil $1 \rceil $0
+endsnippet
+
+context math(context)
+snippet Ceil "ceil" iA
+\left\lceil $1 \right\rceil $0
+endsnippet
+
+context math(context)
+snippet flr "floor" iA
+\lfloor $1 \rfloor$0
+endsnippet
+
+context math(context)
+snippet Flr "floor" iA
+\left\lfloor $1 \right\rfloor$0
+endsnippet
+
+context math(context)
+snippet abs "abs value" iA
+\vert ${1} \vert $0
+endsnippet
+
+context math(context)
+snippet Abs "abs value" iA
+\left\vert ${1} \right\vert $0
+endsnippet
+
+priority 200
+context math(context)
+snippet norm "norm" iA
+\lVert $1 \rVert $0
+endsnippet
+
+context math(context)
+snippet Norm "Norm" iA
+\left\lVert $1 \right\rVert $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)sum` "sum" A
+\sum_{${1:i}} $0
+endsnippet
+
+context math(context)
+snippet Sum "sum" wA
+\sum_{${1:i}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+context math(context)
+snippet in "in" A
+\in $0
+endsnippet\
+
+priority 100
+context math(context)
+snippet `(?<!\\)scup` "disjoint union" wA
+\sqcup $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)cup` "union" wA
+\cup $0
+endsnippet
+
+context math(context)
+snippet Cup "Union" wA
+\bigcup_{${1:i}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)cap` "intersection" A
+\cap $0
+endsnippet
+
+context math(context)
+snippet Cap "Intersection" wA
+\bigcap_{${1:i}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+context math(context)
+snippet Conj "conjunction" wA
+\bigwedge_{${1:i}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+context math(context)
+snippet Disj "disjunction" wA
+\bigvee_{${1:i}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)sub ` "subset" A
+\subset $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)nsub` "nsubseteq" A
+\nsubseteq $0
+endsnippet
+
+context math(context)
+snippet sube "subseteq" iA
+\subseteq $0
+endsnippet
+
+context math(context)
+snippet subn "subsetneq" iA
+\subsetneq $0
+endsnippet
+
+context math(context)
+snippet `\\sups` "supset" A
+\supset $0
+endsnippet
+
+priority 300
+context math(context)
+snippet `(?<!\\)nsup` "nsupseteq" A
+\nsupseteq $0
+endsnippet
+
+context math(context)
+snippet `\\supe` "supseteq" A
+\supseteq $0
+endsnippet
+
+context math(context)
+snippet `\\supn` "supsetneq" A
+\supsetneq $0
+endsnippet
+
+priority 300
+context math(context)
+snippet `(?<!\\)nlim` "nolimit" A
+\nolimits
+endsnippet
+
+priority 200
+context math(context)
+snippet `(?<!\\)lim` "limit" A
+\lim_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+priority 300
+context math(context)
+snippet lsup "limsup" iA
+\limsup_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+priority 300
+context math(context)
+snippet linf "liminf" iA
+\liminf_{${1:n} \to ${2:\infty}} 
+endsnippet
+
+context math(context)
+snippet prd "product" iA
+\prod_{${1:n}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+priority 100
+context math(context)
+snippet coprd "coproduct" iA
+\coprod_{${1:n}=${2:1}}^{${3:\infty}} $0
+endsnippet
+
+context math(context)
+snippet pt "\partial" iA
+\partial $0
+endsnippet
+
+priority 100
+context math(context)
+snippet pdif "d/dx" iA
+\frac{\partial ${1:V}}{\partial ${2:x}} $0
+endsnippet
+
+context math(context)
+snippet dif "d/dx" iA
+\frac{\mathrm{d}${1:y}}{\mathrm{d}${2:x}} $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)sq` "\sqrt{}" A
+\sqrt{${1}} $0
+endsnippet
+
+snippet [Ll][Aa][Tt][Ee][Xx] "LaTeX" A
+\LaTeX
+endsnippet
+
+
+priority 200
+context math(context)
+snippet oo "\infty" iA
+\infty 
+endsnippet
+
+priority 300
+context math(context)
+snippet `\^oo` "supscript ^\infty" A
+^{\infty} $0
+endsnippet
+
+priority 200
+context math(context)
+snippet EE "exist" iA
+\exists 
+endsnippet
+
+priority 200
+context math(context)
+snippet AA "forall" iA
+\forall 
+endsnippet
+
+context math(context)
+snippet `\b([a-zA-Z])([a-zA-Z])(\d)` "?[?+?]" iA
+``rv = m[1]``_{``rv = m[2]``+``rv = m[3]``$1}$0
+endsnippet
+
+context math(context)
+snippet `o\+` "oplus" A
+\oplus $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `o(x\.|\.x)` "otimes" A
+\otimes $0
+endsnippet
+
+context math(context)
+snippet `(x\.|\.x)` "times" A
+\times $0
+endsnippet
+
+context math(context)
+snippet case "cases" iA
+\begin{dcases}
+	$1, &\text{ if } $3 ;\\\\
+	$2, &\text{ if } $4 ;\\\\
+	$5, &\text{ otherwise} .
+\end{dcases}$0
+endsnippet
+
+context math(context)
+snippet tet "text" iA
+\text{$1} $0
+endsnippet
+
+snippet tit "text it" wA
+\textit{$1} $0
+endsnippet
+
+context math(context)
+snippet `(\\\\)([a-zA-Z])` A
+\mathbb{``rv = m[2].toUpperCase()``} $0
+endsnippet
+
+context math(context)
+snippet nin iA
+\notin $0
+endsnippet
+
+context math(context)
+snippet inv "inverse" iA
+^{-1} $0
+endsnippet
+
+context math(context)
+snippet tp "transpose" iA
+^{\top} $0
+endsnippet
+
+context math(context)
+snippet prp "perp" iA
+^{\perp} $0
+endsnippet
+
+context math(context)
+snippet cp "complement" iA
+^{c} $0
+endsnippet
+
+context math(context)
+snippet qs "square" iA
+^{2} $0
+endsnippet
+
+context math(context)
+snippet `->|(?<!\\)to` "to" A
+\to $0
+endsnippet
+
+priority 100
+context math(context)
+snippet `<->` "to" A
+\leftrightarrow $0
+endsnippet
+
+
+context math(context)
+snippet !> "mapsto" iA
+\mapsto $0
+endsnippet
+
+priority 100
+context math(context)
+snippet dint "integral" iA
+\int_{${1:-\infty}}^{${2:\infty}} ${3} \\,\mathrm{d}${4:x} $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)int` "integral without anything" A
+\int $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)not` "lnot" A
+\lnot $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `(?<!\\)(sin|cos|cot|tan|csc|ln|log|exp|perp|inf|sup|Tr|diag|rank|det|dim|ker|Im|Re|dom|arg|min|max|sgn|OPT|land|lor)` "general" wA
+\\``rv = m[1]`` $0
+endsnippet
+
+priority 300
+context math(context)
+snippet `(?<!\\)a(sin|cos|tan|cot|csc|sec)` "arc-triangle" wA
+\\arc``rv = m[1]`` $0
+endsnippet
+
+priority 300
+context math(context)
+snippet `a(max|min)` "arg min/max" wA
+\arg``rv = m[1]``_{$1} $0
+endsnippet
+
+context math(context)
+snippet ' "prime" iA
+^\prime $0
+endsnippet
+
+context math(context)
+snippet -- "setminus" iA
+\setminus $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `([a-zA-Z])(c|C)al` "mathcal" A
+\mathcal{``rv = m[1].toUpperCase()``} $0
+endsnippet
+
+snippet `(\\?\w+)(b|B)f` "textbf" A
+\textbf{``rv = m[1]``} $0
+endsnippet
+
+context math(context)
+snippet rm "mathrm" iA
+\mathrm{$1} $0
+endsnippet
+
+context math(context)
+snippet scr "mathscr" iA
+\mathscr{$1} $0
+endsnippet
+
+context math(context)
+snippet st "star" iA
+^{\star} $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `(?<!\\)ast` "ast" A
+\ast $0
+endsnippet
+
+context math(context)
+snippet ** "asterisk" iA
+^{\ast} $0
+endsnippet
+
+context math(context)
+snippet >> ">>" iA
+\gg $0
+endsnippet
+
+context math(context)
+snippet << "<<" iA
+\ll $0
+endsnippet
+
+context math(context)
+snippet ind "indicator function" iA
+\mathbbm{1}_{$1} $0
+endsnippet
+
+priority 200
+context math(context)
+snippet spt "support" iA
+\mathop{\mathrm{supp}}($1) $0
+endsnippet
+
+context math(context)
+snippet mean "Expectation" iA
+\mathbb{E}_{$1}\left[$2 \right] $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)Var` "Variation" A
+\Var_{$1}\left[$2 \right] $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)Cov` "Covariance" A
+\Cov_{$1}\left[$2 \right] $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)Pr` "Probability" A
+\Pr_{$1}($2) $0
+endsnippet
+
+priority 200
+context math(context)
+snippet `(?<!\\)sim` "sim" A
+\sim $0
+endsnippet
+
+context math(context)
+snippet apx "approx" iA
+\approx $0
+endsnippet
+
+context math(context)
+snippet `(?<!\\)bino` "binomial coefficient" A
+\binom{$1}{$2}$0
+endsnippet
+
+context math(context)
+snippet ems "empty set" iA
+\varnothing $0
+endsnippet
+
+snippet emph "emph" iA
+\emph{$1}$0
+endsnippet
+
+snippet begg "begin custom env" iA
+\begin{${1}}
+	$0
+\end{${1}}
+endsnippet
+
+context math(context)
+snippet := "definition in math" iA
+\coloneqq $0
+endsnippet
+
+context math(context)
+snippet =: "definition in math" iA
+\eqqcolon $0
+endsnippet
+
+context math(context)
+snippet :: "colon" iA
+\colon $0
+endsnippet
+
+priority 200
+context math(context)
+snippet idd "identity" iA
+\identity_{$1} $0
+endsnippet
+
+context math(context)
+snippet quad "quad" iA
+\quad $0
+endsnippet
+
+snippet enumerate "enumerate"
+\begin{enumerate}
+  \item $0
+\end{enumerate}
+endsnippet
+
+snippet itemize "itemize"
+\begin{itemize}
+  \item $0
+\end{itemize}
+endsnippet
+
+snippet `(?<!\\)eq` "equation"
+\begin{equation}
+  $0
+\end{equation}
+endsnippet
+
+snippet `(?<!\\)eqa` "equation*"
+\begin{equation*}
+  $0
+\end{equation*}
+endsnippet
+
+snippet `(?<!\\)def` "definition"
+\begin{definition}
+  $0
+\end{definition}
+endsnippet
+
+
+
+context math(context)
+snippet quo "\quotient" iA
+\quotient{$1}{$2} $0
+endsnippet
+
+context math(context)
+snippet `\|\_` "\at" A
+\at{$1}{$2}{$3} $0
+endsnippet
+
+snippet atf "\autoref{}" iA
+\autoref{$1} $0
+endsnippet
+
+snippet hpr "\hyperref[]{}" iA
+\hyperref[$1]{$2} $0
+endsnippet
+
+snippet lbl "\label{}" iA
+\label{$1}
+endsnippet
+
+snippet rmk "remark" bA
+\begin{remark}
+	$0
+\end{remark}
+endsnippet
+
+snippet dfn "definition" bA
+\begin{definition}
+	$0
+\end{definition}
+endsnippet
+
+
+snippet fplot "plot" bA
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[xscale = 0.6, yscale=0.65,
+      xmax = $2,
+      xmin = $1,
+      ymax = 20, 
+      ymin = -20, 
+      grid = both,
+      xlabel = \$x\$,
+      ylabel = \$y\$,
+      axis lines = middle]
+      \addplot[
+        domain=$1:$2,
+        samples = $3,
+        thick, red]{$4};\label{$5}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{$6}
+\end{figure}
+$0
+endsnippet
+
+
+
+
+context math(context)
+snippet vph "same level of underbrace" iA
+\vphantom{$1} $0
+endsnippet
+
+context math(context)
+snippet hom "homorphism" iAw
+\Homomorphism $0
+endsnippet
+
+context math(context)
+snippet Obj "object" iA
+\Object $0
+endsnippet
+
+context math(context)
+snippet mor "morphism" iA
+\Morphism $0
+endsnippet
+
+context math(context)
+snippet __ "\underset{}{}" iA
+\underset{$1}{$2} $0
+endsnippet
+
+context math(context)
+snippet ^^ "\overset{}{}" iA
+\overset{$1}{$2} $0
+endsnippet
+
+context math(context)
+snippet fk "\mathfrak{}" iA
+\mathfrak{$1} $0
+endsnippet
+
+context math(context)
+snippet tg "\triangle" iA
+\triangle $0
+endsnippet
+
+context math(context)
+snippet ;a "alpha" iA
+\alpha$0
+endsnippet
+
+context math(context)
+snippet ;b "beta" iA
+\beta$0
+endsnippet
+
+context math(context)
+snippet ;g "gamma" iA
+\gamma$0
+endsnippet
+
+context math(context)
+snippet ;d "delta" iA
+\delta$0
+endsnippet
+
+context math(context)
+snippet ;e "epsilon" iA
+\epsilon$0
+endsnippet
+
+context math(context)
+snippet ;z "zeta" iA
+\zeta$0
+endsnippet
+
+context math(context)
+snippet ;h "eta" iA
+\eta$0
+endsnippet
+
+context math(context)
+snippet ;t "theta" iA
+\theta$0
+endsnippet
+
+context math(context)
+snippet ;i "iota" iA
+\iota$0
+endsnippet
+
+context math(context)
+snippet ;k "kappa" iA
+\kappa$0
+endsnippet
+
+context math(context)
+snippet ;l "lambda" iA
+\lambda$0
+endsnippet
+
+context math(context)
+snippet ;m "mu" iA
+\mu$0
+endsnippet
+
+context math(context)
+snippet ;n "nu" iA
+\nu$0
+endsnippet
+
+context math(context)
+snippet ;x "xi" iA
+\xi$0
+endsnippet
+
+context math(context)
+snippet ;o "omicron" iA
+\omicron$0
+endsnippet
+
+context math(context)
+snippet ;p "pi" iA
+\pi$0
+endsnippet
+
+context math(context)
+snippet ;r "rho" iA
+\rho$0
+endsnippet
+
+context math(context)
+snippet ;s "sigma" iA
+\sigma$0
+endsnippet
+
+context math(context)
+snippet ;t "tau" iA
+\tau$0
+endsnippet
+
+context math(context)
+snippet ;u "upsilon" iA
+\upsilon$0
+endsnippet
+
+context math(context)
+snippet ;f "phi" iA
+\phi$0
+endsnippet
+
+context math(context)
+snippet ;c "chi" iA
+\chi$0
+endsnippet
+
+context math(context)
+snippet ;w "omega" iA
+\omega$0
+endsnippet
+
+snippet tcode "monospaced" iA
+\texttt{$1} $0
+endsnippet
+
+snippet \par "paragraph" iA
+\paragraph{$1} 
+$0
+endsnippet
+
+snippet \sub "subsection" iA
+\subsection{$1} 
+$0
+endsnippet
+
+snippet \sect "section" iA
+\section{$1} 
+$0
+endsnippet
+
+snippet `(?<!\\)qed` "\qed" iA
+\qed
+endsnippet
+
+snippet `cpseudo` "pseudocode" bA
+\begin{lstlisting}[language=Python, caption={$1}, label={$2}]
+  $0
+\end{lstlisting}
+endsnippet
+
+snippet `templatebook` "BookTemplate" Ab
+\documentclass[openright, twoside, twocolumn]{report}
+\usepackage{amsmath}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage{tikz}
+\usepackage{quotchap}
+\usepackage{epigraph}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage[T1]{fontenc}
+\usepackage{xparse}
+\usepackage[binary-units]{siunitx}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{bookmark}
+\usepackage[para]{footmisc}
+\usepackage{thmtools}
+\usepackage{booktabs}
+
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+%
+% Super Figure preamble.
+%
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+% generated by the Super Figure vscode extension. May we stand on the shoulder's of giants (RIP Gilles.)
+\usepackage{import}
+\newcommand{\incsvg}[2]{%
+	\def\svgwidth{\columnwidth}
+	\graphicspath{{#1}}
+	\input{#2.pdf_tex}
+}
+
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+% 
+% Listings (Python)
+% 
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+\usepackage{listings}
+
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+\lstset{language=Python}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+% 
+% Theorems 
+% 
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+% Main theorem style
+\declaretheorem[style=definition,numberwithin=section,thmbox=L]{theorem,definition}
+\declaretheorem[thmbox=M,numberwithin=section]{lemma,corollary,proposition}
+
+\declaretheorem[shaded={rulecolor=ProcessBlue,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{remark,observation}
+
+\declaretheorem[style=remark,shaded={rulecolor=Red,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{example}
+
+\declaretheorem[style=remark,shaded={rulecolor=SpringGreen,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{exercise}
+
+%Solution referring to exercise
+\declaretheorem[style=remark,shaded={rulecolor=SpringGreen,
+rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
+
+%%%
+%
+%   MARGIN NOTES SETUP
+%
+%%%
+
+\usepackage{marginnote}
+
+%%%
+%
+%   PGFPLOT SETUP
+%
+%%%
+
+\usepackage{pgfplots}
+\pgfplotsset{width=8cm, compat=1.18}
+
+\usepackage{cleveref}
+
+%%%
+%
+%   TITLE PAGE HEADER
+%
+%%%
+
+\renewcommand\epigraphflush{flushright}
+\renewcommand\epigraphsize{\normalsize}
+\setlength\epigraphwidth{0.7\textwidth}
+
+\definecolor{titlepagecolor}{cmyk}{1,.60,0,.40}
+
+\DeclareFixedFont{\titlefont}{T1}{ppl}{b}{it}{0.5in}
+
+\makeatletter                       
+\def\printauthor{%                  
+    {\large \@author}}              
+\makeatother
+\author{%
+    \begin{align*}
+        \text{Dario Loi, Student, Department of Computer Science}& \\\\
+        \text{Applied Computer Science \& Artificial Intelligence}& \\\\
+        \texttt{loi.1940849@studenti.uniroma1.it}\vspace{20pt}&
+    \end{align*}
+    }
+
+% The following code is borrowed from: https://tex.stackexchange.com/a/86310/10898
+
+\newcommand\titlepagedecoration{%
+\begin{tikzpicture}[remember picture,overlay,shorten >= -10pt]
+
+\coordinate (aux1) at ([yshift=-15pt]current page.north east);
+\coordinate (aux2) at ([yshift=-410pt]current page.north east);
+\coordinate (aux3) at ([xshift=-4.5cm]current page.north east);
+\coordinate (aux4) at ([yshift=-150pt]current page.north east);
+
+\begin{scope}[titlepagecolor!40,line width=12pt,rounded corners=12pt]
+\draw
+  (aux1) -- coordinate (a)
+  ++(225:5) --
+  ++(-45:5.1) coordinate (b);
+\draw[shorten <= -10pt]
+  (aux3) --
+  (a) --
+  (aux1);
+\draw[opacity=0.6,titlepagecolor,shorten <= -10pt]
+  (b) --
+  ++(225:2.2) --
+  ++(-45:2.2);
+\end{scope}
+\draw[titlepagecolor,line width=8pt,rounded corners=8pt,shorten <= -10pt]
+  (aux4) --
+  ++(225:0.8) --
+  ++(-45:0.8);
+\begin{scope}[titlepagecolor!70,line width=6pt,rounded corners=8pt]
+\draw[shorten <= -10pt]
+  (aux2) --
+  ++(225:3) coordinate[pos=0.45] (c) --
+  ++(-45:3.1);
+\draw
+  (aux2) --
+  (c) --
+  ++(135:2.5) --
+  ++(45:2.5) --
+  ++(-45:2.5) coordinate[pos=0.3] (d);   
+\draw 
+  (d) -- +(45:1);
+\end{scope}
+\end{tikzpicture}%
+}
+
+%%%
+%
+%   FANCY HEADER DEFINITION
+%
+%%%
+
+\usepackage{fancyhdr, lastpage}
+\usepackage{titlesec}
+\usepackage{emptypage}
+\pagestyle{fancy}
+
+\fancyhead[LE,RO]{Dario Loi}
+\fancyhead[RE,LO]{$1}
+
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{Page \thepage}
+
+\renewcommand{\headrulewidth}{0.5pt}
+
+\fancypagestyle{plain}{
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhf{}
+  \fancyfoot[CE,CO]{\leftmark}
+  \fancyfoot[LE,RO]{}
+}
+
+%%%
+%
+% HYPERREF SETUP
+%
+%%%
+
+\DeclareTextFontCommand{\emph}{\bfseries}
+
+\usepackage{hyperref}
+  \hypersetup{
+      colorlinks=true,
+      linkcolor=blue,
+      filecolor=magenta,      
+      urlcolor=cyan,
+      pdftitle={$1},
+      pdfpagemode=,
+      }
+
+%%%
+%
+%   TITLE PAGE MACRO
+%
+%%%
+
+\newcommand\mktitlepage{
+    \begin{titlepage}
+        \noindent
+        \titlefont $1 \par
+        \epigraph{INSERT A QUOTE
+        %
+        \leavevmode %IF ENUMERATE || ITEMIZE
+        %
+        }%
+        {\textit{CITY DATE}\\\\ \textsc{QUOTE AUTHOR}}
+        \null\vfill
+        \vspace*{1cm}
+        \noindent
+        \hfill
+        \begin{minipage}{0.35\linewidth}
+            \begin{flushright}
+                \printauthor
+            \end{flushright}
+        \end{minipage}
+        %
+        \begin{minipage}{0.02\linewidth}
+            \rule{1pt}{125pt}
+        \end{minipage}
+        \titlepagedecoration
+    \end{titlepage}
+}
+
+\usepackage[a4paper, left = 3.0cm, right=4.8cm, bottom = 2.5cm, top = 4.5cm, marginparwidth=2.2cm, marginparsep=2mm, heightrounded, twoside=true]{geometry}
+
+
+%%%
+%
+% Macroes
+%
+%%%
+
+\newcommand{\sequence}[2]{
+		\\{ #1_1, #1_2, \dots, #1_#2 \\}
+}
+
+%Common Sets
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+%insert code snippet
+\NewDocumentCommand{\code}{v}{%
+\texttt{#1}%
+}
+
+\newcommand{\chapterquote}[3]{ % Quote, Author, Date %
+	\begin{flushleft}
+			\textit{
+				\\`\\`#1\\`\\`
+			}
+		\end{flushleft}
+		\begin{flushright} 
+			--- #2, \textit{#3}
+		\end{flushright}
+}
+
+\begin{document}
+    
+    \mktitlepage
+    
+    
+    \tableofcontents
+    \newpage
+
+    \newgeometry{a4paper, outer = 2.2cm, inner=3.4cm, bottom = 2.5cm, top = 2.5cm, marginparwidth=2.2cm, marginparsep=2mm, heightrounded, twoside=true}
+
+    $0
+
+\end{document}
+endsnippet
+
+snippet infosys "Information System" Ai
+Information System
+endsnippet

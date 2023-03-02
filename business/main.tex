@@ -34,6 +34,43 @@
 	\input{#2.pdf_tex}
 }
 
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+%
+% Listings (Python)
+%
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+\usepackage{listings}
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    numbers=left,
+    gobble=4,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=pythonstyle, xleftmargin=0.5cm, xrightmargin=0.5cm}
+\lstset{language=Python}
+
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 %
 % Theorems
@@ -292,7 +329,7 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
           % Header
           $Day$ &  $Purpose$ \\
          %End Header
-          Tuesday &  Lecture \\
+          Wednsday &  Lecture \\
           Thursday & Seminars\\
       \end{tabular}
       \caption{Course Structure}
@@ -624,7 +661,7 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
     \begin{itemize}
       \item A \emph{Potentially Firable Transition}  $t \in T$  is such that
       \[
-        \exists \tau \in T^{\star} s.t \tau t \text{Is Firable}: M_0 {}^{\tau}\to^{t}
+        \exists \tau \in T^{\star} s.t\ \tau t\ \text{Is Firable}:\ M_0 {}^{\tau}\to^{t}
       .\]
       \item A \emph{Potentially Firable Sequence} $\sigma \in T^{\star}$ is such that
       there exists a prefix sequence $\tau \in T^{\star}$ such that $\tau \sigma$ is firable (
@@ -731,7 +768,7 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
   \begin{align}
     T &\coloneqq  \{ t_1, t_2, \ldots, t_n \}\\
     &s.t \ \exists\, (t_i, t_j) \in T \\
-    &s.t \ t_i \land  t_j \text{ are both enabled}
+    &s.t \ t_i \land  t_j\ \text{ are both enabled}
   \end{align}
 
     where the firing of one of $t_i \lor t_j$ would lead to the disabling of
@@ -741,6 +778,4 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
     }, these conflicts can be resolved by introducing \emph{priority} to the transitions, that is, we can
     restructure the mathematical definition to allow for a hierarchy of transitions, or we can simply resolve
     the conflict by restructiring the model itself.
-
-
 \end{document}
