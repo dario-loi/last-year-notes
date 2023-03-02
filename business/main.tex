@@ -78,21 +78,18 @@
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 % Main theorem style
-\declaretheorem[style=definition,numberwithin=section,thmbox=S]{theorem,definition}
-\declaretheorem[thmbox=M,numberwithin=section]{lemma,corollary,proposition}
+\declaretheorem[shaded={bgcolor={White!90!Periwinkle}}]{theorem,definition}
+\declaretheorem[shaded={bgcolor={White!90!Periwinkle}}]{lemma,corollary,proposition}
 
-\declaretheorem[shaded={rulecolor=ProcessBlue,
-rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{remark,observation}
 
-\declaretheorem[style=remark,shaded={rulecolor=Red,
-rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{example}
+\declaretheorem[shaded={bgcolor={White!90!Periwinkle}}]{remark,observation}
 
-\declaretheorem[style=remark,shaded={rulecolor=SpringGreen,
-rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{exercise}
+\declaretheorem[style=remark,shaded={bgcolor={White!90!Periwinkle}}]{example}
+
+\declaretheorem[style=remark,shaded={bgcolor={White!90!Periwinkle}}]{exercise}
 
 %Solution referring to exercise
-\declaretheorem[style=remark,shaded={rulecolor=SpringGreen,
-rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
+\declaretheorem[style=remark,shaded={bgcolor={White!90!Periwinkle}}]{solution}
 
 %%%
 %
@@ -778,4 +775,124 @@ rulewidth=2pt, bgcolor={rgb}{1,1,1}}]{solution}
     }, these conflicts can be resolved by introducing \emph{priority} to the transitions, that is, we can
     restructure the mathematical definition to allow for a hierarchy of transitions, or we can simply resolve
     the conflict by restructiring the model itself.
+
+
+    \section{Reachability graphs}
+
+    Reachability graphs are a way to represent the evolution of a Petri Net, they are a directed graph, where
+    each node is a marking of the Petri Net, and each edge represents a transition that can be fired from the
+    current marking to the next marking.\footnote{
+      This section is a placeholder, disregard it.
+    }
+
+    \paragraph{Reachability Graph Construction}
+
+    Reachability graphs are constructed by starting from the initial marking, and then, for each marking, we
+    generate all the possible markings that can be reached from the current marking by firing a transition.
+
+
+    By properly identifying the frontier nodes, the generation pf the reachability graph
+    is performable in a finite amount of steps, even if the Petri Net is unbounded, this is
+    polynomial time, and therefore the reachability graph can be generated in a finite amount of time.
+
+    \paragraph{Infinite Reproducibility}
+
+    A marking $M^{\prime\prime} \geq  M^\prime$ is \emph{Infinitely Reproducible if}:
+
+    \begin{align}
+      M^{\prime\prime}  &\geq  M^\prime\\
+      m_i^{\prime\prime}  \geq  m_i^\prime &\quad  \forall  i \in  (1, 2, \ldots, n)
+    \end{align}
+
+    \section{Petri Nets Extensions}
+
+    Petri nets can be \emph{extended} in order to model more complex systems, for example, we can have:
+
+    \begin{itemize}
+      \item Arc Multiplicity
+      \item Inhibitor Arcs
+      \item Priority Levels
+      \item Enabling Functions (Guard Conditions)
+    \end{itemize}
+
+    \begin{remark}
+      The last three extensions \emph{destroy} the infinitely reproducibility property of the Petri Net.
+    \end{remark}
+
+    \subsection{Arc Multiplicity}
+
+    An \emph{arc cardinality} may be associated with input and output arcs, whereby the enabling and firing
+    rules change:
+
+    \begin{itemize}
+      \item Each input must contain at least as many tokens as the input arc's cardinality
+      \item When the transition fires, the number of tokens removed from each input place is equal to the input arc's cardinality,
+      as is the number of token added to each output place.
+    \end{itemize}
+
+    % TODO: Add a picture of a petri net with arc multiplicity.
+
+    \subsection{Inhibitor Arcs}
+    Inhibitor arcs are arcs represented with a circle head, the transition can fire only if the inhibitor place
+    does \emph{not} contain any tokens.
+
+    They are used to implement constraints on the firing of a transition, in the restaurant example, we
+    could think of a transition that represents the \emph{delivery} of a dish, and we could have an inhibitor
+    arc from the \emph{delivery} transition to the \emph{payment} transition, so that the dish can only be
+    delivered once the payment has been made.
+
+
+    \paragraph{Inhibitor Arcs and Multithreading}
+    Once again, we also notice a stunning similarity with multithreading, where we can think of the inhibitor
+    as some sort of synchronization primitive, such as a \emph{mutex}.or a \emph{semaphore}.
+
+    \paragraph{Inhibitors and Transitions}
+    An inhibitor arc placed on a transition means that the transition can only fire if the inhibitor place
+    does \emph{not} contain any tokens, however, the cardinality of the output arc is not affected by the
+    presence of the inhibitor arc, nor is the inhibitor affected by the cardinality.
+
+    \subsection{Priority Levels}
+
+    A Priority level can be attached to each Petri Net Transition, the standard execution rules are then modified
+    to allow the highest priority to fire first in case of conflict, when two transitions have the same priority,
+    that subset of transitions fires simultaneously.
+
+    \subsection{Enabling Functions}
+
+    An enabling function (or guard) is a boolean expression, composed with Petri Nets primitives, the enabling rules
+    are modified so that, besides the standard conditions, the transition can only fire if the guard evaluates to
+    \emph{true}.
+
+    Hence we can define an enabling functions as:
+
+\begin{align*}
+  f(tk) &\coloneqq \\
+  &\times (P, T, A)\\
+  &\times  (+, \cdot, \leq, \geq, \neq, \land, \lor, \neg, \text{true}, \text{false})\\
+  &\times  \{ \text{true}, \text{false} \}
+\end{align*}
+
+  \subsection{Colored Petri Nets}
+
+  We can extend petri nets with colors, to increase expressiveness:
+
+  \begin{itemize}
+    \item We say that $C$ is a set of colors of cardinality $|C|$ and $\textcolor{blue}{x}$ is a color of $C$.
+    \item Place $\textcolor{blue}{p}$ can contain tokens of any color $\textcolor{blue}{x} \in  C $
+    \item Transition $\textcolor{blue}{t}$ can fire tokens of any color $\textcolor{blue}{x} \in C$
+  \end{itemize}
+
+  \subsection{Stochastic Petri Nets}
+
+  Petri nets can be extended by clearly associating \emph{time} with the firing of transitions,
+  resulting in \emph{Timed Petri Nets}.
+
+  A special case of timed Petri Nets is stochastic petri nets (SPN), where the firing times are
+  considered to be random variables.
+
+  This can be useful to model the random natures of sales, that are based on a number of
+  difficuly-to-predict factors, such as the customer's tastes, current season, advertisements,
+  world events, etc\dots
+
+
 \end{document}
