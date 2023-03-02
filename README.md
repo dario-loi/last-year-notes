@@ -35,7 +35,7 @@
     Collaborative effort to build up a notes repository for ACSAI A.Y 2022/2023's last semester.
     <br />
     <br />
-    <a href="https://github.com/dario-loi/last-year-notes/releases/tag/v0.0.1">View PDF</a>
+    <a href="https://github.com/dario-loi/last-year-notes/releases/tag/latest">View PDF</a>
     ·
     <a href="https://github.com/dario-loi/last-year-notes/issues">Report Bug</a>
     ·
