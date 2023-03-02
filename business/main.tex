@@ -521,7 +521,7 @@
       \item Hierarchical
       \item State Diagrams (Automata)
       \item DFD -- Data Flow Diagram
-      \item Wide -- Workflow on an Intelligent and Distributed database Environment
+      \item WIDE -- Workflow on an Intelligent and Distributed database Environment
       \item Action Workflow
       \item Petri Nets
     \end{itemize}
@@ -563,8 +563,8 @@
       be a process,the second can be either a process, a data collection or an interface, moreover,
       they can be either
       \begin{enumerate}
+        \item Elementary
         \item Structured
-        \item TODO
       \end{enumerate}
     \end{definition}
 
@@ -575,21 +575,17 @@
 
     \subsection{WIDE}
 
-    Wide Relies on three main components:
+    WIDE Relies on three main components:
 
     \begin{itemize}
-      \item Process Model
-      \item Information Model
-      \item Organization Model
+      \item Process Model -- Describes the activities
+      \item Information Model -- Describes the data
+      \item Organization Model -- Describes the structure and agents
     \end{itemize}
-
-    \paragraph{Process Model}
-    Wide still relies on a \emph{Process} model, it is somewhat similar to an \emph{Activity Diagram} used
-    to describe Object Oriented Code
 
     \paragraph{Anti-Spaghetti Techniques}
 
-    The wide model introduces some more complex components with respect to the DFD model, such as forks and joins,
+    The WIDE model introduces some more complex components with respect to the DFD model, such as forks and joins,
     to better describe the flow of the data through the system with fewer connections between the components.
 
     \begin{remark}
@@ -598,24 +594,29 @@
       is that \emph{People Are Going to Read It}.
     \end{remark}
 
+    In conclusion, the WIDE model is just a more expressive version of the DFD model, which
+    allows for more concise flowcharts.
+
     \subsection{Petri Nets}
 
     Petri Nets are a formal model that is used to describe the flow of data through an Information Systems
 
     \begin{definition}[Petri Nets]
       \label{def:petri-nets}
-      A petri net is a $3-\text{Tuple} = (P, T, A)$
+      A petri net is a $\text{3-Tuple} \coloneqq  (P, T, A)$
       that forms a \emph{Bipartite Graph}:
-    \[
-      G = (P \cup T, A), A \subseteq (P \times T) \cup (T \times P)
-    .\]
+      \[
+        G(V, E) \coloneqq \begin{dcases}
+          V &\coloneqq (P \cup T)\\
+          A &\coloneqq E \subseteq  (P \times T) \cup (T \times P)
+        \end{dcases}\]
 
     Where:
 
     \begin{itemize}
       \item $P$ is a set of places
       \item $T$ is a set of transitions
-      \item $A$ is a set of arcs $A \subseteq (P \times T) \cup (T \times P)$
+      \item $A$ is a set of arcs (Edges) that connect places and transitions in a \emph{Directed} fashion
     \end{itemize}
 
     There is a set of \emph{Initial Markings} $M_0 \subseteq P$ that are the places that are initially marked,
@@ -654,12 +655,18 @@
 
   \paragraph{Further Definitions}
 
-    Now, given a net $P = (P, T, A, M_0)$ we have that:
+    Now, given a net \[
+      P = (P, T, A, M_0).\] We have that:
     \begin{itemize}
       \item A \emph{Potentially Firable Transition}  $t \in T$  is such that
       \[
         \exists \tau \in T^{\star} s.t\ \tau t\ \text{Is Firable}:\ M_0 {}^{\tau}\to^{t}
-      .\]
+      .\]\footnote{
+        $T^{\star}$ is the set of all sequences of transitions, so $\tau t$ is a sequence of transitions
+        that starts with $\tau$ and ends with $t$, hence we are using notation coming from regular expressions (
+          Concatenation, Kleene star, etc\dots
+        )
+      }
       \item A \emph{Potentially Firable Sequence} $\sigma \in T^{\star}$ is such that
       there exists a prefix sequence $\tau \in T^{\star}$ such that $\tau \sigma$ is firable (
         $M_0 \to^{\tau \sigma} M_n$
@@ -726,10 +733,6 @@
     notations and label a node with a number $n \in \mathbb{N}$ to represent $n$ tokens in the place, be careful with
     this representation since it reduces the expressiveness of the model, especially towards non-mathematics oriented
     people.
-
-    %%%
-    % TODO: Add a picture of a petri net, with the places and transitions.
-    %%%
 
     \begin{figure}[ht]
       \centering
@@ -830,7 +833,13 @@
       as is the number of token added to each output place.
     \end{itemize}
 
-    % TODO: Add a picture of a petri net with arc multiplicity.
+    \begin{figure}[ht]
+	\centering
+	\incsvg{fig}{fig/pnet-arc-mult}\\
+	\caption{A Petri net with arc multiplicity, note that $ t_1$ has \emph{no way} to fire since it requires
+  4 tokens in $ p_1$ but it only ever has $3$. }
+	\label{fig:pnet-arc-mult}
+\end{figure}
 
     \subsection{Inhibitor Arcs}
     Inhibitor arcs are arcs represented with a circle head, the transition can fire only if the inhibitor place
@@ -863,14 +872,16 @@
     are modified so that, besides the standard conditions, the transition can only fire if the guard evaluates to
     \emph{true}.
 
-    Hence we can define an enabling functions as:
+    Hence we can formally define an enabling functions as:
 
 \begin{align*}
-  f(tk) &\coloneqq \\
-  &\times (P, T, A)\\
-  &\times  (+, \cdot, \leq, \geq, \neq, \land, \lor, \neg, \text{true}, \text{false})\\
-  &\times  \{ \text{true}, \text{false} \}
+  f(tk) &\coloneqq (P, T, A) \cup (+, \cdot, \leq, \geq, \neq, \\
+  & \land, \lor, \neg, \text{true}, \text{false}) \to \{ \text{true}, \text{false} \}\\
 \end{align*}
+
+But, in practice, we often adopt a verbal description of the boolean predicate that the enabling function implements\footnote{
+  Remember, \emph{someone is gonna read this}, and it's \emph{not} going to be a mathematician.
+}
 
   \subsection{Colored Petri Nets}
 
@@ -893,4 +904,5 @@
   This can be useful to model the random natures of sales, that are based on a number of
   difficuly-to-predict factors, such as the customer's tastes, current season, advertisements,
   world events, etc\dots
+
 \end{document}
