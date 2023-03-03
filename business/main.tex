@@ -207,11 +207,12 @@
   \fancyfoot[LE,RO]{}
 }
 
-%%%
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 %
 % HYPERREF SETUP
 %
-%%%
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
 
 % Leave it out if you wanna look formal
 %\DeclareTextFontCommand{\emph}{\bfseries}
@@ -656,17 +657,17 @@
   \paragraph{Further Definitions}
 
     Now, given a net \[
-      P = (P, T, A, M_0).\] We have that:
-    \begin{itemize}
-      \item A \emph{Potentially Firable Transition}  $t \in T$  is such that
-      \[
-        \exists \tau \in T^{\star} s.t\ \tau t\ \text{Is Firable}:\ M_0 {}^{\tau}\to^{t}
-      .\]\footnote{
+      P = (P, T, A, M_0).\] We have that:\footnote{
         $T^{\star}$ is the set of all sequences of transitions, so $\tau t$ is a sequence of transitions
         that starts with $\tau$ and ends with $t$, hence we are using notation coming from regular expressions (
           Concatenation, Kleene star, etc\dots
         )
       }
+    \begin{itemize}
+      \item A \emph{Potentially Firable Transition}  $t \in T$  is such that
+      \[
+        \exists \tau \in T^{\star} s.t\ \tau t\ \text{Is Firable}:\ M_0 {}^{\tau}\to^{t}
+      .\]
       \item A \emph{Potentially Firable Sequence} $\sigma \in T^{\star}$ is such that
       there exists a prefix sequence $\tau \in T^{\star}$ such that $\tau \sigma$ is firable (
         $M_0 \to^{\tau \sigma} M_n$
