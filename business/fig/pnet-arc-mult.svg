@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="true"
-     inkscape:zoom="0.74920735"
-     inkscape:cx="221.5675"
-     inkscape:cy="42.044435"
+     inkscape:zoom="2.1830731"
+     inkscape:cx="307.36488"
+     inkscape:cy="170.17296"
      inkscape:window-width="1900"
      inkscape:window-height="1018"
      inkscape:window-x="9"
@@ -139,14 +139,6 @@
        cx="137.31413"
        cy="30.668577"
        r="2.1378801" />
-    <text
-       xml:space="preserve"
-       transform="matrix(0.90118275,0,0,0.90118275,-191.24392,-96.663351)"
-       id="text1484"
-       style="font-size:16px;white-space:pre;shape-inside:url(#rect1486);fill:#000000;stroke:#000000;paint-order:stroke fill markers"><tspan
-         x="315.99023"
-         y="134.29238"
-         id="tspan343">$4$</tspan></text>
     <rect
        style="fill:#000000;stroke:#000000;stroke-width:1.18903;paint-order:stroke fill markers"
        id="rect1822"
@@ -156,14 +148,14 @@
        y="5.2536039" />
     <text
        xml:space="preserve"
-       style="font-size:14.4189px;fill:#000000;stroke:#000000;stroke-width:0.901182;paint-order:stroke fill markers"
-       x="35.246246"
-       y="72.669807"
+       style="font-size:7.59295px;fill:#000000;stroke:#000000;stroke-width:0.47456;paint-order:stroke fill markers"
+       x="87.679123"
+       y="29.160233"
        id="text1826"><tspan
          sodipodi:role="line"
          id="tspan1824"
-         style="stroke-width:0.901182"
-         x="35.246246"
-         y="72.669807">$t_1$</tspan></text>
+         style="stroke-width:0.47456"
+         x="87.679123"
+         y="29.160233">$t_1, \; 4$</tspan></text>
   </g>
 </svg>
