@@ -1,5 +1,6 @@
 \documentclass[openright, twoside, twocolumn]{report}
 \usepackage{amsmath}
+\usepackage[english]{babel}
 \usepackage[usenames,dvipsnames,table]{xcolor}
 \usepackage{amssymb}
 \usepackage{tikz}
@@ -30,8 +31,7 @@
 \usepackage{import}
 \newcommand{\incsvg}[2]{%
 	\def\svgwidth{\columnwidth}
-	\graphicspath{{#1}}
-	\input{#2.pdf_tex}
+	\import{#1/}{#2.pdf_tex}%
 }
 
 
@@ -745,7 +745,7 @@
 
     \begin{figure}[ht]
       \centering
-      \incsvg{fig}{fig/pnet}\\
+      \incsvg{fig}{pnet}\\
       \label{fig:pnet}
       \caption{%
         A Petri Net with 3 places and 2 transitions, we can
@@ -901,7 +901,7 @@
 
     \begin{figure}[ht]
 	\centering
-	\incsvg{fig}{fig/pnet-arc-mult}\\
+	\incsvg{fig}{pnet-arc-mult}\\
 	\caption{A Petri net with arc multiplicity, note that $ t_1$ has \emph{no way} to fire since it requires
   4 tokens in $ p_1$ but it only ever has $3$. }
 	\label{fig:pnet-arc-mult}
@@ -970,5 +970,57 @@ But, in practice, we often adopt a verbal description of the boolean predicate t
   This can be useful to model the random natures of sales, that are based on a number of
   difficuly-to-predict factors, such as the customer's tastes, current season, advertisements,
   world events, etc\dots
+
+\chapter{Key Performance Indicators}
+
+We now want to provide a modern and solid framework to monitor and measure the performance of our system, this tasks
+are one of the key roles of an Information System, and are a powerful force multiplier for the business.
+
+\paragraph{Critical Success Factors}
+
+Critical Success Factors (CSF) are the key factors that are necessary for the success of a business.
+
+\begin{definition}[Critical Success Factors]
+  CSFs are the limited number of areas in which satisfactory results will ensure successful competitive performance for the individual, department
+  or the organization as a whole.
+\end{definition}
+
+\begin{remark}
+  Note the difference between:
+
+  \begin{itemize}
+    \item Corporate Objectives -- The goals of the company
+    \item CSF -- How to achieve the goals, \emph{instrumental goals}, subject to the previous ones, which are \emph{terminal goals}
+  \end{itemize}
+\end{remark}
+
+\paragraph{Key Performance Indicators}
+
+Key Performance Indicators (KPI) are the metrics that are used to measure the performance of the CSFs, they
+give a review of:
+
+\begin{itemize}
+  \item Effectiveness -- How much we are on target
+  \item Efficiency -- Productivity and unit costs
+  \item Quality
+  \item Number of resources
+  \item Input
+  \item Output -- According to customer expectations
+  \item Level of Service -- Response times, average delays, flexibility
+\end{itemize}
+
+\chapter{Portfolios}
+
+Portfolios are a powerful tool to manage the business, they are a collection of projects, programs, and other work that are grouped together to achieve strategic
+objectives and benefits.
+
+Some common portfolios are:
+
+\begin{itemize}
+  \item Directional Portfolio -- Strategic Planning
+  \item Institutional Portfolio -- Organizational Structure
+  \item Operating Portfolio -- Business Processes
+\end{itemize}
+
 
 \end{document}
