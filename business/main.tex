@@ -1127,7 +1127,7 @@ This was solved by integrating the supply chain with the e-commerce platform, by
 buffering the products in a warehouse, the company implemented a real-time inventory system, and was able to guarantee the availability of the products
 directly from their website.
 
-Unfortunatedly, this was not enough, the company's \emph{business model} was still flawed, and the company was still losing money, little
+Unfortunately, this was not enough, the company's \emph{business model} was still flawed, and the company was still losing money, little
 increase of orders was observed, even though the failure-to-supply events were reduced.
 
 \paragraph{Another try}
@@ -1144,7 +1144,7 @@ and shipping of the products, and to track the status of the products in the war
 
 \paragraph{Finally, Results}
 
-This integration allowed the company to reduce the supply times and, most importantly, to reduce the costs, increasing its profit margin, Unfortunatedly, this was not enough,
+This integration allowed the company to reduce the supply times and, most importantly, to reduce the costs, increasing its profit margin, Unfortunately, this was not enough,
 as during this time, the company's main competitor, Amazon\footnote{
   Cue final boss music.
 }, started to offer the same service, and the company's market share started to decrease, the company was now forced to provide a service that was
@@ -1186,6 +1186,140 @@ outside influences from the marketplaces themselves, which, coincidentially, wer
 
 \paragraph{Failure}
 Ultimatedly, the company failed due to insufficient business margins.
+
+\chapter{Software Size Estimation}
+
+
+\section{SLOC}
+In order to decide whether engaging in a refactoring/rewrite of a software-based project, it is important to estimate the size of the project,
+both of the existing codebase and of the hypothetical new codebase, this is important since it seems to correlate with the difficulty
+and the cost of the project.\footnote{
+  At least that is what they thought in the 90s.
+}
+
+\paragraph{A metric for size}
+
+The most common \footnote{and useless.} metric is \emph{SLOC}, or \emph{Source Lines of Code}, which is the number of lines of code in the project,
+this is easy to calculate mathematically, and can even be made more specific by discounting comments and blank lines, or, by only
+counting lines in core functions and hot paths.
+
+This method is terrifyingly inaccurate as it suffers from a number of flaws
+\begin{itemize}
+  \item Different languages have different line lengths, and therefore different SLOC counts
+  \item Inefficient library function calls take up less lines of code than efficient, inbuilt ones
+  \item 80\% of code is used 20\% of the time, and vice-versa\footnote{
+    Like the 80/20 rule, but for code.
+  }, hence SLOC is not a good metric for estimating the size of the project since it poorly correlates with the actual complexity of the project.
+\end{itemize}
+
+There are some magic numbers proposed to calculate a SLOC index by extracting particular features from the codebase, such as the number of
+used files, functions, lines etc\dots, and then feeding this to a linear regressor, such as:
+
+\[
+  SLOC(X|\theta) \coloneqq \begin{bmatrix}
+     \theta_1 \\
+     \theta_2 \\
+     \vdots  \\
+    \theta_{n-1} \\
+     \theta_n \\
+  \end{bmatrix} \begin{bmatrix}
+     1 \\
+     X_1 \\
+     \vdots  \\
+    X_{n-1} \\
+     X_n \\
+  \end{bmatrix}
+.\]
+
+This is as scientifically accurate as predicting the outcome of battles from the flight patterns of birds, but it has
+the advantage of using math symbols, therefore \textbf{Science!}
+
+\section{FP}
+Function point models aim to estimate the size of software in terms of user functionalities (use cases exposed by the frontend)
+Function points are not only a predictor of size, but also a better predictor of difficulty, since they more closely
+measure the used parts of the project, and therefore the complexity of the project.
+
+Unfortunately, this is still presented as a \emph{magic number} that is calculated by a linear regressor, such as
+
+\[
+  BFP \coloneqq  4 \cdot EI + 5 \cdot EO + 4 \cdot EQ + 10 \cdot ILF + 7 \cdot EIF
+.\]
+
+Where:
+
+\begin{align*}
+  EI \coloneqq \, & \text{External Inputs} \\
+  EO \coloneqq \, & \text{External Outputs} \\
+  EQ \coloneqq \, & \text{External Inquiries} \\
+  ILF \coloneqq \, & \text{Internal Logical Files (Databases and directories)} \\
+  EIF \coloneqq \, & \text{External Interface Files (Libraries)}
+\end{align*}
+
+With a $\pm 25\%$ error margin, given by complexity.\footnote{
+  According to this model, importing a Linear Algebra library (such as \texttt{GLM} or \texttt{numpy}),
+  is more complex than implementing a neural network from scratch, or writing your own matrix library.
+}
+
+% maybe insert the table about extra complexity factors here?
+
+\paragraph{Variants}
+Naturally, there are a number of variants of this model, of course, creating a new variant is quite easy,
+all that is needed is coming up with a new set of \emph{magic numbers} to parametrize the regressor,
+you can come up with such thing yourself!
+
+FP were initially devised for business application, but there has been a push on trying to adapt them
+to other domains such as scientific or real-time applications.
+
+\paragraph{FP to SLOC conversion}
+
+Sometimes it is necessary to convert FP to SLOC, we do this through \emph{further magic numbers}:
+
+\begin{table}[h!]
+  \rowcolors{2}{gray!25}{white}
+  \centering
+  \begin{tabular}{c c c}
+      \rowcolor{gray!50}
+      % Header
+      Language & SLOC/FP 1 &  FLOC/FP 2 \\
+     %End Header
+      Assembler &  &   \\
+       &  &   \\
+       &  &   \\
+       &  &   \\
+       &  &   \\
+       &  &   \\
+       &  & \\
+  \end{tabular}
+  \caption{Conversion Tables}
+  \label{tab:langs}
+\end{table} % TODO: FILL THIS UP ASAP
+
+\section{Object Points}
+
+OP is a metric that tries to provide an equivalent metric to Function Point in an object oriented context,
+it utilizes object counts instead of function counts, and therefore is more accurate in object oriented projects,
+where classes are omnipresent.
+
+Objects are \textbf{not} raw object classes, rather, they are \textbf{abstractions} of the objects,
+and are to be counted whenever an entity that resembles a class is encountered in the codebase.
+
+\paragraph{OP to SLOC conversion}
+There is \emph{no} established standard for OP, and therefore conversion from OP to SLOC is also
+non-standardized
+
+\section{Wideband-Delphi}
+
+This model can be applied at the beginning of a project, and then updated as the project progresses,
+Usually it is used to examine a small section or component of the overall, larger project.
+
+Steps:
+
+\begin{enumerate}
+  \item A group of experts is each given the program's specification
+  \item % TODO: Continue this later, he skipped the slide
+\end{enumerate}
+
+
 
 
 
