@@ -722,6 +722,8 @@
 
 
     \chapter{Petri Nets -- Cont.}
+
+    \label{chap:petri}
     \section{Introduction}
     Petri nets are, as aforementionedly introduced, a \emph{Graphical} and \emph{Mathematical} modelling tool,
     that is, they are formalizable through math and representable pictorially.
@@ -1319,8 +1321,62 @@ Steps:
   \item % TODO: Continue this later, he skipped the slide
 \end{enumerate}
 
+\chapter{Project Management}
 
+\section{Context}
 
+Project management is \textbf{key} to a project's success, first, to talk
+about project management, we define a \emph{project}:
+
+\begin{definition}[Project]
+  A Project is defined as a group of \emph{stakeholders}, usually
+  under some measure of coordination or management, that pool
+  together resources to achieve a goal.
+\end{definition}
+
+The act of project management is necessary to ensure that schedules are respected
+and that resources are utilized efficiently, failures in project management
+almost always resolves in a loss of project, hence proper management is fundamental.
+
+\section{Project Management Models}
+
+In the previous chapter, we observed dozens of models for code complexity
+estimation, in this case, there is a \emph{single} established method
+for project modelling, it is called PERT and is based on \emph{Petri Nets},
+which we already introduced in \cref{chap:petri}.
+
+\paragraph{Terminology}
+We can introduce some terminology used in PERT petri nets:
+
+\begin{itemize}
+  \item Merge Events -- Merge events are represented by a place collecting multiple
+  incoming transitions, hence they act as a \emph{barrier}, synchronizing the separate sub-activities
+  \item Burst Events -- Burst events are represented by a place triggering multiple outgoing
+  transitions, hence they act as a \emph{fork}, launching multiple sub-activities
+  \item Dummy Activity -- Dummy activities are used to represent a \emph{connection} between events,
+  however, since they not a representation of a real activity but rather a \emph{control flow} object, they
+  do not consume any resource nor do they spend any time to be completed; they are represented by a dotted arrow.
+\end{itemize}
+
+\paragraph{Errors to be avoided}
+
+In the construction of a project workflow petri net, some more constraints should be considered,
+in addition to those of regular petri nets:
+
+\begin{itemize}
+  \item Multiple identical transitions -- there can't be two transitions with the same start and end place, hence,
+  one needs to use dummy variables to model this in order to be mathematically rigorous.
+  \item Loops -- looping should not be performed, even if allowed by the mathematical model, since the project \emph{must}
+  have a beginning and an end.
+  \item Multiple Start Events -- The petri net should be a workflow net, hence, it should have a single start and end state
+  \item Correct Direction -- The network should flow from left to right (or right to left depending on dominant cultural bias
+  in your organization\footnote{We want to be as PC as possible.})
+\end{itemize}
+
+\paragraph{Critical Path Analysis}
+The critical path for any network is defined as the \emph{longest path} in any network.
+
+% TODO expand this further
 
 
 \end{document}

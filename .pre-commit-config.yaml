@@ -22,6 +22,9 @@ repos:
     rev: v3.3.0
     hooks:
       - id: check-merge-conflict
+      - id: check-added-large-files
       - id: check-yaml
       - id: trailing-whitespace
         files: ".*\\.(?:tex|py)$"
+      - id: end-of-file-fixer
+        files: .*\\.(?:tex|py)$"
