@@ -1622,10 +1622,55 @@ about other data, we have:
   \end{itemize}
 \end{itemize}
 
+\section{Data Warehouse Multidimensionality}
 
+Data is \emph{extracted} from the world following a precise sequence of
+events:
 
+\begin{enumerate}
+  \item An \textcolor{red}{event} occurs, for example, Giovanni, age 26 buys a pizza
+  \item A \textcolor{red}{datum} is extracted by discarding irrelevant
+  information from the \textcolor{red}{event} (\texttt{pizza}, \texttt{5\$}, \texttt{\today})
+  \item A \textcolor{red}{fact} is obtained by aggregating data, as a measurements
+  in $N$-dimensional space (sold \textcolor{blue}{N} units of \textcolor{blue}{M} articles
+  on date \textcolor{blue}{D})
+\end{enumerate}
 
+\paragraph{Data as tensors}
 
+Hence data can be visualized as \emph{tensors}, a concept that is
+quite common to us AI scientists.
+
+This allows us to perform projections and aggregations on the data
+along certain dimensions, for example, we can aggregate
+the data along the \texttt{time} dimension, obtaining
+an average over a certain period of time, or we can
+project the data along the \texttt{product} dimension, obtaining
+the total amount of products sold.
+
+\paragraph{Dimensional Hierarchy}
+
+We can define a dimensional hierarchy, where, for each dimension, we
+have a hierarchy that groups together values at different
+levels of aggregation
+
+% TODO: correct text sizes
+
+\begin{figure}[ht]
+	\centering
+	%\incsvg{path/}{path/file}
+	\incsvg{fig}{hierarchy}\\
+	\label{fig:hierarchy}
+	\caption{Here we have a dimensional hierarchy for the
+  \emph{time} dimension, the directed arrows denote functional
+  dependencies, that is, the \emph{parent} dimension is
+  \emph{higher} in the hierarchy than the \emph{child} dimension, meaning
+  that it has more \emph{granularity}.}
+\end{figure}
+
+\subsection{Data Warehouse Access}
+
+% TODO: Finish up
 
 
 
