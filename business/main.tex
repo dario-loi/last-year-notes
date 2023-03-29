@@ -1378,5 +1378,255 @@ The critical path for any network is defined as the \emph{longest path} in any n
 
 % TODO expand this further
 
+\chapter{Business intelligence and Data Warehousing}
+
+\section{Data Warehousing}
+
+Data warehousing is a \emph{concept}, it is, formally
+
+\begin{definition}[Data Warehouse]
+  A collection of methods, technologies and tools to
+  assist the \emph{knowledge worker}\footnote{
+    for example a manager or an analyst
+  } to conduct data analysis aimed at supporting
+  decision-making and/or improving the management of
+  information assets.
+\end{definition}
+
+The data collected in a data warehouse is:
+
+\begin{itemize}
+  \item Integrated -- from multiple sources
+  \item Consistent -- despite its different origins
+  \item Focused -- with a specific interest area
+  \item Historical -- over a consistent timeframe
+  \item Permanent -- it is not a temporary storage
+\end{itemize}
+
+\paragraph{Purpose}
+A data warehouse \textbf{helps} in:
+
+\begin{itemize}
+  \item Taking decisions
+  \item Identifying phenomena
+  \item Forecasting the future
+  \item Controlling a complex system
+\end{itemize}
+
+\begin{remark}
+  The data warehouse does \textbf{not} do any of the above, it merely
+  \textbf{helps} by providing intelligence (i.e information) to the
+  knowledge worker.
+\end{remark}
+
+\subsection{OLTP \& OLAP}
+
+The two main data analysis techniques are OLTP and OLAP, respectively:
+
+\begin{itemize}
+  \item OLTP -- Online Transaction Processing
+  \begin{itemize}
+    \item Write/Read transactions
+    \item Consistent
+    \item Many, fast and frequent transactions
+    \item Highly concurrent
+    \item Accesses a small subset of the data
+    \item On-the-fly data update
+  \end{itemize}
+  \item OLAP -- Online Analytical Processing
+  \begin{itemize}
+    \item Read-only
+    \item Few operations
+    \item Low concurrency level
+    \item Accesses huge amounts of data
+    \item Data is historical and mostly static
+  \end{itemize}
+\end{itemize}
+
+Each is commonly associated, respectively, with an \emph{Operational Database}
+and a \emph{Data Warehouse}.
+
+\subsection{Operational Databases vs Data Warehouses}
+
+Operational databases are designed to support OLTP, whereas data warehouses are designed to support OLAP,
+we can highlight the following differences:
+
+\begin{itemize}
+  \item Different computational loads -- OLTP is based on concurrency and responsiveness, whereas OLAP
+  is usually based on batch processing
+  \item Different needs
+  \begin{itemize}
+    \item DB -- Dynamic Data, asynchronous updates
+    \item DW -- Static Data, batch updates
+  \end{itemize}
+  \item Different integration
+  \begin{itemize}
+    \item DB -- Suppporting operations  (focused, timely, responsive)
+    \item DW -- Supporting decisions (descriptive, historical, meticulous)
+  \end{itemize}
+  \item Different data collection
+  \begin{itemize}
+    \item DB -- minimal, just what is needed to support short-term operations
+    \item DW -- maximal, all data that is relevant to the organization, to be
+    used for long-term analysis
+  \end{itemize}
+\end{itemize}
+
+Moreover, the two models also have a different approach to common Relational Databases
+concepts, such as:
+
+\begin{itemize}
+  \item Redundancy
+  \begin{itemize}
+    \item DB -- Avoided, leads to inefficient updates
+    \item DW -- Accepted, leads to efficient queries
+  \end{itemize}
+  \item Indexing
+  \begin{itemize}
+    \item DB -- Good for reads, bad for writes, hence, the level of indexing
+    must be carefully chosen to balance the two
+    \item DW -- Good for reads, there are \textbf{no} writes, hence, the more the better
+  \end{itemize}
+\end{itemize}
+
+\paragraph{Common Systems}
+The usual industry players are also present in this field, companies such as
+IBM, Microsoft and etc\dots provide their own data warehouse solutions.
+
+\section{Data Warehouse Architectures}
+In general, the issues that are addressed by any software engineer are
+also present in the data warehouse field, things such as \emph{scalability},
+\emph{security}, \emph{extensibility}; we are also interested in
+\emph{two} extra qualities:
+
+\begin{enumerate}
+  \item OLTP and OLAP separation -- The two systems, as explored before,
+  are remarkably distinct in terms of their requiremets, one being read only
+  and the other requiring a high level of responsiveness, hence, by separating them,
+  we can target them with more focussed optimizations, thus, improving performance.
+
+  Also, by separating them, we can have a more \emph{modular} system, which works
+  towards our other goals (scalability, extensibility, etc\dots), and, finally,
+  we can also devise different storage solutions for each, which can be, for example,
+  a \emph{relational database} for the OLTP and a \emph{data warehouse} for the OLAP.
+  \item Administrability -- The system should be easy to administer, this means that
+  a single person should be able to manage the whole system, without having to
+  know the details of each component.
+\end{enumerate}
+
+\paragraph{Choosing the architecture}
+Naturally, the architecture is dependent on \emph{design choices} that are
+guided by the \emph{business requirements} and the \emph{technical requirements}.
+
+These then determine the costs of operation, the utilized resources (such as
+the software system), the level of possible integration with other systems, and,
+most importantly, the \textbf{cost} of data processsing.
+
+\subsection{Data Marts}
+
+A data mart acts as a \emph{frontend} to a data warehouse, it is a \emph{subset} of the data warehouse,
+and it is designed to support a specific \emph{business area}, hence, it is used
+to provide intelligence to a specific \emph{knowledge worker} through a set of APIs.
+
+Data marts are \textbf{not} always subsets of the data warehouse, specifically, we
+have two kinds of data marts:
+
+\begin{enumerate}
+  \item Dependent data marts -- These are subsets of the data warehouse, probably
+  an aggregation of data in the primary data warehouse.
+  \item Independent data marts -- These are subsets of the \textbf{Operational Database},
+  they are usually used to provide \emph{real-time} information to the knowledge worker.
+\end{enumerate}
+
+\paragraph{Importance in the architecture}
+
+Since data marts act as a \emph{frontend} to the data warehouse, they are important
+in the sense that they represent the layer of abstraction that is actually
+used by the knowledge worker, hence, they are responsible with the knowledge worker's
+perception of the data warehouse.
+
+\subsection{Different Level Architecture}
+Depending on the number of layers of the architecture in which data
+is stored, we have a $n$-level architecture, where $n$ is the number of aforementioned layers.
+
+\paragraph{Level 1 Architecture}
+
+This is the simples architecture, it consists of a single layer, which is the
+data warehouse, we have:
+
+\begin{itemize}
+  \item A virtual DB, with no OLTP-OLAP separation
+  \item Historic data coincides with current data (Operational DB + Data Warehouse)
+  \item Difficult to integrate with other sources
+\end{itemize}
+
+\paragraph{Level 2 Architecture}
+
+Moving on to a more complex architecture, we have a two-level architecture,
+where we complement the data warehouse with data marts and we accept
+different sources, we have:
+
+\begin{itemize}
+  \item An Operational DB, coupled with other external databases
+  \item An ETL layer -- Extraction, Transformation, Loading; acts as a filter
+  \item A Data Warehouse, with multiple data marts
+\end{itemize}
+
+We can even merge the concept of data marts with the concept of data warehouses,
+by feeding the data \emph{directly} into data marts.
+
+\paragraph{Level 3 Architecture}
+
+Finally, we have a three-level architecture, where we have a data warehouse,
+An operational database, and a separation of the ETL activities into
+\emph{two} phases, these are:
+
+\begin{enumerate}
+  \item Extraction/Transformation
+  \item Loading
+\end{enumerate}
+
+These feed into a \emph{reconciled data} storage, which then feeds into
+the data warehouse.
+
+\subsection{Data Cleaning}
+
+The process of \emph{reconciling} data goes through multiple stages:
+
+\begin{itemize}
+  \item Extraction -- gathers quantitative features from information
+  \item Cleaning -- modifies values, drops duplicates, detects inconsistencies and
+  null values, spelling mistakes, abbreviations, etc\dots
+  \item Transformation -- transform formats (US dates to EU/ISO) to a common
+  standard
+  \item Loading -- updates data, either through \emph{refreshing}, that is, reloading
+  the whole DB \emph{ex novo}, or through differential updates
+\end{itemize}
+
+\paragraph{Metadata}
+
+As an appendix, we also spend a few words on \emph{metadata}, that is, data
+about other data, we have:
+
+\begin{itemize}
+  \item Internal metadata -- concerning the data warehouse's administration, for example,
+  sources, transformations, schemas, users, etc\dots
+  \item External metadata -- which might concern users, such as measurement units utilized, possible
+  data combinations, etc\dots
+  \item Standards Utilized
+  \item CWM -- Common Warehouse Model, defined by:
+  \begin{itemize}
+    \item UML
+    \item XML
+    \item XMI
+  \end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
 
 \end{document}
