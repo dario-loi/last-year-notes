@@ -1672,9 +1672,103 @@ as shown in \cref{fig:hierarchy}.
   that it has more \emph{granularity}.}\label{fig:hierarchy}%
 \end{figure}
 
+\section{Data Warehouse Access}
 
-% TODO: Finish up
+Access to a data warehouse is done through multiple means, these depend on the 
+needs of the person accessing the warehouse, in fact, we can identify 3 different
+reasons for accessing the warehouse:
 
+\begin{itemize}
+  \item Reporting -- The user wants to extract a well-structured set of data from the 
+  warehouse, in order to present it to a \emph{knowledge worker}, or at a meeting, 
+  this is easy to standardize and to automate, since the necessary data is known 
+  well in advance.
+  \item OLAP -- The user wants to perform \emph{ad-hoc} queries on the data warehouse,
+  in order to extract information that is not known in advance, this is more difficult
+  and is usually done interactively (and manually).
+  \item Data Mining -- The user wants to extract data from the warehouse to satisfy needs 
+  that are not known in advance, similarly to OLAP, however, this is usually done in 
+  an almost \emph{automatic} way, by means of \emph{data mining} algorithms.
+\end{itemize}
 
+Let us remark the differences between plain reporting and OLAP:
+
+\paragraph{Reporting} 
+Reports are so structured that obtaining them is a \emph{routine} task, there can 
+be queries to obtain reports, along with an array of automated tools to produce them.
+
+Reports are usually organized in \emph{presentations}, which can be easily distributed 
+and comprehended by non-technical users.
+
+\paragraph{OLAP}
+OLAP is usually done in an \emph{analysis session}, which can be divided into a 
+series of steps, each dependent on the result obtained previously, this is akin 
+to the use of a \emph{jupyter notebook} to construct a \emph{data science} pipeline.
+Typical users are domain experts, which are \emph{not} necessarily computer scientists.
+
+\subsection{OLAP Operations}
+
+There are a number of operations that can be performed on a data warehouse, these 
+are much akin the operations performed on a \emph{relational database}, however,
+they are more \emph{complex} and \emph{powerful}, we will now list a number of them 
+and discuss them in depth.
+
+\paragraph{Restriction} 
+
+Restriction is the filtering of values based on a certain condition evaluated 
+on a dimensional attribute, in case of equality with a single value, this is called
+\textbf{slicing}, since we are \emph{slicing} the data along a certain dimension, making 
+it go away.
+
+\paragraph{Aggregation}
+
+Aggregation is the application of a function to a set of values, such that this 
+function reduces the set in dimensionality.
+
+\begin{table}[h!]
+  \rowcolors{2}{gray!25}{white}
+  \centering
+  \begin{tabular}{c c c}
+      \rowcolor{gray!50}
+      % Header
+      Distributive & Algebraic &  Holistic \\
+      %End Header
+      \texttt{SUM} & \texttt{AVG} &  \texttt{COUNT} \\
+      \texttt{MAX} & \texttt{STDDEV} &   \\
+      \texttt{MIN} & \texttt{MEDIAN} & \\
+  \end{tabular}
+  \caption{Some of the most common aggregation functions.}\label{tab:aggregate}
+\end{table}
+
+\paragraph{Drill-Down} 
+It is expected that the de-aggregated data is originally found in the data warehouse, 
+since most aggregate operations are non-invertible.
+
+The process of inverting this aggregation is called \emph{drill-down}.
+
+\paragraph{Slice-And-Dice Operations}
+
+Keeping with our multi-dimension point of view, we can \emph{slice} our data cuboid 
+along a dimension in order to perform a \emph{selection} operation, this 
+is akin to the SQL operators \texttt{WHERE} and \texttt{HAVING}.
+
+\paragraph{Pivoting} 
+Pivoting works as a \emph{transposition} of the data, this is natural if we keep thinking 
+of our data as being in the form of \emph{tensors}, and can be done along any dimension.
+
+Pivoting is common when visualizing the data in a \emph{table}, since it allows us to
+\emph{transpose} the data, making it easier to read, seeking such an example 
+on the internet is advised in order to understand the concept.
+
+\paragraph{Drill-Through} 
+Drilling \textbf{through} is a more extreme version of \emph{drill-down}, where we
+access the data at a lower level of granularity, typically this is done by
+accessing reconciled data or operational databases directly, bypassing the data
+warehouse.
+
+\paragraph{Drill-Across}
+
+Drilling \textbf{across} is the process of correlating data from different dimensions,
+this is done by \emph{joining} the data from different datasets, like SQL's \texttt{JOIN}.
 
 \end{document}
