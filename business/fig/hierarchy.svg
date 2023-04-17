@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="80mm"
+   height="80mm"
+   viewBox="0 0 80 80"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="hierarchy.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.0595392"
+     inkscape:cx="102.87491"
+     inkscape:cy="245.8616"
+     inkscape:window-width="1151"
+     inkscape:window-height="1004"
+     inkscape:window-x="761"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker1914"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow5"
+       markerWidth="5.8874264"
+       markerHeight="6.6094756"
+       viewBox="0 0 5.8874262 6.6094758"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+         id="path1912" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker1770"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow5"
+       markerWidth="5.8874264"
+       markerHeight="6.6094756"
+       viewBox="0 0 5.8874262 6.6094758"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+         id="path1768" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Arrow5"
+       markerWidth="5.8874264"
+       markerHeight="6.6094756"
+       viewBox="0 0 5.8874262 6.6094758"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="m 6,0 c -3,1 -7,3 -9,5 0,0 0,-4 2,-5 -2,-1 -2,-5 -2,-5 2,2 6,4 9,5 z"
+         id="path8893" />
+    </marker>
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.281716"
+       id="path517"
+       cx="46.743977"
+       cy="8.8342752"
+       rx="9.1582031"
+       ry="4.4005423" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.281716"
+       id="path517-3"
+       cx="23.969318"
+       cy="23.337812"
+       rx="9.1582031"
+       ry="4.4005423" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.281716"
+       id="path517-6"
+       cx="69.518631"
+       cy="23.337812"
+       rx="9.1582031"
+       ry="4.4005423" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.253516"
+       id="path517-7"
+       cx="9.5505342"
+       cy="46.401474"
+       rx="8.2414694"
+       ry="3.9600492" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.281716"
+       id="path517-5"
+       cx="42.284935"
+       cy="47.113533"
+       rx="9.1582031"
+       ry="4.4005423" />
+    <ellipse
+       style="fill:none;stroke:#000000;stroke-width:0.281716"
+       id="path517-35"
+       cx="23.969318"
+       cy="71.165726"
+       rx="9.1582031"
+       ry="4.4005423" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.388636;stroke-dasharray:none;marker-end:url(#Arrow5)"
+       d="M 16.654677,26.242835 C 13.472619,25.550964 9.0794863,41.247725 9.0794863,41.247725"
+       id="path666" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.388636;stroke-dasharray:none;marker-end:url(#Arrow5)"
+       d="m 30.478454,26.212371 c 2.599793,0.138164 8.354794,15.599487 8.354794,15.599487"
+       id="path668" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.400124;stroke-dasharray:none;marker-end:url(#Arrow5)"
+       d="M 37.519254,8.1440356 C 21.019096,8.3356423 23.391944,17.965787 23.391944,17.965787"
+       id="path676" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.388636;stroke-dasharray:none;marker-end:url(#Arrow5)"
+       d="M 55.804159,7.6875416 C 69.284941,7.139984 68.166606,17.837052 68.166606,17.837052"
+       id="path678" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.402288;stroke-dasharray:none;marker-end:url(#marker1770)"
+       d="m 39.281624,51.016939 c 0.09665,5.743691 -8.758299,15.634967 -8.758299,15.634967"
+       id="path1766" />
+    <text
+       xml:space="preserve"
+       style="font-size:3.38059px;fill:none;stroke:#000000;stroke-width:0.388637;stroke-dasharray:none"
+       x="42.615353"
+       y="9.8129292"
+       id="text1826"
+       transform="scale(1.0200866,0.98030892)"><tspan
+         sodipodi:role="line"
+         id="tspan1824"
+         style="stroke-width:0.388636"
+         x="42.615353"
+         y="9.8129292">Day</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.38059px;fill:none;stroke:#000000;stroke-width:0.388637;stroke-dasharray:none"
+       x="18.215151"
+       y="25.074316"
+       id="text1880"
+       transform="scale(1.0200866,0.98030892)"><tspan
+         sodipodi:role="line"
+         id="tspan1878"
+         style="stroke-width:0.388636"
+         x="18.215151"
+         y="25.074316">Month</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.38059px;fill:none;stroke:#000000;stroke-width:0.388637;stroke-dasharray:none"
+       x="63.797192"
+       y="25.074316"
+       id="text1884"
+       transform="scale(1.0200866,0.98030892)"><tspan
+         sodipodi:role="line"
+         id="tspan1882"
+         style="stroke-width:0.388636"
+         x="63.797192"
+         y="25.074316">Week</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.38059px;fill:none;stroke:#000000;stroke-width:0.388637;stroke-dasharray:none"
+       x="1.7764241"
+       y="48.562363"
+       id="text1888"
+       transform="scale(1.0200866,0.98030892)"><tspan
+         sodipodi:role="line"
+         id="tspan1886"
+         style="stroke-width:0.388636"
+         x="1.7764241"
+         y="48.562363">Trimester</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.38059px;fill:none;stroke:#000000;stroke-width:0.388637;stroke-dasharray:none"
+       x="35.101845"
+       y="48.998001"
+       id="text1892"
+       transform="scale(1.0200866,0.98030892)"><tspan
+         sodipodi:role="line"
+         id="tspan1890"
+         style="stroke-width:0.388636"
+         x="35.101845"
+         y="48.998001">Quarter</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:3.38059px;fill:none;stroke:#000000;stroke-width:0.388637;stroke-dasharray:none"
+       x="20.050819"
+       y="73.785156"
+       id="text1896"
+       transform="scale(1.0200866,0.98030892)"><tspan
+         sodipodi:role="line"
+         id="tspan1894"
+         style="stroke-width:0.388636"
+         x="20.050819"
+         y="73.785156">Year</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.357363;stroke-dasharray:none;marker-end:url(#marker1914)"
+       d="m 10.986893,50.091972 c -0.0088,4.282884 5.914088,17.012857 5.914088,17.012857"
+       id="path1910" />
+  </g>
+</svg>

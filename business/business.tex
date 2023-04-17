@@ -1654,23 +1654,24 @@ the total amount of products sold.
 
 We can define a dimensional hierarchy, where, for each dimension, we
 have a hierarchy that groups together values at different
-levels of aggregation.
+levels of aggregation, for example, we can have a \texttt{time}
+dimension, where we can organize different units of time, such as
+\emph{months}, \emph{days}, \emph{hours}, \emph{minutes}, \emph{etc}\dots\@
+as shown in \cref{fig:hierarchy}.
 
 % TODO: correct text sizes
 
-%\begin{figure}[ht]
-%	\centering
-%	%\incsvg{path/}{path/file}
-%	\incsvg{fig}{hierarchy}\\
-%	\label{fig:hierarchy}
-%	\caption{Here we have a dimensional hierarchy for the
-%  \emph{time} dimension, the directed arrows denote functional
-%  dependencies, that is, the \emph{parent} dimension is
-%  \emph{higher} in the hierarchy than the \emph{child} dimension, meaning
-%  that it has more \emph{granularity}.}
-%\end{figure}
+\begin{figure}[h!]
+	\centering
+	%\incsvg{path/}{path/file}
+	\incsvg{fig}{hierarchy}\\
+	\caption{Here we have a dimensional hierarchy for the
+  \emph{time} dimension, the directed arrows denote functional
+  dependencies, that is, the \emph{parent} dimension is
+  \emph{higher} in the hierarchy than the \emph{child} dimension, meaning
+  that it has more \emph{granularity}.}\label{fig:hierarchy}%
+\end{figure}
 
-\subsection{Data Warehouse Access}
 
 % TODO: Finish up
 
