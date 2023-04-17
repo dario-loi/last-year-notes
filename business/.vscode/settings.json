@@ -1,5 +1,6 @@
 {
     "super-figure.filesToWatch": [
-        "/home/dariol/latex/last-year-notes/business/fig/pnet-arc-mult.svg"
+        "/home/dariol/latex/last-year-notes/business/fig/pnet-arc-mult.svg",
+        "/home/dario/repos/last-year-notes/business/fig/hierarchy.svg"
     ]
 }
