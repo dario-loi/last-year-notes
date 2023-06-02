@@ -28,3 +28,7 @@ repos:
         files: ".*\\.(?:tex|py)$"
       - id: end-of-file-fixer
         files: .*\\.(?:tex|py)$"
+  - repo: https://github.com/cmhughes/latexindent.pl.git
+    rev: V3.20.6
+    hooks:
+      - id: latexindent

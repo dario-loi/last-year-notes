@@ -1,4 +1,4 @@
-\documentclass[openright, twoside, twocolumn]{report}
+\documentclass[openright, twoside, twocolumn, a4paper, 10pt]{report}
 \usepackage{amsmath}
 \usepackage[english]{babel}
 \usepackage[usenames,dvipsnames,table]{xcolor}
@@ -20,6 +20,18 @@
 \usepackage[para]{footmisc}
 \usepackage{booktabs}
 \usepackage{microtype}
+
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+%
+% Font
+%
+%────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+\usepackage[T1]{fontenc} % Output font encoding for international characters
+
+\usepackage{kpfonts,baskervald}
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 %
@@ -236,26 +248,26 @@
 \newcommand\mktitlepage{
     \begin{titlepage}
         \noindent
-        \titlefont Business \& Computer Science \par
+        \titlefont Business \& Computer Science \par%
         \epigraph{
           `It is not from the benevolence of the butcher, the brewer,
-          or the baker that we expect our dinner, but from their regard to their own interest.'
+          or the baker that we expect our dinner, but from their regard to their own interest.\@'
         }%
-        {\textit{The Wealth of Nations, Books 1-3}\\ \textsc{Adam Smith}}
+        {\textit{The Wealth of Nations, Books 1--3}\\ \textsc{Adam Smith}}
         \null\vfill
         \vspace*{1cm}
         \noindent
         \hfill
         \begin{minipage}{0.35\linewidth}
             \begin{flushright}
-                \printauthor
+                \printauthor%
             \end{flushright}
         \end{minipage}
         %
         \begin{minipage}{0.02\linewidth}
             \rule{1pt}{125pt}
         \end{minipage}
-        \titlepagedecoration
+        \titlepagedecoration%
     \end{titlepage}
 }
 
@@ -295,683 +307,666 @@
 
 \begin{document}
 
-    \mktitlepage
+\mktitlepage%
 
+\tableofcontents
+\newpage
 
-    \tableofcontents
-    \newpage
+\newgeometry{a4paper, outer = 2.2cm, inner=3.4cm, bottom = 2.5cm, top = 2.5cm, marginparwidth=2.2cm, marginparsep=2mm, heightrounded, twoside=true}
 
-    \newgeometry{a4paper, outer = 2.2cm, inner=3.4cm, bottom = 2.5cm, top = 2.5cm, marginparwidth=2.2cm, marginparsep=2mm, heightrounded, twoside=true}
+\chapter{Course Introduction}
 
-    \chapter{Course Introduction}
+\section{Course Aims}
 
-    \section{Course Aims}
+Despite what the name might make you think, the course is \emph{still} a practical one, it aims to introduce how
+computers work in a real world scenario, such as a company.
 
-    Despite what the name might make you think, the course is \emph{still} a practical one, it aims to introduce how
-    computers work in a real world scenario, such as a company.
+\paragraph{The Purpose of a Computer}
+Through the lens of this course, the purpose of a software is to improve the company's efficency and throughput, everything
+is evaluated through a framework of costs and profits, hence, even something as simple as buying a pen must be evaluated
+at multiple levels, from the cost of the pen itself, to the cost of the time spent by the employee to go to the store and buy it.
 
-    \paragraph{The Purpose of a Computer}
-    Through the lens of this course, the purpose of a software is to improve the company's efficency and throughput, everything
-    is evaluated through a framework of costs and profits, hence, even something as simple as buying a pen must be evaluated
-    at multiple levels, from the cost of the pen itself, to the cost of the time spent by the employee to go to the store and buy it.
+\section{Course Structure}
 
-    \section{Course Structure}
+The course is usually organized in two parts, alternating on a weekly basis:
 
-    The course is usually organized in two parts, alternating on a weekly basis:
+\begin{table}[h!]
+	\rowcolors{2}{gray!25}{white}
+	\centering
+	\begin{tabular}{c c}
+		\rowcolor{gray!50}
+		% Header
+		$Day$    & $Purpose$ \\
+		%End Header
+		Wednsday & Lecture   \\
+		Thursday & Seminars  \\
+	\end{tabular}
+	\caption{Course Structure}\label{tab:struct}
+\end{table}
+
+Naturally, the seminars are \emph{included} in the course's materials and are hence expected
+
+The exam is also split into multiple sections:
 
-    \begin{table}[h!]
-      \rowcolors{2}{gray!25}{white}
-      \centering
-      \begin{tabular}{c c}
-          \rowcolor{gray!50}
-          % Header
-          $Day$ &  $Purpose$ \\
-         %End Header
-          Wednsday &  Lecture \\
-          Thursday & Seminars\\
-      \end{tabular}
-      \caption{Course Structure}
-      \label{tab:struct}
-    \end{table}
-
-    Naturally, the seminars are \emph{included} in the course's materials and are hence expected
+\begin{table}[h!]
+	\rowcolors{2}{gray!25}{white}
+	\centering
+	\begin{tabular}{c c}
+		\rowcolor{gray!50}
+		% Header
+		Part    & Contents                  \\
+		%End Header
+		Written & 30 to 50 closed questions \\
+		Oral    & Optional, to raise marks  \\
+	\end{tabular}
+	\caption{Exam Structure}\label{tab:label}
+\end{table}
+
+The general information about the course is available at the \href{http://wwwusers.di.uniroma1.it/~cilli/}{official course page}.
+
+
+\section{Information Systems}
+
+As studied in the first unit of \emph{Data Management \& Analysis}, an information system is a set of components that allows an organization
+to collect, process, store and distribute information, it is \emph{not} necessarily something software-based, it can even be
+a file cabinet!
 
-    The exam is also split into multiple sections:
+\begin{definition}\label{def:is}
+	An Information System is something that \emph{Manages} the flow of information in an organization.
+\end{definition}
 
-    \begin{table}[h!]
-      \rowcolors{2}{gray!25}{white}
-      \centering
-      \begin{tabular}{c c}
-          \rowcolor{gray!50}
-          % Header
-          Part & Contents  \\
-         %End Header
-          Written & 30 to 50 closed questions  \\
-          Oral & Optional, to raise marks \\
-      \end{tabular}
-      \caption{Exam Structure}
-      \label{tab:label}
-    \end{table}
-
-    The general information about the course is available at the \href{http://wwwusers.di.uniroma1.it/~cilli/}{official course page}.
-
-
-    \section{Information Systems}
-
-    As studied in the first unit of \emph{Data Management \& Analysis}, an information system is a set of components that allows an organization
-    to collect, process, store and distribute information, it is \emph{not} necessarily something software-based, it can even be
-    a file cabinet!
+\paragraph{Information}
+Naturally, information is something \emph{abstract} and \emph{immaterial}, it is naturally difficult to manage, but it is possible
+to construct a set of rules, conventions and tools that allow us to represent it in a way that is \emph{manageable}, this process
+is the \emph{Flow}, and hence, as defined above, these systems are called \emph{Information Systems}.
 
-    \begin{definition}\label{def:is}
-      An Information System is something that \emph{Manages} the flow of information in an organization.
-    \end{definition}
+\paragraph{Computers}
+When a computer is involved, the Information System is naturally labeled a Computer Information System, or \emph{CIS} for short.
+
 
-    \paragraph{Information}
-    Naturally, information is something \emph{abstract} and \emph{immaterial}, it is naturally difficult to manage, but it is possible
-    to construct a set of rules, conventions and tools that allow us to represent it in a way that is \emph{manageable}, this process
-    is the \emph{Flow}, and hence, as defined above, these systems are called \emph{Information Systems}.
+This chapter aims to give us the following capabilities
+
+\begin{itemize}
+	\item Define what an Information System is
+	\item Describe the history of Information Systems
+	\item Describe the basic argument behind the article \emph{Does IT matter?} by Nicholas Carr.
+\end{itemize}
 
-    \paragraph{Computers}
-    When a computer is involved, the Information System is naturally labeled a Computer Information System, or \emph{CIS} for short.
-
-
-    This chapter aims to give us the following capabilities
-
-    \begin{itemize}
-      \item Define what an Information System is
-      \item Describe the history of Information Systems
-      \item Describe the basic argument behind the article \emph{Does IT matter?} by Nicholas Carr.
-    \end{itemize}
+An information system is made up of \emph{Three} main components:
 
-    An information system is made up of \emph{Three} main components:
-
-    \begin{itemize}
-      \item People: In charge of decision making and organization
-      \item Technology: Hardware and Software that supports the business
-      \item Processes: Collecting and storing information
-    \end{itemize}
+\begin{itemize}
+	\item People: In charge of decision making and organization
+	\item Technology: Hardware and Software that supports the business
+	\item Processes: Collecting and storing information
+\end{itemize}
 
-    \paragraph{In General}
-    This is a pretty broad definition, that allows a wide variety of software to be seen through the lens of an Information System,
-    from network analyzers, to national healthcare systems, to online education platforms.
+\paragraph{In General}
+This is a pretty broad definition, that allows a wide variety of software to be seen through the lens of an Information System,
+from network analyzers, to national healthcare systems, to online education platforms.
 
-    \paragraph{Acronyms}
-    Depending on the application, an Information System can be called by different acronyms, such as:
-
-    \begin{itemize}
-      \item \textbf{MRP}: \emph{Manufacturing Resource Planning}
-      \item \textbf{CIM}: \emph{Computer Integrated Manufacturing}
-      \item \textbf{SAP}: \emph{Systems, Applications and Products}
-    \end{itemize}
+\paragraph{Acronyms}
+Depending on the application, an Information System can be called by different acronyms, such as:
 
-    \subsection{Anthony's Triangle}
+\begin{itemize}
+	\item \textbf{MRP}: \emph{Manufacturing Resource Planning}
+	\item \textbf{CIM}: \emph{Computer Integrated Manufacturing}
+	\item \textbf{SAP}: \emph{Systems, Applications and Products}
+\end{itemize}
 
-    Anthony's triangle is a diagram that categorizes the three purposes of an Information System:
+\subsection{Anthony's Triangle}
 
-    \begin{enumerate}
-      \item Strategic (\emph{Executive Information System}): for senior management decisions
-      \item Tactical (\emph{Management Information System}): For middle management decisions
-      \item Operational (\emph{Transaction Processing Systems}): For daily transactions of business
-    \end{enumerate}
-
-    \subsection{Information System Components}
-    Several Components work together to add value to an organization, they are
-
-    \begin{enumerate}
-      \item Hardware: The physical components of the system
-      \item Software: The programs that run on the hardware, they can be:
-      \begin{itemize}
-        \item Operating Systems: The programs that manage the hardware
-        \item Application Software: The programs that are used by the users
-      \end{itemize}
-      \item Data: The information that is stored in the system
-      \item People: The users of the systems, both producers and consumers of infomation
-      \item Processes: The procedures that are used to collect, process and store information\footnote{%
-        Organizing something in \emph{processes} that is, a series of well-defined steps, brings about a series of
-        benefits in productivity.
-      }
-    \end{enumerate}
+Anthony's triangle is a diagram that categorizes the three purposes of an Information System:
+
+\begin{enumerate}
+	\item Strategic (\emph{Executive Information System}): for senior management decisions
+	\item Tactical (\emph{Management Information System}): For middle management decisions
+	\item Operational (\emph{Transaction Processing Systems}): For daily transactions of business
+\end{enumerate}
+
+\subsection{Information System Components}
+Several Components work together to add value to an organization, they are
 
-    This is somewhat redundant to what we stated beforehand in \cref{def:is}, but it is important to restate it to
-    emphasize the fact that the system is composed of both \emph{People} and \emph{Technology}.
-
-    \subsection{Processes}
-
-    One of the most important components of an Information System is the \emph{Process}, it is
-    the goal of the Computer Information System to optimize the processes of an organization,
-    bringing about an increase in efficency.
-
-    \paragraph{Processes Formally}
-    Since processes are an advantageous way to organize work, it is important to spend some time to
-    also give a formal definition of their nature.
-
-    \begin{definition}
-      \label{def:proc}
-      A process is a series of well-defined steps that are used to achieve a specific goal, it can
-      be defined as a set of \emph{activities}
-    \end{definition}
-
-    \section{Does IT Matter?}
-    Nicholas Carr, in \emph{Harvard Business Review}, argues that Information Technology is not an \emph{Investment},
-    but rather a commodity, so something that must be managed to optimize the company's profits by reducing its
-    operational costs.
-
-    \paragraph{IT as a Marketing Tool}
-    It is also interesting to note how a company is percieved as better when it uses IT, and when this IT is
-    of high quality, therefore IT can be seen as a \emph{Marketing Tool} that can be used to attract customers.
-
-
-    \section{Mainframes}
-
-    A Mainframe is a class of computer that is usuall used as the heart of an Information System, where
-    everything is \emph{centralized}, as opposed to a distributed systems, users, which in this
-    architecture are defined \emph{dumb}, are not allowed to access the system directly, but rather
-    act as consumers of its services as allowed by the system's administrators and operating system.
-
-    \begin{definition}
-      \label{def:mainf}
-      A \emph{Mainframe} is an architecture in which a central computer with very high
-      processing power is connected to a multitude of \emph{terminals} through a
-      \emph{star} topology, where the \emph{central computer} is the \emph{hub} of the
-      network.
-    \end{definition}
-
-    Even though \emph{Mainframes} are not as popular as they used to be, they are still used in many
-    field where they are unmatched in terms of performance.
-
-    \paragraph{IBM}
-
-    The current IBM's Operating System is \texttt{z/OS}, which is a \emph{Monolithic} Operating System,
-    it is being opened to different programming languages, such as \texttt{Java}, beforehand, however,
-    it was only available in \texttt{COBOL}.
-
-    \paragraph{Batch Processing}
-
-    Mainframes are based on the \emph{Batch Processing} paradigm, where a set of jobs are submitted to
-    be executed in a \emph{batch}, that is, a set of jobs that are executed in a single run, this is
-    in contrast to \emph{Real Time Processing}, where jobs are executed as soon as they are submitted.
-
-    This, provided that the company has a sufficient amount of jobs to be executed, allows for a continuous
-    flow of work, and hence, a higher level of productivity.
-
-    \chapter{Process Modeling}
-
-    \section{Modeling Business}
-
-    In order to properly formalize the concepts that are going to be introduced through the rest
-    of this course, we will introduce \emph{mathematical models} that allow us to describe the
-    ebbs and flows of human economy.
-
-    \paragraph{Processes}
-    These models are called \emph{Processes}, there are certain common classes of projects, such as:
-
-    \begin{enumerate}
-      \item Service
-      \item Support
-      \item Management and Control
-      \item Physical
-      \item Information
-      \item Business
-    \end{enumerate}
-
-    \section{Process Descriptors}
-
-    These processes can then be described by some diagrams:
-
-    \begin{itemize}
-      \item Hierarchical
-      \item State Diagrams (Automata)
-      \item DFD -- Data Flow Diagram
-      \item WIDE -- Workflow on an Intelligent and Distributed database Environment
-      \item Action Workflow
-      \item Petri Nets
-    \end{itemize}
-
-    All of these give an intuitive way to describe the processes that are going on in a company, allowing for better understanding of the company's operations.
-
-    \subsection{Hierarchical Process Model}
-
-    Everything in a company can be described as a set of \emph{Hierarchies}, that is, a tree of
-    \emph{Processes} that are organized in a \emph{Top-Down} fashion, where the \emph{Top}
-    process is known as \emph{Macroprocess}, the hierarchy goes as follows:
-
-    \begin{enumerate}
-      \item Macroprocess -- Sales
-      \item Process -- Sales Management
-      \item Phase -- Order Processing
-      \item Activity -- Shipment
-      \item Operation -- Pricing, Packaging, etc\dots
-    \end{enumerate}
-
-    Naturally, these hierarchy together form a \emph{Forest}.
-
-    \subsection{Data Flow Diagrams}
-
-    Data Flow diagrams are what we also call \emph{Flowcharts}, they are a graphical
-    representation of the flow of the data through the company`s Information Systems,
-    they are not used often due to them being subject to \emph{spaghettification},
-    that is, the diagrams can easily become too complex to be understood.
-
-    These flowcharts are usually composed of a set of components that are used to represent
-    the different parts of the system, they are:
-    \begin{itemize}
-      \item Processes -- Circles
-      \item Data Collections -- Rectangles
-      \item Interface -- Bordered Rectangles
-      \item Data Flows -- Directed Arrows
-    \end{itemize}
-
-    \begin{definition}[Data Flow]
-      A \emph{Data Flow} represents any kind of flow in a system, the first component \emph{must}
-      be a process,the second can be either a process, a data collection or an interface, moreover,
-      they can be either
-      \begin{enumerate}
-        \item Elementary
-        \item Structured
-      \end{enumerate}
-    \end{definition}
-
-    \paragraph{Data Dictionary}
-
-    Usually, to help with readability, we provide a \emph{Data Dictionary} and a textual description of each process,
-    to help the user understand what the process does.
-
-    \subsection{WIDE}
-
-    WIDE Relies on three main components:
-
-    \begin{enumerate}
-      \item Process Model -- Describes the activities in the system
-      \item Information Model -- Describes the data being processed
-      \item Organization Model -- Describes the structure and agents that are involved
-    \end{enumerate}
-
-    \paragraph{Anti-Spaghetti Techniques}
-
-    The WIDE model introduces some more complex components with respect to the DFD model, such as forks and joins,
-    to better describe the flow of the data through the system with fewer connections between the components.
-
-    \begin{remark}
-      An analyst's role is to translate the business model in a way that is understandable in layman's terms,
-      that is, when you are describing a process through a graph, strive to be clear, the important thing
-      is that \emph{People Are Going to Read It}.
-    \end{remark}
-
-    In conclusion, the WIDE model is just a more \emph{expressive} version of the DFD model, which
-    allows for more concise flowcharts.
-
-    \subsection{Petri Nets}
-
-    Petri Nets are a formal model that is used to describe the flow of data through an Information Systems
-
-    \begin{definition}[Petri Nets]
-      \label{def:petri-nets}
-      A petri net is a $\text{3-Tuple} \coloneqq  (P, T, A)$
-      that forms a \emph{Bipartite Graph}:
-      \[
-        G(V, E) \coloneqq \begin{dcases}
-          V &\coloneqq (P \cup T)\\
-          A &\coloneqq E \subseteq  (P \times T) \cup (T \times P)
-        \end{dcases}\]
-
-    Where:
-
-    \begin{itemize}
-      \item $P$ is a set of places
-      \item $T$ is a set of transitions
-      \item $A$ is a set of arcs (Edges) that connect places and transitions in a \emph{Directed} fashion
-    \end{itemize}
-    \end{definition}
-
-    \begin{definition}[Marking]
-      \label{def:marking}
-      A \emph{Marking} of a petri net is a function
-      \[
-        M: P \to \mathbb{N}_0
-      .\]
-      Mapping a place to a non-negative integer, that is, the number of tokens in that place.
-
-      At each step of the evolution of the Petri Net, the marking function is updated to reflect the new state, for example, $ M_0$ is the initial marking and $ M_f$ is the final marking.
-    \end{definition}
-
-    Essentially, a Petri Net is a Finite State Automata in which a set of markings indicate the states that are `Firable', once a transition
-    happens, the markings are updated, and the process continues, so we are effectively running multiple Finite State Machines
-    in parallel, each with the same topology.
-
-    \paragraph{Terminology}
-
-    Each transition $t \in  T$  has an input set ${}^{\circ}t \subseteq P$ and an output set $t^{\circ} \subseteq  P$ also called input
-    and output places, the same notation also applies to places.
-
-    \paragraph{Petri Net Evolution}
-
-    An enabled transition can \emph{Fire}, deleting a token in each input place and creating a token in each output place:
-
-    \begin{align*}
-      M_0 &= \left( 2, 1, 0, 0, 1 \right)\\
-      M_0 &\to M_1\\
-      M_1 &= \left( 1, 0, 1, 1, 1 \right)
-    \end{align*}
-
-    A \emph{Firable Sequence} is a sequence of transition $\sigma = \langle t_1, t_2, \ldots, t_n \rangle$ where
-
-    \[
-      M_0 \to^{ t_1} M_1 \to^{ t_2} M_2 \ldots \to^{ t_n} M_n
-    .\]
-
-    For which we can use the closure notation $ M_0 \to^{\sigma} M_n$ to denote the evolution of the markings.
-
-  \paragraph{Further Definitions}
-
-    Now, given a net \[
-      P = (P, T, A, M_0).\] We have that:\footnote{
-        $T^{\star}$ is the set of all sequences of transitions, so $\tau t$ is a sequence of transitions
-        that starts with $\tau$ and ends with $t$, hence we are using notation coming from regular expressions (
-          Concatenation, Kleene star, etc\dots
-        )
-      }
-    \begin{itemize}
-      \item A \emph{Potentially Firable Transition}  $t \in T$  is such that
-      \[
-        \exists \tau \in T^{\star} s.t\ \tau t\ \text{Is Firable}:\ M_0 {}^{\tau}\to^{t}
-      .\]
-      \item A \emph{Potentially Firable Sequence} $\sigma \in T^{\star}$ is such that
-      there exists a prefix sequence $\tau \in T^{\star}$ such that $\tau \sigma$ is firable (
-        $M_0 \to^{\tau \sigma} M_n$
-        )
-      \item A \emph{Reachable Marking} $M$ is such that
-      \[
-         \exists \sigma\ s.t\ M_0 \to^{\sigma} M
-      .\]
-      \item $R( M_0)$ is the set of all reachable markings.
-      \item $P_r$ is the set of reachable places s.t
-      \[
-        P_r = \left\{ p \in  P | \exists  M \in  R( M_0), M(p) > 0 \right\}
-      .\]
-    \end{itemize}
+\begin{enumerate}
+	\item Hardware: The physical components of the system
+	\item Software: The programs that run on the hardware, they can be:
+	      \begin{itemize}
+		      \item Operating Systems: The programs that manage the hardware
+		      \item Application Software: The programs that are used by the users
+	      \end{itemize}
+	\item Data: The information that is stored in the system
+	\item People: The users of the systems, both producers and consumers of infomation
+	\item Processes: The procedures that are used to collect, process and store information\footnote{%
+		      Organizing something in \emph{processes} that is, a series of well-defined steps, brings about a series of
+		      benefits in productivity.
+	      }
+\end{enumerate}
+
+This is somewhat redundant to what we stated beforehand in \cref{def:is}, but it is important to restate it to
+emphasize the fact that the system is composed of both \emph{People} and \emph{Technology}.
 
-    \paragraph{Petri Nets and Automata}
+\subsection{Processes}
+
+One of the most important components of an Information System is the \emph{Process}, it is
+the goal of the Computer Information System to optimize the processes of an organization,
+bringing about an increase in efficency.
+
+\paragraph{Processes Formally}
+Since processes are an advantageous way to organize work, it is important to spend some time to
+also give a formal definition of their nature.
+
+\begin{definition}\label{def:proc}
+	A process is a series of well-defined steps that are used to achieve a specific goal, it can
+	be defined as a set of \emph{activities}
+\end{definition}
+
+\section{Does IT Matter?}
+Nicholas Carr, in \emph{Harvard Business Review}, argues that Information Technology is not an \emph{Investment},
+but rather a commodity, so something that must be managed to optimize the company's profits by reducing its
+operational costs.
+
+\paragraph{IT as a Marketing Tool}
+It is also interesting to note how a company is percieved as better when it uses IT, and when this IT is
+of high quality, therefore IT can be seen as a \emph{Marketing Tool} that can be used to attract customers.
+
+
+\section{Mainframes}
+
+A Mainframe is a class of computer that is usuall used as the heart of an Information System, where
+everything is \emph{centralized}, as opposed to a distributed systems, users, which in this
+architecture are defined \emph{dumb}, are not allowed to access the system directly, but rather
+act as consumers of its services as allowed by the system's administrators and operating system.
+
+\begin{definition}\label{def:mainf}
+	A \emph{Mainframe} is an architecture in which a central computer with very high
+	processing power is connected to a multitude of \emph{terminals} through a
+	\emph{star} topology, where the \emph{central computer} is the \emph{hub} of the
+	network.
+\end{definition}
+
+Even though \emph{Mainframes} are not as popular as they used to be, they are still used in many
+field where they are unmatched in terms of performance.
+
+\paragraph{IBM}
+
+The current IBM's Operating System is \texttt{z/OS}, which is a \emph{Monolithic} Operating System,
+it is being opened to different programming languages, such as \texttt{Java}, beforehand, however,
+it was only available in \texttt{COBOL}.
+
+\paragraph{Batch Processing}
+
+Mainframes are based on the \emph{Batch Processing} paradigm, where a set of jobs are submitted to
+be executed in a \emph{batch}, that is, a set of jobs that are executed in a single run, this is
+in contrast to \emph{Real Time Processing}, where jobs are executed as soon as they are submitted.
+
+This, provided that the company has a sufficient amount of jobs to be executed, allows for a continuous
+flow of work, and hence, a higher level of productivity.
+
+\chapter{Process Modeling}
+
+\section{Modeling Business}
+
+In order to properly formalize the concepts that are going to be introduced through the rest
+of this course, we will introduce \emph{mathematical models} that allow us to describe the
+ebbs and flows of human economy.
+
+\paragraph{Processes}
+These models are called \emph{Processes}, there are certain common classes of projects, such as:
 
-    We have that Petri nets are a generalization of automata under particular conditions:
-
-    \begin{definition}[Petri Nets and Automatas]
-      A Finite state machine is a petri net where, for each transition $t$ both
-      the input and the output places have cardinality $1$:
-      \[
-        \forall  t \in  T, |{}^{\circ}t| = |t^{\circ}| = 1
-      .\]
-    \end{definition}
-
-    \subsection{Workflow Nets}
-
-    Workflow nets are a generalization of Petri Nets, in which we have two additional conditions:
-
-    \begin{enumerate}
-      \item A source s.t $|{}^{\circ}t| = 0$ for all $t \in T$\footnote{
-        AI generated math, please check (will fix once the slides are up).
-      }
-      \item A sink s.t $|t^{\circ}| = 0$ for all $t \in T$
-    \end{enumerate}
-
-    Hence for each node the node is \emph{reachable} from the source and \emph{can reach} the sink.
+\begin{enumerate}
+	\item Service
+	\item Support
+	\item Management and Control
+	\item Physical
+	\item Information
+	\item Business
+\end{enumerate}
+
+\section{Process Descriptors}
+
+These processes can then be described by some diagrams:
+
+\begin{itemize}
+	\item Hierarchical
+	\item State Diagrams (Automata)
+	\item DFD --- Data Flow Diagram
+	\item WIDE --- Workflow on an Intelligent and Distributed database Environment
+	\item Action Workflow
+	\item Petri Nets
+\end{itemize}
+
+All of these give an intuitive way to describe the processes that are going on in a company, allowing for better understanding of the company's operations.
+
+\subsection{Hierarchical Process Model}
+
+Everything in a company can be described as a set of \emph{Hierarchies}, that is, a tree of
+\emph{Processes} that are organized in a \emph{Top-Down} fashion, where the \emph{Top}
+process is known as \emph{Macroprocess}, the hierarchy goes as follows:
+
+\begin{enumerate}
+	\item Macroprocess --- Sales
+	\item Process --- Sales Management
+	\item Phase --- Order Processing
+	\item Activity --- Shipment
+	\item Operation --- Pricing, Packaging, etc\dots
+\end{enumerate}
+
+Naturally, these hierarchy together form a \emph{Forest}.
+
+\subsection{Data Flow Diagrams}
+
+Data Flow diagrams are what we also call \emph{Flowcharts}, they are a graphical
+representation of the flow of the data through the company`s Information Systems,
+they are not used often due to them being subject to \emph{spaghettification},
+that is, the diagrams can easily become too complex to be understood.
+
+These flowcharts are usually composed of a set of components that are used to represent
+the different parts of the system, they are:
+\begin{itemize}
+	\item Processes --- Circles
+	\item Data Collections --- Rectangles
+	\item Interface --- Bordered Rectangles
+	\item Data Flows --- Directed Arrows
+\end{itemize}
 
-    \paragraph{Workflow Nets as Models}
-    Workflow nets are more representative of real world systems, since they can model \emph{producers} and
-    \emph{consumers} in a system, which are widespread in real world systems.
-
-
-
-    \chapter{Petri Nets -- Cont.}
+\begin{definition}[Data Flow]
+	A \emph{Data Flow} represents any kind of flow in a system, the first component \emph{must}
+	be a process,the second can be either a process, a data collection or an interface, moreover,
+	they can be either
+	\begin{enumerate}
+		\item Elementary
+		\item Structured
+	\end{enumerate}
+\end{definition}
+
+\paragraph{Data Dictionary}
+
+Usually, to help with readability, we provide a \emph{Data Dictionary} and a textual description of each process,
+to help the user understand what the process does.
+
+\subsection{WIDE}
+
+WIDE Relies on three main components:
+
+\begin{enumerate}
+	\item Process Model --- Describes the activities in the system
+	\item Information Model --- Describes the data being processed
+	\item Organization Model --- Describes the structure and agents that are involved
+\end{enumerate}
+
+\paragraph{Anti-Spaghetti Techniques}
+
+The WIDE model introduces some more complex components with respect to the DFD model, such as forks and joins,
+to better describe the flow of the data through the system with fewer connections between the components.
+
+\begin{remark}
+	An analyst's role is to translate the business model in a way that is understandable in layman's terms,
+	that is, when you are describing a process through a graph, strive to be clear, the important thing
+	is that \emph{People Are Going to Read It}.
+\end{remark}
+
+In conclusion, the WIDE model is just a more \emph{expressive} version of the DFD model, which
+allows for more concise flowcharts.
+
+\subsection{Petri Nets}
+
+Petri Nets are a formal model that is used to describe the flow of data through an Information Systems
+
+\begin{definition}[Petri Nets]\label{def:petri-nets}
+	A petri net is a $\text{3-Tuple} \coloneqq  (P, T, A)$
+	that forms a \emph{Bipartite Graph}:
+	\[
+		G(V, E) \coloneqq \begin{dcases}
+			V & \coloneqq (P \cup T)                                  \\
+			A & \coloneqq E \subseteq  (P \times T) \cup (T \times P)
+		\end{dcases}\]
+
+	Where:
+
+	\begin{itemize}
+		\item $P$ is a set of places
+		\item $T$ is a set of transitions
+		\item $A$ is a set of arcs (Edges) that connect places and transitions in a \emph{Directed} fashion
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[Marking]\label{def:marking}
+	A \emph{Marking} of a petri net is a function
+	\[
+		M: P \to \mathbb{N}_0
+		.\]
+	Mapping a place to a non-negative integer, that is, the number of tokens in that place.
+
+	At each step of the evolution of the Petri Net, the marking function is updated to reflect the new state, for example, $ M_0$ is the initial marking and $ M_f$ is the final marking.
+\end{definition}
+
+Essentially, a Petri Net is a Finite State Automata in which a set of markings indicate the states that are `Firable', once a transition
+happens, the markings are updated, and the process continues, so we are effectively running multiple Finite State Machines
+in parallel, each with the same topology.
+
+\paragraph{Terminology}
+
+Each transition $t \in  T$  has an input set ${}^{\circ}t \subseteq P$ and an output set $t^{\circ} \subseteq  P$ also called input
+and output places, the same notation also applies to places.
+
+\paragraph{Petri Net Evolution}
+
+An enabled transition can \emph{Fire}, deleting a token in each input place and creating a token in each output place:
+
+\begin{align*}
+	M_0 & = \left( 2, 1, 0, 0, 1 \right) \\
+	M_0 & \to M_1                        \\
+	M_1 & = \left( 1, 0, 1, 1, 1 \right)
+\end{align*}
+
+A \emph{Firable Sequence} is a sequence of transition $\sigma = \langle t_1, t_2, \ldots, t_n \rangle$ where
+
+\[
+	M_0 \to^{ t_1} M_1 \to^{ t_2} M_2 \ldots \to^{ t_n} M_n
+	.\]
+
+For which we can use the closure notation $ M_0 \to^{\sigma} M_n$ to denote the evolution of the markings.
+
+\paragraph{Further Definitions}
+
+Now, given a net \[
+	P = (P, T, A, M_0).\] We have that:\footnote{
+	$T^{\star}$ is the set of all sequences of transitions, so $\tau t$ is a sequence of transitions
+	that starts with $\tau$ and ends with $t$, hence we are using notation coming from regular expressions (Concatenation, Kleene star, etc\dots)
+}
+\begin{itemize}
+	\item A \emph{Potentially Firable Transition}  $t \in T$  is such that
+	      \[
+		      \exists \tau \in T^{\star} s.t\ \tau t\ \text{Is Firable}:\ M_0 {}^{\tau}\to^{t}
+		      .\]
+	\item A \emph{Potentially Firable Sequence} $\sigma \in T^{\star}$ is such that
+	      there exists a prefix sequence $\tau \in T^{\star}$ such that $\tau \sigma$ is firable ($M_0 \to^{\tau \sigma} M_n$)
+	\item A \emph{Reachable Marking} $M$ is such that
+	      \[
+		      \exists \sigma\ s.t\ M_0 \to^{\sigma} M
+		      .\]
+	\item $R( M_0)$ is the set of all reachable markings.
+	\item $P_r$ is the set of reachable places s.t
+	      \[
+		      P_r = \left\{ p \in  P | \exists  M \in  R( M_0), M(p) > 0 \right\}
+		      .\]
+\end{itemize}
 
-    \label{chap:petri}
-    \section{Introduction}
-    Petri nets are, as aforementionedly introduced, a \emph{Graphical} and \emph{Mathematical} modelling tool,
-    that is, they are formalizable through math and representable pictorially.
+\paragraph{Petri Nets and Automata}
 
-    \paragraph{Graphical Representation}
+We have that Petri nets are a generalization of automata under particular conditions:
 
-    The graphical representation is a bipartite graph, where we have two kind of nodes:
+\begin{definition}[Petri Nets and Automatas]
+	A Finite state machine is a petri net where, for each transition $t$ both
+	the input and the output places have cardinality $1$:
+	\[
+		\forall  t \in  T, |{}^{\circ}t| = |t^{\circ}| = 1
+		.\]
+\end{definition}
 
-    \begin{itemize}
-      \item Places
-      \item Transitions
-    \end{itemize}
-
-    The transitions are stylized as \emph{black rectangles}, in order to distinguish them more easily, but they are easily interchangeable
-    with the usual labeled circles that are used to represent states in a finite state machine.
+\subsection{Workflow Nets}
 
-    Tokens are pictorially represented with dots, however, this is not that scalable, so we can also use mathematical
-    notations and label a node with a number $n \in \mathbb{N}$ to represent $n$ tokens in the place, be careful with
-    this representation since it reduces the expressiveness of the model, especially towards non-mathematics oriented
-    people.
+Workflow nets are a generalization of Petri Nets, in which we have two additional conditions:
 
-    \begin{figure}[ht]
-      \centering
-      \incsvg{fig}{pnet}\\
-      \label{fig:pnet}
-      \caption{%
-        A Petri Net with 3 places and 2 transitions, we can
-        see three tokens in $p_1$ and one token in $p_2$.
-      }
-    \end{figure}
+\begin{enumerate}
+	\item A source s.t $|{}^{\circ}t| = 0$ for all $t \in T$\footnote{
+		      AI generated math, please check (will fix once the slides are up).
+	      }
+	\item A sink s.t $|t^{\circ}| = 0$ for all $t \in T$
+\end{enumerate}
 
-    \paragraph{Matemathical Representation}
-    Since petri nets are just a graph, they can be rigorously formalized, as in \cref{def:petri-nets,def:marking}, so we omit
-    the formalities here to avoid redundancy.
+Hence for each node the node is \emph{reachable} from the source and \emph{can reach} the sink.
 
-    \paragraph{Transition Enabling}
+\paragraph{Workflow Nets as Models}
+Workflow nets are more representative of real world systems, since they can model \emph{producers} and
+\emph{consumers} in a system, which are widespread in real world systems.
 
-    We can further complicate a Petri Net by introducing the concept of transition \emph{enabling}: a transition
-    is enabled if it has enough tokens in its input places to fire, and it is disabled otherwise, naturally,
-    the firing of the transition removes a token from each input place and adds a token to each output place.
 
-    The system steps in time \emph{discretely}, that is each event happens simultaneously in a single step in
-    time.
 
-    \section{Petri Nets and Threads}
+\chapter{Petri Nets --- Cont.}\label{chap:petri}
+\section{Introduction}
+Petri nets are, as aforementionedly introduced, a \emph{Graphical} and \emph{Mathematical} modelling tool,
+that is, they are formalizable through math and representable pictorially.
 
-    In the previous chapter, we drew a parallel between Petri Nets and Finite State Machines, stating that their behaviour is \emph{similar} to that of a set of FSM running in parallel, in fact, this parallel is not \emph{entirely} made up, since we can notice that some common issues of parallelism such as conflicts are present in Petri Nets.
+\paragraph{Graphical Representation}
 
-    \begin{definition}[Petri Net Run]
-      \label{def:petri-net-run}
+The graphical representation is a bipartite graph, where we have two kind of nodes:
 
-      A run of a petri net is a finite or infinite sequence of markings and transitions:
+\begin{itemize}
+	\item Places
+	\item Transitions
+\end{itemize}
 
-      \[
-        M_0 \to^{ t_0} M_1 \to^{ t_1} \ldots \to^{ t_{n-1} } M_n \to^{ t_n} \ldots
-      .\]
+The transitions are stylized as \emph{black rectangles}, in order to distinguish them more easily, but they are easily interchangeable
+with the usual labeled circles that are used to represent states in a finite state machine.
 
-      such that $ M_0$ is the initial marking, each transition $ t_i$ is enabled in the marking $M_i$ and the marking $M_{i+1}$ is the marking that results from firing $ t_i$.
+Tokens are pictorially represented with dots, however, this is not that scalable, so we can also use mathematical
+notations and label a node with a number $n \in \mathbb{N}$ to represent $n$ tokens in the place, be careful with
+this representation since it reduces the expressiveness of the model, especially towards non-mathematics oriented
+people.
 
-    \end{definition}
+\begin{figure}[ht]
+	\centering
+	\incsvg{fig}{pnet}\\\label{fig:pnet}
+	\caption{%
+		A Petri Net with 3 places and 2 transitions, we can
+		see three tokens in $p_1$ and one token in $p_2$.
+	}
+\end{figure}
 
-    \paragraph{Execution Properties}
+\paragraph{Matemathical Representation}
+Since petri nets are just a graph, they can be rigorously formalized, as in \cref{def:petri-nets,def:marking}, so we omit
+the formalities here to avoid redundancy.
 
-    Now we can define some other concepts relative to the run of a petri net:
+\paragraph{Transition Enabling}
 
-    \begin{itemize}
-      \item Sequential Execution -- Happens when transitions are on a \emph{chain}, that is, there is a path from one transition to the other, imposing a \emph{precedence constraint}.
-      \item Synchronization -- When multiple places are connected to a single transition, we have a \emph{synchronization} between the places, that is, the transition will only fire when all the places have a token.
-      \item Merging -- When multiple transitions are connected to a single place, we have a \emph{merging} of the transitions, that is, the place will only have a token when all the transitions have fired, reducing the number of total tokens.
-      \item Forking -- When a single transition is connected to multiple places, we have a \emph{forking} of the transition, that is, the transition will fire multiple times, increasing the number of total tokens.
-      \item Concurrency -- When multiple transitions are connected to multiple places, we have \emph{concurrency}, that is, the transitions can fire independently of each other, and the places can have tokens independently of each other.
-    \end{itemize}
-    \subsection{Non-Determinism}
+We can further complicate a Petri Net by introducing the concept of transition \emph{enabling}: a transition
+is enabled if it has enough tokens in its input places to fire, and it is disabled otherwise, naturally,
+the firing of the transition removes a token from each input place and adds a token to each output place.
 
-    Given the previously explored execution model of petri nets, one more thing must be said:
-    their \emph{evolution} (that is, the sequence of markings that they go through from their initial marking), is \textcolor{red}{Non-Deterministic}, hence, any enabled transition can fire at any time, and the marking can change at any time, this is a very important property of petri nets, since it allows us to model \emph{concurrency} in a very natural way, but, as said before, it also opens the door to \emph{conflicts}.
+The system steps in time \emph{discretely}, that is each event happens simultaneously in a single step in
+time.
 
-    \begin{definition}[Conflicts]
-      \label{def:conflicts}
+\section{Petri Nets and Threads}
 
-      A conflict is a pair of transitions $t_i, t_j$ such that:
+In the previous chapter, we drew a parallel between Petri Nets and Finite State Machines, stating that their behaviour is \emph{similar} to that of a set of FSM running in parallel, in fact, this parallel is not \emph{entirely} made up, since we can notice that some common issues of parallelism such as conflicts are present in Petri Nets.
 
-      \begin{enumerate}
-        \item $t_i$ and $t_j$ are both enabled in the same marking $M$.
-        \item $t_i$ and $t_j$ are connected by a path in the graph.
-        \item The firing of $t_i$ leads to the disabling of $t_j$ and vice-versa.
-      \end{enumerate}
+\begin{definition}[Petri Net Run]\label{def:petri-net-run}
 
-    \end{definition}
+	A run of a petri net is a finite or infinite sequence of markings and transitions:
 
-    These conflicts are not too dissimilar to what was explored in the
-    Operating Systems course with the \emph{deadlock} concept\footnote{
-      Specifically the dining philosophers problem.
-    }, they can be resolved by introducing \emph{priority} to the transitions, that is, we can
-    restructure the mathematical definition of a Petri Net to allow for a hierarchy of transitions, or we can simply resolve the conflict by changing the network topology.
+	\[
+		M_0 \to^{ t_0} M_1 \to^{ t_1} \ldots \to^{ t_{n-1} } M_n \to^{ t_n} \ldots
+		.\]
 
-    \section{Reachability Analysis}
+	such that $ M_0$ is the initial marking, each transition $ t_i$ is enabled in the marking $M_i$ and the marking $M_{i+1}$ is the marking that results from firing $ t_i$.
 
-    A marking is said to be \emph{reachable} from another marking if there exists a sequence
-    of transitions $\langle t_1, t_2, \ldots, t_n \rangle$ that when fired, lead from the first marking to the second.
+\end{definition}
 
-    \begin{definition}[Reachability Set]
-      The \emph{reachability set} of a Petri Net is the set of all the markings that are reachable from the initial marking, one can think of this as a form of \emph{closure}.
-    \end{definition}
+\paragraph{Execution Properties}
 
-    Given the topology of a Petri Net (The set of its places and transitions), we can then
-    uniquely determine the state the network is in by its markings, each of these being a
-    unique element of the reachability set.
+Now we can define some other concepts relative to the run of a petri net:
 
-    Since our petri nets describe a real-world system, it might be helpful to know if,
-    from our current state, we are likely to reach a particular outcome, the process that
-    determines this is called \emph{reachability analysis}, in which we
-    try to solve a membership problem given a marking and the reachability set of the Petri Net.
+\begin{itemize}
+	\item Sequential Execution --- Happens when transitions are on a \emph{chain}, that is, there is a path from one transition to the other, imposing a \emph{precedence constraint}.
+	\item Synchronization --- When multiple places are connected to a single transition, we have a \emph{synchronization} between the places, that is, the transition will only fire when all the places have a token.
+	\item Merging --- When multiple transitions are connected to a single place, we have a \emph{merging} of the transitions, that is, the place will only have a token when all the transitions have fired, reducing the number of total tokens.
+	\item Forking --- When a single transition is connected to multiple places, we have a \emph{forking} of the transition, that is, the transition will fire multiple times, increasing the number of total tokens.
+	\item Concurrency --- When multiple transitions are connected to multiple places, we have \emph{concurrency}, that is, the transitions can fire independently of each other, and the places can have tokens independently of each other.
+\end{itemize}
+\subsection{Non-Determinism}
 
-    \subsection{Reachability graphs}
+Given the previously explored execution model of petri nets, one more thing must be said:
+their \emph{evolution} (that is, the sequence of markings that they go through from their initial marking), is \textcolor{red}{Non-Deterministic}, hence, any enabled transition can fire at any time, and the marking can change at any time, this is a very important property of petri nets, since it allows us to model \emph{concurrency} in a very natural way, but, as said before, it also opens the door to \emph{conflicts}.
 
-    Reachability graphs are a way to represent the evolution of a Petri Net, they are a directed graph, where
-    each node is a marking of the Petri Net, and each edge represents a transition that can be fired from the
-    current marking to the next marking.
+\begin{definition}[Conflicts]\label{def:conflicts}
 
-    \paragraph{Reachability Graph Construction}
+	A conflict is a pair of transitions $t_i, t_j$ such that:
 
-    Reachability graphs are constructed by starting from the initial marking, and then, for each marking, we
-    generate all the possible markings that can be reached from the current marking by firing a transition.
+	\begin{enumerate}
+		\item $t_i$ and $t_j$ are both enabled in the same marking $M$.
+		\item $t_i$ and $t_j$ are connected by a path in the graph.
+		\item The firing of $t_i$ leads to the disabling of $t_j$ and vice-versa.
+	\end{enumerate}
 
-    By properly identifying the frontier nodes, the generation pf the reachability graph
-    is performable in a finite amount of steps, even if the Petri Net is unbounded, this is
-    polynomial time, and therefore the reachability graph can be generated in a finite amount of time.
+\end{definition}
 
-    In general, there are three types of frontier nodes:
+These conflicts are not too dissimilar to what was explored in the
+Operating Systems course with the \emph{deadlock} concept\footnote{
+	Specifically the dining philosophers problem.
+}, they can be resolved by introducing \emph{priority} to the transitions, that is, we can
+restructure the mathematical definition of a Petri Net to allow for a hierarchy of transitions, or we can simply resolve the conflict by changing the network topology.
 
-    \begin{enumerate}
-      \item Terminal -- no possible transition
-      \item Duplicate -- already generated
-      \item \emph{Infinitely Reproducible} -- can be generated infinitely many times
-    \end{enumerate}
+\section{Reachability Analysis}
 
-    \paragraph{Infinite Reproducibility}
+A marking is said to be \emph{reachable} from another marking if there exists a sequence
+of transitions $\langle t_1, t_2, \ldots, t_n \rangle$ that when fired, lead from the first marking to the second.
 
-    A marking $M^{\prime\prime} \geq  M^\prime$ is \emph{Infinitely Reproducible if}:
+\begin{definition}[Reachability Set]
+	The \emph{reachability set} of a Petri Net is the set of all the markings that are reachable from the initial marking, one can think of this as a form of \emph{closure}.
+\end{definition}
 
-    \begin{align}
-      M^{\prime\prime}  &\geq  M^\prime\\
-      m_i^{\prime\prime}  \geq  m_i^\prime &\quad  \forall  i \in  (1, 2, \ldots, n)
-    \end{align}
+Given the topology of a Petri Net (The set of its places and transitions), we can then
+uniquely determine the state the network is in by its markings, each of these being a
+unique element of the reachability set.
 
-    If the condition holds there exists a sequence that leads from $M^\prime$ to $M^{\prime\prime}$, and that is surely firable infinitely many times, hence, the marking is infinitely reproducible, in that case, the Petri Net is said to be \emph{unbounded}.
+Since our petri nets describe a real-world system, it might be helpful to know if,
+from our current state, we are likely to reach a particular outcome, the process that
+determines this is called \emph{reachability analysis}, in which we
+try to solve a membership problem given a marking and the reachability set of the Petri Net.
 
-    For an unbounded Petri Net, we can indicate an arbitrarily large amount of tokens through
-    the symbol $\textcolor{red}{\omega} $
+\subsection{Reachability graphs}
 
-    \section{Petri Nets Extensions}
+Reachability graphs are a way to represent the evolution of a Petri Net, they are a directed graph, where
+each node is a marking of the Petri Net, and each edge represents a transition that can be fired from the
+current marking to the next marking.
 
-    Petri nets can be \emph{extended} in order to model more complex systems, for example, we can have:
+\paragraph{Reachability Graph Construction}
 
-    \begin{itemize}
-      \item Arc Multiplicity
-      \item Inhibitor Arcs
-      \item Priority Levels
-      \item Enabling Functions (Guard Conditions)
-    \end{itemize}
+Reachability graphs are constructed by starting from the initial marking, and then, for each marking, we
+generate all the possible markings that can be reached from the current marking by firing a transition.
 
-    \begin{remark}
-      The last three extensions \emph{destroy} the infinitely reproducibility property of the Petri Net.
-    \end{remark}
+By properly identifying the frontier nodes, the generation pf the reachability graph
+is performable in a finite amount of steps, even if the Petri Net is unbounded, this is
+polynomial time, and therefore the reachability graph can be generated in a finite amount of time.
 
-    \subsection{Arc Multiplicity}
+In general, there are three types of frontier nodes:
 
-    An \emph{arc cardinality} may be associated with input and output arcs, whereby the enabling and firing
-    rules change:
+\begin{enumerate}
+	\item Terminal --- no possible transition
+	\item Duplicate --- already generated
+	\item \emph{Infinitely Reproducible} --- can be generated infinitely many times
+\end{enumerate}
 
-    \begin{itemize}
-      \item Each input must contain at least as many tokens as the input arc's cardinality
-      \item When the transition fires, the number of tokens removed from each input place is equal to the input arc's cardinality,
-      as is the number of token added to each output place.
-    \end{itemize}
+\paragraph{Infinite Reproducibility}
 
-    \begin{figure}[ht]
+A marking $M^{\prime\prime} \geq  M^\prime$ is \emph{Infinitely Reproducible if}:
+
+\begin{align}
+	M^{\prime\prime}                     & \geq  M^\prime                           \\
+	m_i^{\prime\prime}  \geq  m_i^\prime & \quad  \forall  i \in  (1, 2, \ldots, n)
+\end{align}
+
+If the condition holds there exists a sequence that leads from $M^\prime$ to $M^{\prime\prime}$, and that is surely firable infinitely many times, hence, the marking is infinitely reproducible, in that case, the Petri Net is said to be \emph{unbounded}.
+
+For an unbounded Petri Net, we can indicate an arbitrarily large amount of tokens through
+the symbol $\textcolor{red}{\omega} $
+
+\section{Petri Nets Extensions}
+
+Petri nets can be \emph{extended} in order to model more complex systems, for example, we can have:
+
+\begin{itemize}
+	\item Arc Multiplicity
+	\item Inhibitor Arcs
+	\item Priority Levels
+	\item Enabling Functions (Guard Conditions)
+\end{itemize}
+
+\begin{remark}
+	The last three extensions \emph{destroy} the infinitely reproducibility property of the Petri Net.
+\end{remark}
+
+\subsection{Arc Multiplicity}
+
+An \emph{arc cardinality} may be associated with input and output arcs, whereby the enabling and firing
+rules change:
+
+\begin{itemize}
+	\item Each input must contain at least as many tokens as the input arc's cardinality
+	\item When the transition fires, the number of tokens removed from each input place is equal to the input arc's cardinality,
+	      as is the number of token added to each output place.
+\end{itemize}
+
+\begin{figure}[ht]
 	\centering
 	\incsvg{fig}{pnet-arc-mult}\\
 	\caption{A Petri net with arc multiplicity, note that $ t_1$ has \emph{no way} to fire since it requires
-  4 tokens in $ p_1$ but it only ever has $3$. }
-	\label{fig:pnet-arc-mult}
+		4 tokens in $ p_1$ but it only ever has $3$. }\label{fig:pnet-arc-mult}
 \end{figure}
 
-    \subsection{Inhibitor Arcs}
-    Inhibitor arcs are arcs represented with a circle head, the transition can fire only if the inhibitor place
-    does \emph{not} contain any tokens.
+\subsection{Inhibitor Arcs}
+Inhibitor arcs are arcs represented with a circle head, the transition can fire only if the inhibitor place
+does \emph{not} contain any tokens.
 
-    They are used to implement constraints on the firing of a transition, in the restaurant example, we
-    could think of a transition that represents the \emph{delivery} of a dish, and we could have an inhibitor
-    arc from the \emph{delivery} transition to the \emph{payment} transition, so that the dish can only be
-    delivered once the payment has been made.
+They are used to implement constraints on the firing of a transition, in the restaurant example, we
+could think of a transition that represents the \emph{delivery} of a dish, and we could have an inhibitor
+arc from the \emph{delivery} transition to the \emph{payment} transition, so that the dish can only be
+delivered once the payment has been made.
 
 
-    \paragraph{Inhibitor Arcs and Multithreading}
-    Once again, we also notice a stunning similarity with multithreading, where we can think of the inhibitor
-    as some sort of synchronization primitive, such as a \emph{mutex}.or a \emph{semaphore}.
+\paragraph{Inhibitor Arcs and Multithreading}
+Once again, we also notice a stunning similarity with multithreading, where we can think of the inhibitor
+as some sort of synchronization primitive, such as a \emph{mutex}.or a \emph{semaphore}.
 
-    \paragraph{Inhibitors and Transitions}
-    An inhibitor arc placed on a transition means that the transition can only fire if the inhibitor place
-    does \emph{not} contain any tokens, however, the cardinality of the output arc is not affected by the
-    presence of the inhibitor arc, nor is the inhibitor affected by the cardinality.
+\paragraph{Inhibitors and Transitions}
+An inhibitor arc placed on a transition means that the transition can only fire if the inhibitor place
+does \emph{not} contain any tokens, however, the cardinality of the output arc is not affected by the
+presence of the inhibitor arc, nor is the inhibitor affected by the cardinality.
 
-    \subsection{Priority Levels}
+\subsection{Priority Levels}
 
-    A Priority level can be attached to each Petri Net Transition, the standard execution rules are then modified
-    to allow the highest priority to fire first in case of conflict, when two transitions have the same priority,
-    that subset of transitions fires simultaneously.
+A Priority level can be attached to each Petri Net Transition, the standard execution rules are then modified
+to allow the highest priority to fire first in case of conflict, when two transitions have the same priority,
+that subset of transitions fires simultaneously.
 
-    \subsection{Enabling Functions}
+\subsection{Enabling Functions}
 
-    An enabling function (or guard) is a boolean expression, composed with Petri Nets primitives, the enabling rules
-    are modified so that, besides the standard conditions, the transition can only fire if the guard evaluates to
-    \emph{true}.
+An enabling function (or guard) is a boolean expression, composed with Petri Nets primitives, the enabling rules
+are modified so that, besides the standard conditions, the transition can only fire if the guard evaluates to
+\emph{true}.
 
-    Hence we can formally define an enabling functions as:
+Hence we can formally define an enabling functions as:
 
 \begin{align*}
-  f(tk) &\coloneqq (P, T, A) \cup (+, \cdot, \leq, \geq, \neq, \\
-  & \land, \lor, \neg, \text{true}, \text{false}) \to \{ \text{true}, \text{false} \}\\
+	f(tk) & \coloneqq (P, T, A) \cup (+, \cdot, \leq, \geq, \neq,                             \\
+	      & \land, \lor, \neg, \text{true}, \text{false}) \to \{ \text{true}, \text{false} \} \\
 \end{align*}
 
 But, in practice, we often adopt a verbal description of the boolean predicate that the enabling function implements\footnote{%
-  Remember, \emph{someone is gonna read this}, and it's \emph{not} going to be a mathematician.
+	Remember, \emph{someone is gonna read this}, and it's \emph{not} going to be a mathematician.
 }
 
-  \subsection{Colored Petri Nets}
+\subsection{Colored Petri Nets}
 
-  We can extend petri nets with colors, to increase expressiveness:
+We can extend petri nets with colors, to increase expressiveness:
 
-  \begin{itemize}
-    \item We say that $C$ is a set of colors of cardinality $|C|$ and $\textcolor{blue}{x}$ is a color of $C$.
-    \item Place $\textcolor{blue}{p}$ can contain tokens of any color $\textcolor{blue}{x} \in  C $
-    \item Transition $\textcolor{blue}{t}$ can fire tokens of any color $\textcolor{blue}{x} \in C$
-  \end{itemize}
+\begin{itemize}
+	\item We say that $C$ is a set of colors of cardinality $|C|$ and $\textcolor{blue}{x}$ is a color of $C$.
+	\item Place $\textcolor{blue}{p}$ can contain tokens of any color $\textcolor{blue}{x} \in  C $
+	\item Transition $\textcolor{blue}{t}$ can fire tokens of any color $\textcolor{blue}{x} \in C$
+\end{itemize}
 
-  \subsection{Stochastic Petri Nets}
+\subsection{Stochastic Petri Nets}
 
-  Petri nets can be extended by clearly associating \emph{time} with the firing of transitions,
-  resulting in \emph{Timed Petri Nets}.
+Petri nets can be extended by clearly associating \emph{time} with the firing of transitions,
+resulting in \emph{Timed Petri Nets}.
 
-  A special case of timed Petri Nets is stochastic petri nets (SPN), where the firing times are
-  considered to be random variables.
+A special case of timed Petri Nets is stochastic petri nets (SPN), where the firing times are
+considered to be random variables.
 
-  This can be useful to model the random natures of sales, that are based on a number of
-  difficuly-to-predict factors, such as the customer's tastes, current season, advertisements,
-  world events, etc\dots
+This can be useful to model the random natures of sales, that are based on a number of
+difficuly-to-predict factors, such as the customer's tastes, current season, advertisements,
+world events, etc\dots
 
 %────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 % TO BE COMPLETED
@@ -1026,7 +1021,7 @@ But, in practice, we often adopt a verbal description of the boolean predicate t
 
 The seminar in question is a mandatory seminar given on the 20th of march 2023, it is about \emph{business transformation},
 specifically, we are interested in the story of a company\footnote{
-  It is a personal belief of a few of us that the company in question might be Springer, but we are not sure.
+	It is a personal belief of a few of us that the company in question might be Springer, but we are not sure.
 } that traded in the supply and distribution of scientific publications.
 
 \paragraph{The Business Model}
@@ -1041,14 +1036,14 @@ organize the shipping of the product to the customer.
 \subsection{Business Transformation}
 
 The company decided to engage in a \emph{SWOT}\footnote{
-  Strengths, Weaknesses, Opportunities, Threats
+	Strengths, Weaknesses, Opportunities, Threats
 } analysis to transform its business model, we are replicating this in the classroom:
 
 \begin{itemize}
-  \item \textbf{Strengths} --  High profits, captive market, limited competition
-  \item \textbf{Weaknesses} -- Complicated business model, limited demand and small market size
-  \item \textbf{Opportunities} -- Market expansion towards EU, new technologies, new product categories (not only scientific publications)
-  \item \textbf{Threats} -- University budget cuts, competitors on delivery and price
+	\item \textbf{Strengths} ---  High profits, captive market, limited competition
+	\item \textbf{Weaknesses} --- Complicated business model, limited demand and small market size
+	\item \textbf{Opportunities} --- Market expansion towards EU, new technologies, new product categories (not only scientific publications)
+	\item \textbf{Threats} --- University budget cuts, competitors on delivery and price
 \end{itemize}
 
 From this, it is clear that the risks and the weaknesses are threatening the company's business model, and that the company's strengths might
@@ -1059,7 +1054,7 @@ be at risk, from there, it was clear that these opportunities must be exploited.
 For this company, there has been \emph{no} formal transformation plan, the transition occurred organically, with resources being
 allocated on the go
 
-\section{Digression -- Strategic Plan Design}
+\section{Digression --- Strategic Plan Design}
 
 A strategic plan is a document that describes the company's goals, and the way to achieve them, it is a \emph{roadmap} that
 the company follows to achieve its goals.
@@ -1067,15 +1062,15 @@ the company follows to achieve its goals.
 it is split in 4 phases:
 
 \begin{enumerate}
-  \item \textbf{Needs} -- What are the needs of the company? a strategic plan (such as one necessary for this transition), starts with the identification of the needs of the company, such
-  as which opportunities to take and which strenghts to preserve
-  \item \textbf{Drivers} -- What are the forces that can be applied that will help the company to achieve its goals?
-  \item \textbf{Objective Key Results} -- Given the needs and the drivers, we can now define the objectives, and the key results that will help us to achieve them.
+	\item \textbf{Needs} --- What are the needs of the company? a strategic plan (such as one necessary for this transition), starts with the identification of the needs of the company, such
+	      as which opportunities to take and which strenghts to preserve
+	\item \textbf{Drivers} --- What are the forces that can be applied that will help the company to achieve its goals?
+	\item \textbf{Objective Key Results} --- Given the needs and the drivers, we can now define the objectives, and the key results that will help us to achieve them.
 
-  We gather a list of goals to accomplish and we utilize some metrics such as KPIs to track their progress.
+	      We gather a list of goals to accomplish and we utilize some metrics such as KPIs to track their progress.
 
-  \item \textbf{Budgeting and Planning} -- After the roadmap is complete, we have to reason on our \emph{ability} to reach the goals, and we have to allocate resources accordingly,
-  both in terms of monetary costs and in terms of time.
+	\item \textbf{Budgeting and Planning} --- After the roadmap is complete, we have to reason on our \emph{ability} to reach the goals, and we have to allocate resources accordingly,
+	      both in terms of monetary costs and in terms of time.
 
 \end{enumerate}
 
@@ -1084,9 +1079,9 @@ it is split in 4 phases:
 Our company decided to transform its business model, and to do so, it decided to pursue the following opportunities
 
 \begin{itemize}
-  \item Expand their catalog to include consumer products (such as books, movies, etc\dots)
-  \item Reach consumers directly, instead of relying on universities
-  \item Reach the EU market
+	\item Expand their catalog to include consumer products (such as books, movies, etc\dots)
+	\item Reach consumers directly, instead of relying on universities
+	\item Reach the EU market
 \end{itemize}
 
 We can then analyze this thrown-together plan through the lens of our 4-phase plan.
@@ -1106,9 +1101,9 @@ a bridge to new potential customers.
 The company's results were not as expected, the transformation resulted in:
 
 \begin{itemize}
-  \item Little increase of orders
-  \item \emph{High} ratio of supply-chain failures
-  \item Consequentially, customers' dissatisfaction
+	\item Little increase of orders
+	\item \emph{High} ratio of supply-chain failures
+	\item Consequentially, customers' dissatisfaction
 \end{itemize}
 
 This stemmed from the fact that the supply chain advertised products that \emph{weren't there}, their availability was not guaranteed, and depended on
@@ -1120,9 +1115,9 @@ handle.
 From this, a new set of needs arose:
 
 \begin{itemize}
-  \item Reduce customer frustration
-  \item Define what's \emph{really} available
-  \item Reduce wasted time
+	\item Reduce customer frustration
+	\item Define what's \emph{really} available
+	\item Reduce wasted time
 \end{itemize}
 
 This was solved by integrating the supply chain with the e-commerce platform, by asking the suppliers the status of the product on a daily basis, and by
@@ -1137,8 +1132,8 @@ increase of orders was observed, even though the failure-to-supply events were r
 Next, they identified another set of weaknesses that, if solved, would allow them possibly reduce customer frustration and increase the number of orders, those were:
 
 \begin{itemize}
-  \item Reduce delivery time
-  \item Reduce transportation costs
+	\item Reduce delivery time
+	\item Reduce transportation costs
 \end{itemize}
 
 Further integration with the supply chain was implemented, with the construction of databases and APIs that allowed the company to track the status of production
@@ -1148,7 +1143,7 @@ and shipping of the products, and to track the status of the products in the war
 
 This integration allowed the company to reduce the supply times and, most importantly, to reduce the costs, increasing its profit margin, Unfortunately, this was not enough,
 as during this time, the company's main competitor, Amazon\footnote{
-  Cue final boss music.
+	Cue final boss music.
 }, started to offer the same service, and the company's market share started to decrease, the company was now forced to provide a service that was
 at least as good as Amazon's, and to do so, it had to reduce its prices.
 
@@ -1165,18 +1160,18 @@ The arrival of this new framework allowed the company to identify new opportunit
 import-export flows.
 
 \begin{definition}[Triangulation]
-  Triangulation is the act of intercepting a product in one country, and then shipping it to another country, in order to
-  make a profit from the difference in price between the two countries.
+	Triangulation is the act of intercepting a product in one country, and then shipping it to another country, in order to
+	make a profit from the difference in price between the two countries.
 
-  This is often possible due to the fact that some products \emph{might} not be available in some countries, and therefore
-  their price is higher than in other countries, the same can happen if the product is available, but the price is higher due to
-  differences in the cost of living/pro-capita income.
+	This is often possible due to the fact that some products \emph{might} not be available in some countries, and therefore
+	their price is higher than in other countries, the same can happen if the product is available, but the price is higher due to
+	differences in the cost of living/pro-capita income.
 \end{definition}
 
 \paragraph{Long Tail}
 Another opportunity is specializing on the \emph{Long Tail} of the market, which is the set of products that are not
 frequently sold, and are therefore outliers in the distribution of the products sold\footnote{
-  which is gamma shaped in most cases, hence the \emph{long tail} metaphor.
+	which is gamma shaped in most cases, hence the \emph{long tail} metaphor.
 }, these are probably products where the economy of scale of services such as Amazon is not applicable, and therefore
 our company can establish a competitive advantage by specializing on these products.
 
@@ -1187,7 +1182,7 @@ company to reduce its margins, while its dependence on marketplaces as a distrib
 outside influences from the marketplaces themselves, which, coincidentially, were also the company's main competitors.
 
 \paragraph{Failure}
-Ultimatedly, the company failed due to insufficient business margins, hence there is no 
+Ultimatedly, the company failed due to insufficient business margins, hence there is no
 definitive moral to this story, except that \emph{business is hard}.
 
 
@@ -1198,42 +1193,42 @@ definitive moral to this story, except that \emph{business is hard}.
 In order to decide whether engaging in a refactoring/rewrite of a software-based project, it is important to estimate the size of the project,
 both of the existing codebase and of the hypothetical new codebase, this is important since it seems to correlate with the difficulty
 and the cost of the project.\footnote{
-  At least that is what they thought in the 90s.
+	At least that is what they thought in the 90s.
 }
 
 \paragraph{A metric for size}
 
-The most common \footnote{and useless.} metric is \emph{SLOC}, or \emph{Source Lines of Code}, which is the number of lines of code in the project,
+The most common\footnote{and useless.} metric is \emph{SLOC}, or \emph{Source Lines of Code}, which is the number of lines of code in the project,
 this is easy to calculate mathematically, and can even be made more specific by discounting comments and blank lines, or, by only
 counting lines in core functions and hot paths.
 
 This method is terrifyingly inaccurate as it suffers from a number of flaws
 \begin{itemize}
-  \item Different languages have different line lengths, and therefore different SLOC counts
-  \item Inefficient library function calls take up less lines of code than efficient, inbuilt ones
-  \item 80\% of code is used 20\% of the time, and vice-versa\footnote{
-    Like the 80/20 rule, but for code.
-  }, hence SLOC is not a good metric for estimating the size of the project since it poorly correlates with the actual complexity of the project.
+	\item Different languages have different line lengths, and therefore different SLOC counts
+	\item Inefficient library function calls take up less lines of code than efficient, inbuilt ones
+	\item 80\% of code is used 20\% of the time, and vice-versa\footnote{
+		      Like the 80/20 rule, but for code.
+	      }, hence SLOC is not a good metric for estimating the size of the project since it poorly correlates with the actual complexity of the project.
 \end{itemize}
 
 There are some magic numbers proposed to calculate a SLOC index by extracting particular features from the codebase, such as the number of
 used files, functions, lines etc\dots, and then feeding this to a linear regressor, such as:
 
 \[
-  SLOC(X|\theta) \coloneqq \begin{bmatrix}
-     \theta_1 \\
-     \theta_2 \\
-     \vdots  \\
-    \theta_{n-1} \\
-     \theta_n \\
-  \end{bmatrix} \begin{bmatrix}
-     1 \\
-     X_1 \\
-     \vdots  \\
-    X_{n-1} \\
-     X_n \\
-  \end{bmatrix}
-.\]
+	SLOC(X|\theta) \coloneqq \begin{bmatrix}
+		\theta_1     \\
+		\theta_2     \\
+		\vdots       \\
+		\theta_{n-1} \\
+		\theta_n     \\
+	\end{bmatrix} \begin{bmatrix}
+		1       \\
+		X_1     \\
+		\vdots  \\
+		X_{n-1} \\
+		X_n     \\
+	\end{bmatrix}
+	.\]
 
 This is as scientifically accurate as predicting the outcome of battles from the flight patterns of birds, but it has
 the advantage of using math symbols, therefore \textbf{Science!}
@@ -1246,22 +1241,22 @@ measure the used parts of the project, and therefore the complexity of the proje
 Unfortunately, this is still presented as a \emph{magic number} that is calculated by a linear regressor, such as
 
 \[
-  BFP \coloneqq  4 \cdot EI + 5 \cdot EO + 4 \cdot EQ + 10 \cdot ILF + 7 \cdot EIF
-.\]
+	BFP \coloneqq  4 \cdot EI + 5 \cdot EO + 4 \cdot EQ + 10 \cdot ILF + 7 \cdot EIF
+	.\]
 
 Where:
 
 \begin{align*}
-  EI \coloneqq \, & \text{External Inputs} \\
-  EO \coloneqq \, & \text{External Outputs} \\
-  EQ \coloneqq \, & \text{External Inquiries} \\
-  ILF \coloneqq \, & \text{Internal Logical Files (Databases and directories)} \\
-  EIF \coloneqq \, & \text{External Interface Files (Libraries)}
+	EI \coloneqq \,  & \text{External Inputs}                                    \\
+	EO \coloneqq \,  & \text{External Outputs}                                   \\
+	EQ \coloneqq \,  & \text{External Inquiries}                                 \\
+	ILF \coloneqq \, & \text{Internal Logical Files (Databases and directories)} \\
+	EIF \coloneqq \, & \text{External Interface Files (Libraries)}
 \end{align*}
 
 With a $\pm 25\%$ error margin, given by complexity.\footnote{
-  According to this model, importing a Linear Algebra library (such as \texttt{GLM} or \texttt{numpy}),
-  is more complex than implementing a neural network from scratch, or writing your own matrix library.
+	According to this model, importing a Linear Algebra library (such as \texttt{GLM} or \texttt{numpy}),
+	is more complex than implementing a neural network from scratch, or writing your own matrix library.
 }
 
 % maybe insert the table about extra complexity factors here?
@@ -1279,23 +1274,21 @@ to other domains such as scientific or real-time applications.
 Sometimes it is necessary to convert FP to SLOC, we do this through \emph{further magic numbers}:
 
 \begin{table}[h!]
-  \rowcolors{2}{gray!25}{white}
-  \centering
-  \begin{tabular}{c c c}
-      \rowcolor{gray!50}
-      % Header
-      Language & SLOC/FP 1 &  FLOC/FP 2 \\
-     %End Header
-      Assembler &  &   \\
-       &  &   \\
-       &  &   \\
-       &  &   \\
-       &  &   \\
-       &  &   \\
-       &  & \\
-  \end{tabular}
-  \caption{Conversion Tables}
-  \label{tab:langs}
+	\rowcolors{2}{gray!25}{white}
+	\centering
+	\begin{tabular}{c c c}
+		\rowcolor{gray!50}
+		% Header
+		Language  & SLOC/FP 1 & FLOC/FP 2 \\
+		%End Header
+		Assembler & 320       & 400       \\
+		COBOL     & 107       & 100       \\
+		FORTRAN   & 107       & 105       \\
+		Ada       & 71        & 62        \\
+		PROLOG    & 64        & 64        \\
+		Pascal    & 91        & 70        \\
+	\end{tabular}
+	\caption{Conversion Tables}\label{tab:langs}
 \end{table} % TODO: FILL THIS UP ASAP
 
 \section{Object Points}
@@ -1319,9 +1312,61 @@ Usually it is used to examine a small section or component of the overall, large
 Steps:
 
 \begin{enumerate}
-  \item A group of experts is each given the program's specification
-  \item % TODO: Continue this later, he skipped the slide
+	\item A group of experts is each given the program's specification
+	\item The group of experts meets with a moderator to discuss the product and
+	      to discuss estimation issues
+	\item Each expert compiles an estimation form
+	\item The moderator collects the forms and then prepares and distributes a summary of the estimates
+	\item The experts discuss the estimates and the assumptions behind them, each expert then re-estimates
+	\item The process is repeated until a consensus is reached
 \end{enumerate}
+
+\section{PROBE}
+PROBE (PROxy Based Estimation) aims to measure complexity through some proxy metrics
+that substitute SLOC, such as Function Points, Object Points, etc\dots, this
+requires a \emph{training set} of projects, and a \emph{proxy} metric, such as
+FP, OP, etc\dots
+
+The training set is used to train a linear regressor, such as:
+\[
+	SLOC(X|\theta) \coloneqq \begin{bmatrix}
+		\theta_1     \\
+		\theta_2     \\
+		\vdots       \\
+		\theta_{n-1} \\
+		\theta_n     \\
+	\end{bmatrix} \begin{bmatrix}
+		1       \\
+		X_1     \\
+		\vdots  \\
+		X_{n-1} \\
+		X_n     \\
+	\end{bmatrix}
+	.\]
+
+That returns an estimate of the project's complexity.
+
+\paragraph{Disadvantages}
+The method simply does not work without historical data, and it needs a lot
+of it in order for the regressor to be accurate.
+
+Lastly, estimations might be prone to data-induced bias, hence, they are
+error prone and are often over-optimistic (and influenced by the knowledge-worker's
+gut feelings).
+
+
+\section{Conclusions}
+Estimates are good to have a structured and defined way to measure the size of a project,
+by choosing the right method, they can be applied to all projects, and at any stage
+of their development. They are adjustable and automatable. It is important to keep
+in mind that project are \textbf{not}:
+
+\begin{itemize}
+	\item Upper limits that the programmers must respect
+	\item A minimum estimation that project managers should aim to reach in order to
+	      get a contract
+\end{itemize}
+
 
 \chapter{Project Management}
 
@@ -1331,9 +1376,9 @@ Project management is \textbf{key} to a project's success, first, to talk
 about project management, we define a \emph{project}:
 
 \begin{definition}[Project]
-  A Project is defined as a group of \emph{stakeholders}, usually
-  under some measure of coordination or management, that pool
-  together resources to achieve a goal.
+	A Project is defined as a group of \emph{stakeholders}, usually
+	under some measure of coordination or management, that pool
+	together resources to achieve a goal.
 \end{definition}
 
 The act of project management is necessary to ensure that schedules are respected
@@ -1351,13 +1396,13 @@ which we already introduced in \cref{chap:petri}.
 We can introduce some terminology used in PERT petri nets:
 
 \begin{itemize}
-  \item Merge Events -- Merge events are represented by a place collecting multiple
-  incoming transitions, hence they act as a \emph{barrier}, synchronizing the separate sub-activities
-  \item Burst Events -- Burst events are represented by a place triggering multiple outgoing
-  transitions, hence they act as a \emph{fork}, launching multiple sub-activities
-  \item Dummy Activity -- Dummy activities are used to represent a \emph{connection} between events,
-  however, since they not a representation of a real activity but rather a \emph{control flow} object, they
-  do not consume any resource nor do they spend any time to be completed; they are represented by a dotted arrow.
+	\item Merge Events --- Merge events are represented by a place collecting multiple
+	      incoming transitions, hence they act as a \emph{barrier}, synchronizing the separate sub-activities
+	\item Burst Events --- Burst events are represented by a place triggering multiple outgoing
+	      transitions, hence they act as a \emph{fork}, launching multiple sub-activities
+	\item Dummy Activity --- Dummy activities are used to represent a \emph{connection} between events,
+	      however, since they not a representation of a real activity but rather a \emph{control flow} object, they
+	      do not consume any resource nor do they spend any time to be completed; they are represented by a dotted arrow.
 \end{itemize}
 
 \paragraph{Errors to be avoided}
@@ -1366,13 +1411,13 @@ In the construction of a project workflow petri net, some more constraints shoul
 in addition to those of regular petri nets:
 
 \begin{itemize}
-  \item Multiple identical transitions -- there can't be two transitions with the same start and end place, hence,
-  one needs to use dummy variables to model this in order to be mathematically rigorous.
-  \item Loops -- looping should not be performed, even if allowed by the mathematical model, since the project \emph{must}
-  have a beginning and an end.
-  \item Multiple Start Events -- The petri net should be a workflow net, hence, it should have a single start and end state
-  \item Correct Direction -- The network should flow from left to right (or right to left depending on dominant cultural bias
-  in your organization\footnote{We want to be as PC as possible.})
+	\item Multiple identical transitions --- there can't be two transitions with the same start and end place, hence,
+	      one needs to use dummy variables to model this in order to be mathematically rigorous.
+	\item Loops --- looping should not be performed, even if allowed by the mathematical model, since the project \emph{must}
+	      have a beginning and an end.
+	\item Multiple Start Events --- The petri net should be a workflow net, hence, it should have a single start and end state
+	\item Correct Direction --- The network should flow from left to right (or right to left depending on dominant cultural bias
+	      in your organization\footnote{We want to be as PC as possible.})
 \end{itemize}
 
 \paragraph{Critical Path Analysis}
@@ -1387,38 +1432,38 @@ The critical path for any network is defined as the \emph{longest path} in any n
 Data warehousing is a \emph{concept}, it is, formally
 
 \begin{definition}[Data Warehouse]
-  A collection of methods, technologies and tools to
-  assist the \emph{knowledge worker}\footnote{
-    for example a manager or an analyst
-  } to conduct data analysis aimed at supporting
-  decision-making and/or improving the management of
-  information assets.
+	A collection of methods, technologies and tools to
+	assist the \emph{knowledge worker}\footnote{
+		for example a manager or an analyst
+	} to conduct data analysis aimed at supporting
+	decision-making and/or improving the management of
+	information assets.
 \end{definition}
 
 The data collected in a data warehouse is:
 
 \begin{itemize}
-  \item Integrated -- from multiple sources
-  \item Consistent -- despite its different origins
-  \item Focused -- with a specific interest area
-  \item Historical -- over a consistent timeframe
-  \item Permanent -- it is not a temporary storage
+	\item Integrated --- from multiple sources
+	\item Consistent --- despite its different origins
+	\item Focused --- with a specific interest area
+	\item Historical --- over a consistent timeframe
+	\item Permanent --- it is not a temporary storage
 \end{itemize}
 
 \paragraph{Purpose}
 A data warehouse \textbf{helps} in:
 
 \begin{itemize}
-  \item Taking decisions
-  \item Identifying phenomena
-  \item Forecasting the future
-  \item Controlling a complex system
+	\item Taking decisions
+	\item Identifying phenomena
+	\item Forecasting the future
+	\item Controlling a complex system
 \end{itemize}
 
 \begin{remark}
-  The data warehouse does \textbf{not} do any of the above, it merely
-  \textbf{helps} by providing intelligence (i.e information) to the
-  knowledge worker.
+	The data warehouse does \textbf{not} do any of the above, it merely
+	\textbf{helps} by providing intelligence (i.e information) to the
+	knowledge worker.
 \end{remark}
 
 \subsection{OLTP \& OLAP}
@@ -1426,23 +1471,23 @@ A data warehouse \textbf{helps} in:
 The two main data analysis techniques are OLTP and OLAP, respectively:
 
 \begin{itemize}
-  \item OLTP -- Online Transaction Processing
-  \begin{itemize}
-    \item Write/Read transactions
-    \item Consistent
-    \item Many, fast and frequent transactions
-    \item Highly concurrent
-    \item Accesses a small subset of the data
-    \item On-the-fly data update
-  \end{itemize}
-  \item OLAP -- Online Analytical Processing
-  \begin{itemize}
-    \item Read-only
-    \item Few operations
-    \item Low concurrency level
-    \item Accesses huge amounts of data
-    \item Data is historical and mostly static
-  \end{itemize}
+	\item OLTP --- Online Transaction Processing
+	      \begin{itemize}
+		      \item Write/Read transactions
+		      \item Consistent
+		      \item Many, fast and frequent transactions
+		      \item Highly concurrent
+		      \item Accesses a small subset of the data
+		      \item On-the-fly data update
+	      \end{itemize}
+	\item OLAP --- Online Analytical Processing
+	      \begin{itemize}
+		      \item Read-only
+		      \item Few operations
+		      \item Low concurrency level
+		      \item Accesses huge amounts of data
+		      \item Data is historical and mostly static
+	      \end{itemize}
 \end{itemize}
 
 Each is commonly associated, respectively, with an \emph{Operational Database}
@@ -1454,41 +1499,41 @@ Operational databases are designed to support OLTP, whereas data warehouses are 
 we can highlight the following differences:
 
 \begin{itemize}
-  \item Different computational loads -- OLTP is based on concurrency and responsiveness, whereas OLAP
-  is usually based on batch processing
-  \item Different needs
-  \begin{itemize}
-    \item DB -- Dynamic Data, asynchronous updates
-    \item DW -- Static Data, batch updates
-  \end{itemize}
-  \item Different integration
-  \begin{itemize}
-    \item DB -- Suppporting operations  (focused, timely, responsive)
-    \item DW -- Supporting decisions (descriptive, historical, meticulous)
-  \end{itemize}
-  \item Different data collection
-  \begin{itemize}
-    \item DB -- minimal, just what is needed to support short-term operations
-    \item DW -- maximal, all data that is relevant to the organization, to be
-    used for long-term analysis
-  \end{itemize}
+	\item Different computational loads --- OLTP is based on concurrency and responsiveness, whereas OLAP
+	      is usually based on batch processing
+	\item Different needs
+	      \begin{itemize}
+		      \item DB --- Dynamic Data, asynchronous updates
+		      \item DW --- Static Data, batch updates
+	      \end{itemize}
+	\item Different integration
+	      \begin{itemize}
+		      \item DB --- Suppporting operations  (focused, timely, responsive)
+		      \item DW --- Supporting decisions (descriptive, historical, meticulous)
+	      \end{itemize}
+	\item Different data collection
+	      \begin{itemize}
+		      \item DB --- minimal, just what is needed to support short-term operations
+		      \item DW --- maximal, all data that is relevant to the organization, to be
+		            used for long-term analysis
+	      \end{itemize}
 \end{itemize}
 
 Moreover, the two models also have a different approach to common Relational Databases
 concepts, such as:
 
 \begin{itemize}
-  \item Redundancy
-  \begin{itemize}
-    \item DB -- Avoided, leads to inefficient updates
-    \item DW -- Accepted, leads to efficient queries
-  \end{itemize}
-  \item Indexing
-  \begin{itemize}
-    \item DB -- Good for reads, bad for writes, hence, the level of indexing
-    must be carefully chosen to balance the two
-    \item DW -- Good for reads, there are \textbf{no} writes, hence, the more the better
-  \end{itemize}
+	\item Redundancy
+	      \begin{itemize}
+		      \item DB --- Avoided, leads to inefficient updates
+		      \item DW --- Accepted, leads to efficient queries
+	      \end{itemize}
+	\item Indexing
+	      \begin{itemize}
+		      \item DB --- Good for reads, bad for writes, hence, the level of indexing
+		            must be carefully chosen to balance the two
+		      \item DW --- Good for reads, there are \textbf{no} writes, hence, the more the better
+	      \end{itemize}
 \end{itemize}
 
 \paragraph{Common Systems}
@@ -1502,18 +1547,18 @@ also present in the data warehouse field, things such as \emph{scalability},
 \emph{two} extra qualities:
 
 \begin{enumerate}
-  \item OLTP and OLAP separation -- The two systems, as explored before,
-  are remarkably distinct in terms of their requiremets, one being read only
-  and the other requiring a high level of responsiveness, hence, by separating them,
-  we can target them with more focussed optimizations, thus, improving performance.
+	\item OLTP and OLAP separation --- The two systems, as explored before,
+	      are remarkably distinct in terms of their requiremets, one being read only
+	      and the other requiring a high level of responsiveness, hence, by separating them,
+	      we can target them with more focussed optimizations, thus, improving performance.
 
-  Also, by separating them, we can have a more \emph{modular} system, which works
-  towards our other goals (scalability, extensibility, etc\dots), and, finally,
-  we can also devise different storage solutions for each, which can be, for example,
-  a \emph{relational database} for the OLTP and a \emph{data warehouse} for the OLAP.
-  \item Administrability -- The system should be easy to administer, this means that
-  a single person should be able to manage the whole system, without having to
-  know the details of each component.
+	      Also, by separating them, we can have a more \emph{modular} system, which works
+	      towards our other goals (scalability, extensibility, etc\dots), and, finally,
+	      we can also devise different storage solutions for each, which can be, for example,
+	      a \emph{relational database} for the OLTP and a \emph{data warehouse} for the OLAP.\@
+	\item Administrability --- The system should be easy to administer, this means that
+	      a single person should be able to manage the whole system, without having to
+	      know the details of each component.
 \end{enumerate}
 
 \paragraph{Choosing the architecture}
@@ -1534,10 +1579,10 @@ Data marts are \textbf{not} always subsets of the data warehouse, specifically, 
 have two kinds of data marts:
 
 \begin{enumerate}
-  \item Dependent data marts -- These are subsets of the data warehouse, probably
-  an aggregation of data in the primary data warehouse.
-  \item Independent data marts -- These are subsets of the \textbf{Operational Database},
-  they are usually used to provide \emph{real-time} information to the knowledge worker.
+	\item Dependent data marts --- These are subsets of the data warehouse, probably
+	      an aggregation of data in the primary data warehouse.
+	\item Independent data marts --- These are subsets of the \textbf{Operational Database},
+	      they are usually used to provide \emph{real-time} information to the knowledge worker.
 \end{enumerate}
 
 \paragraph{Importance in the architecture}
@@ -1557,9 +1602,9 @@ This is the simples architecture, it consists of a single layer, which is the
 data warehouse, we have:
 
 \begin{itemize}
-  \item A virtual DB, with no OLTP-OLAP separation
-  \item Historic data coincides with current data (Operational DB + Data Warehouse)
-  \item Difficult to integrate with other sources
+	\item A virtual DB, with no OLTP-OLAP separation
+	\item Historic data coincides with current data (Operational DB + Data Warehouse)
+	\item Difficult to integrate with other sources
 \end{itemize}
 
 \paragraph{Level 2 Architecture}
@@ -1569,9 +1614,9 @@ where we complement the data warehouse with data marts and we accept
 different sources, we have:
 
 \begin{itemize}
-  \item An Operational DB, coupled with other external databases
-  \item An ETL layer -- Extraction, Transformation, Loading; acts as a filter
-  \item A Data Warehouse, with multiple data marts
+	\item An Operational DB, coupled with other external databases
+	\item An ETL layer --- Extraction, Transformation, Loading; acts as a filter
+	\item A Data Warehouse, with multiple data marts
 \end{itemize}
 
 We can even merge the concept of data marts with the concept of data warehouses,
@@ -1584,8 +1629,8 @@ An operational database, and a separation of the ETL activities into
 \emph{two} phases, these are:
 
 \begin{enumerate}
-  \item Extraction/Transformation
-  \item Loading
+	\item Extraction/Transformation
+	\item Loading
 \end{enumerate}
 
 These feed into a \emph{reconciled data} storage, which then feeds into
@@ -1596,13 +1641,13 @@ the data warehouse.
 The process of \emph{reconciling} data goes through multiple stages:
 
 \begin{itemize}
-  \item Extraction -- gathers quantitative features from information
-  \item Cleaning -- modifies values, drops duplicates, detects inconsistencies and
-  null values, spelling mistakes, abbreviations, etc\dots
-  \item Transformation -- transform formats (US dates to EU/ISO) to a common
-  standard
-  \item Loading -- updates data, either through \emph{refreshing}, that is, reloading
-  the whole DB \emph{ex novo}, or through differential updates
+	\item Extraction --- gathers quantitative features from information
+	\item Cleaning --- modifies values, drops duplicates, detects inconsistencies and
+	      null values, spelling mistakes, abbreviations, etc\dots
+	\item Transformation --- transform formats (US dates to EU/ISO) to a common
+	      standard
+	\item Loading --- updates data, either through \emph{refreshing}, that is, reloading
+	      the whole DB \emph{ex novo}, or through differential updates
 \end{itemize}
 
 \paragraph{Metadata}
@@ -1611,17 +1656,17 @@ As an appendix, we also spend a few words on \emph{metadata}, that is, data
 about other data, we have:
 
 \begin{itemize}
-  \item Internal metadata -- concerning the data warehouse's administration, for example,
-  sources, transformations, schemas, users, etc\dots
-  \item External metadata -- which might concern users, such as measurement units utilized, possible
-  data combinations, etc\dots
-  \item Standards Utilized
-  \item CWM -- Common Warehouse Model, defined by:
-  \begin{itemize}
-    \item UML
-    \item XML
-    \item XMI
-  \end{itemize}
+	\item Internal metadata --- concerning the data warehouse's administration, for example,
+	      sources, transformations, schemas, users, etc\dots
+	\item External metadata --- which might concern users, such as measurement units utilized, possible
+	      data combinations, etc\dots
+	\item Standards Utilized
+	\item CWM --- Common Warehouse Model, defined by:
+	      \begin{itemize}
+		      \item UML
+		      \item XML
+		      \item XMI
+	      \end{itemize}
 \end{itemize}
 
 \section{Data Warehouse Multidimensionality}
@@ -1630,12 +1675,12 @@ Data is \emph{extracted} from the world following a precise sequence of
 events:
 
 \begin{enumerate}
-  \item An \textcolor{red}{event} occurs, for example, Giovanni, age 26 buys a pizza
-  \item A \textcolor{red}{datum} is extracted by discarding irrelevant
-  information from the \textcolor{red}{event} (\texttt{pizza}, \texttt{5\$}, \texttt{\today})
-  \item A \textcolor{red}{fact} is obtained by aggregating data, as a measurements
-  in $N$-dimensional space (sold \textcolor{blue}{N} units of \textcolor{blue}{M} articles
-  on date \textcolor{blue}{D})
+	\item An \textcolor{red}{event} occurs, for example, Giovanni, age 26 buys a pizza
+	\item A \textcolor{red}{datum} is extracted by discarding irrelevant
+	      information from the \textcolor{red}{event} (\texttt{pizza}, \texttt{5\$}, \texttt{\today})
+	\item A \textcolor{red}{fact} is obtained by aggregating data, as a measurements
+	      in $N$-dimensional space (sold \textcolor{blue}{N} units of \textcolor{blue}{M} articles
+	      on date \textcolor{blue}{D})
 \end{enumerate}
 
 \paragraph{Data as tensors}
@@ -1666,101 +1711,101 @@ as shown in \cref{fig:hierarchy}.
 	%\incsvg{path/}{path/file}
 	\incsvg{fig}{hierarchy}\\
 	\caption{Here we have a dimensional hierarchy for the
-  \emph{time} dimension, the directed arrows denote functional
-  dependencies, that is, the \emph{parent} dimension is
-  \emph{higher} in the hierarchy than the \emph{child} dimension, meaning
-  that it has more \emph{granularity}.}\label{fig:hierarchy}%
+		\emph{time} dimension, the directed arrows denote functional
+		dependencies, that is, the \emph{parent} dimension is
+		\emph{higher} in the hierarchy than the \emph{child} dimension, meaning
+		that it has more \emph{granularity}.}\label{fig:hierarchy}%
 \end{figure}
 
 \section{Data Warehouse Access}
 
-Access to a data warehouse is done through multiple means, these depend on the 
+Access to a data warehouse is done through multiple means, these depend on the
 needs of the person accessing the warehouse, in fact, we can identify 3 different
 reasons for accessing the warehouse:
 
 \begin{itemize}
-  \item Reporting -- The user wants to extract a well-structured set of data from the 
-  warehouse, in order to present it to a \emph{knowledge worker}, or at a meeting, 
-  this is easy to standardize and to automate, since the necessary data is known 
-  well in advance.
-  \item OLAP -- The user wants to perform \emph{ad-hoc} queries on the data warehouse,
-  in order to extract information that is not known in advance, this is more difficult
-  and is usually done interactively (and manually).
-  \item Data Mining -- The user wants to extract data from the warehouse to satisfy needs 
-  that are not known in advance, similarly to OLAP, however, this is usually done in 
-  an almost \emph{automatic} way, by means of \emph{data mining} algorithms.
+	\item Reporting --- The user wants to extract a well-structured set of data from the
+	      warehouse, in order to present it to a \emph{knowledge worker}, or at a meeting,
+	      this is easy to standardize and to automate, since the necessary data is known
+	      well in advance.
+	\item OLAP --- The user wants to perform \emph{ad-hoc} queries on the data warehouse,
+	      in order to extract information that is not known in advance, this is more difficult
+	      and is usually done interactively (and manually).
+	\item Data Mining --- The user wants to extract data from the warehouse to satisfy needs
+	      that are not known in advance, similarly to OLAP, however, this is usually done in
+	      an almost \emph{automatic} way, by means of \emph{data mining} algorithms.
 \end{itemize}
 
-Let us remark the differences between plain reporting and OLAP:
+Let us remark the differences between plain reporting and OLAP:\@
 
-\paragraph{Reporting} 
-Reports are so structured that obtaining them is a \emph{routine} task, there can 
+\paragraph{Reporting}
+Reports are so structured that obtaining them is a \emph{routine} task, there can
 be queries to obtain reports, along with an array of automated tools to produce them.
 
-Reports are usually organized in \emph{presentations}, which can be easily distributed 
+Reports are usually organized in \emph{presentations}, which can be easily distributed
 and comprehended by non-technical users.
 
 \paragraph{OLAP}
-OLAP is usually done in an \emph{analysis session}, which can be divided into a 
-series of steps, each dependent on the result obtained previously, this is akin 
+OLAP is usually done in an \emph{analysis session}, which can be divided into a
+series of steps, each dependent on the result obtained previously, this is akin
 to the use of a \emph{jupyter notebook} to construct a \emph{data science} pipeline.
 Typical users are domain experts, which are \emph{not} necessarily computer scientists.
 
 \subsection{OLAP Operations}
 
-There are a number of operations that can be performed on a data warehouse, these 
+There are a number of operations that can be performed on a data warehouse, these
 are much akin the operations performed on a \emph{relational database}, however,
-they are more \emph{complex} and \emph{powerful}, we will now list a number of them 
+they are more \emph{complex} and \emph{powerful}, we will now list a number of them
 and discuss them in depth.
 
-\paragraph{Restriction} 
+\paragraph{Restriction}
 
-Restriction is the filtering of values based on a certain condition evaluated 
+Restriction is the filtering of values based on a certain condition evaluated
 on a dimensional attribute, in case of equality with a single value, this is called
-\textbf{slicing}, since we are \emph{slicing} the data along a certain dimension, making 
+\textbf{slicing}, since we are \emph{slicing} the data along a certain dimension, making
 it go away.
 
 \paragraph{Aggregation}
 
-Aggregation is the application of a function to a set of values, such that this 
+Aggregation is the application of a function to a set of values, such that this
 function reduces the set in dimensionality.
 
 \begin{table}[h!]
-  \rowcolors{2}{gray!25}{white}
-  \centering
-  \begin{tabular}{c c c}
-      \rowcolor{gray!50}
-      % Header
-      Distributive & Algebraic &  Holistic \\
-      %End Header
-      \texttt{SUM} & \texttt{AVG} &  \texttt{COUNT} \\
-      \texttt{MAX} & \texttt{STDDEV} &   \\
-      \texttt{MIN} & \texttt{MEDIAN} & \\
-  \end{tabular}
-  \caption{Some of the most common aggregation functions.}\label{tab:aggregate}
+	\rowcolors{2}{gray!25}{white}
+	\centering
+	\begin{tabular}{c c c}
+		\rowcolor{gray!50}
+		% Header
+		Distributive & Algebraic       & Holistic       \\
+		%End Header
+		\texttt{SUM} & \texttt{AVG}    & \texttt{COUNT} \\
+		\texttt{MAX} & \texttt{STDDEV} &                \\
+		\texttt{MIN} & \texttt{MEDIAN} &                \\
+	\end{tabular}
+	\caption{Some of the most common aggregation functions.}\label{tab:aggregate}
 \end{table}
 
-\paragraph{Drill-Down} 
-It is expected that the de-aggregated data is originally found in the data warehouse, 
+\paragraph{Drill-Down}
+It is expected that the de-aggregated data is originally found in the data warehouse,
 since most aggregate operations are non-invertible.
 
 The process of inverting this aggregation is called \emph{drill-down}.
 
 \paragraph{Slice-And-Dice Operations}
 
-Keeping with our multi-dimension point of view, we can \emph{slice} our data cuboid 
-along a dimension in order to perform a \emph{selection} operation, this 
+Keeping with our multi-dimension point of view, we can \emph{slice} our data cuboid
+along a dimension in order to perform a \emph{selection} operation, this
 is akin to the SQL operators \texttt{WHERE} and \texttt{HAVING}.
 
-\paragraph{Pivoting} 
-Pivoting works as a \emph{transposition} of the data, this is natural if we keep thinking 
+\paragraph{Pivoting}
+Pivoting works as a \emph{transposition} of the data, this is natural if we keep thinking
 of our data as being in the form of \emph{tensors}, and can be done along any dimension.
 
 Pivoting is common when visualizing the data in a \emph{table}, since it allows us to
-\emph{transpose} the data, making it easier to read, seeking such an example 
+\emph{transpose} the data, making it easier to read, seeking such an example
 on the internet is advised in order to understand the concept.
 
-\paragraph{Drill-Through} 
+\paragraph{Drill-Through}
 Drilling \textbf{through} is a more extreme version of \emph{drill-down}, where we
 access the data at a lower level of granularity, typically this is done by
 accessing reconciled data or operational databases directly, bypassing the data
@@ -1770,6 +1815,170 @@ warehouse.
 
 Drilling \textbf{across} is the process of correlating data from different dimensions,
 this is done by \emph{joining} the data from different datasets, like SQL's \texttt{JOIN}.
+
+\section{Hierarchy Manipulation}
+
+Hierarchies can be manipulated by acting on their \emph{granularity}, for
+example we can have:
+
+\begin{itemize}
+	\item \textbf{Pruning} --- Removal of one or more level of granularity from the hierarchy
+	\item \textbf{Grafting} --- Removal of an intermediate level of granularity,
+	      and its replacement by a child level
+\end{itemize}
+
+\section{Alternative OLAP Models}
+
+There are a number of alternative OLAP models, such as:
+
+\begin{itemize}
+	\item \textbf{ROLAP} --- Relational OLAP, where the data is stored in a relational database
+	\item \textbf{MOLAP} --- Multidimensional OLAP, where the data is stored in a multidimensional data structure (tensor)
+	\item \textbf{HOLAP} --- Hybrid OLAP, where the data is stored in a combination of the two,
+	      introduced by Oracle (Express Server, 2002).
+\end{itemize}
+
+\subsection{MOLAP}
+We skip \textbf{ROLAP} since we have extensively studed relational databases, and we
+go straight to \textbf{MOLAP}.
+
+In MOLAP we lack a standard, both for the data's structure (no schemas) and
+for the access languages (no SQL).
+
+\paragraph{Sparsity}
+One of the key aspects of MOLAP is the management of the \emph{sparseness} of the data,
+that is, the fact that most of the data is \emph{missing}, due to the multi-dimensional
+nature of the data. We exploit this sparsity by using a proper Logic Model.\footnote{
+	you might notice that this chapter is kind of imprecise, trust me, I am doing my best.
+}
+
+\paragraph{Star Schema}
+In a Star Schema we have a \emph{Dimension Table} for each dimension, the \emph{primary key}
+is usually a foreign key, this contains all the possible values for the relevant dimension.
+
+We then have a \emph{Fact Table}, which is a collection of \emph{foreign keys}, each
+pointing to its relative dimension table, and a number of \emph{measures}, which are
+values regarding the fact.
+
+\paragraph{Snowflake}
+Snowflake generalizes the Star Schema, it operates on a partial \emph{Normalization} of
+the tables, whereas the Star Schema is a \emph{fully denormalized} version of the Snowflake.
+
+In a Snowflake Schema we have:
+
+\begin{itemize}
+	\item For each dimension, A \emph{Primary Table} containing the dimension's values,
+	      together with some secondary tables, each containing some of the attributes that
+	      can more sensibly be isolated from the primary table.
+	\item A single fact table, which is the same as the one in the Star Schema.
+\end{itemize}
+
+\section{Physical Design}
+
+The main operational issue in a data warehouse is \emph{obviously} performance,
+which is only as good as its physical design. We are \emph{not} interested in
+redundancy since essentially all data is static.
+
+\paragraph{Performance}
+To achieve good performance, we utilize \emph{materialized views}, which are
+pre-computed partial materializations of the Fact Table, these
+can be used to speed up queries, since they are \emph{pre-computed}.
+
+\chapter{SAP Systems}
+
+\section{Introduction to ERP}
+ERP stands for Entrerprie Resource Planning, it is a software system that
+allows a business to manage its resources at an \emph{enterprise} level, hence,
+it is a \emph{business management} software.
+
+\paragraph{Why ERP?}
+ERP is necessary to:
+
+\begin{itemize}
+	\item Integrate disparate Information Systems
+	\item Lower the costs of data integration through automation
+	\item Lower the amount of inconsistencies and duplications in the data
+	\item Provide timely and accurate information
+\end{itemize}
+
+\subsection{ERMS}
+ERMS stands for Enterprise Resource Management System, a set of ERMS composes
+the backbone for an ERP system, these are:
+
+\begin{itemize}
+	\item Finance
+	\item Production
+	\item Sales
+	\item Logistics
+	\item Human Resources
+	\item Statutory Compliance\footnote{Yeah, he made these two words up.}
+\end{itemize}
+
+\subsection{What is ERP?}
+ERP is the integration of \textcolor{red}{all} computing within an organization, such that:
+
+\begin{itemize}
+	\item \textcolor{red}{all} major business processes are standardized
+	\item \textcolor{red}{all} data is usable by \textcolor{red}{all} functional
+	      areas of the business
+\end{itemize}
+
+Its role is to integrate many business functions into one seamless application, usually
+powered by some sorts of RDBMS.\@ If done correctly one can replace hundreds of
+legacy systems with a single ERP system.
+
+\section{SAP:\@ Systems, Applications and Products}
+SAP has been founded by 5 ex-IBM employees in 1972, it is a German company that
+provides ERP solutions to businesses, it is the \emph{de facto} standard for ERP, with
+around one third of the market share.
+
+\paragraph{What is SAP}
+SAP is designed for world-wide usage, it supports multiple languages and multiple currencies, and adapts well to companies of different sizes, thanks to its different
+versions, for example, we have:
+
+\begin{itemize}
+	\item \textbf{SAP ERP} --- for large companies
+	\item \textbf{SAP All-in-One} and \textbf{SAP Business By Design} --- for medium companies
+	\item \textbf{SAP Business One} --- for small companies
+\end{itemize}
+
+\subsection{The R/3 Architecture}
+
+The SAP system, called R/3, is based on a \emph{three-tier} architecture,
+where we have:
+
+\begin{itemize}
+	\item Presentation Server
+	\item Application Server
+	\item Database Server
+\end{itemize}
+
+These servers are linked by \emph{communication networks}, they perform tasks,
+integrate data and provide information to the users (which are, of course, the clients).
+
+\paragraph{Presentation Server}
+The presentation server is designed to be very lightweight, it runs on a workstation,
+and it is responsible for the \emph{presentation} of the data, hence, it is mainly
+a GUI application that communicates with the application server.
+
+\paragraph{Database Server}
+Interfaces the Application Server with the database, it is necessary in order
+for the Application Server to be agnostic to the underlying database, hence,
+it is a \emph{database abstraction layer}.
+
+\paragraph{Application Server}
+The application server is the \emph{core} of the system, it is responsible
+for the \emph{business logic} of the system, running various \emph{business processes}.
+
+\subsection{SAP Omnipresency}
+
+SAP is \emph{everywhere}, from the Aereospace industry to the Food industry, being employed
+in hospitals and shopping malls, chemical industries and banks, it is \emph{everywhere}.\footnote{
+	The slides go on for 20 pages showing pictures of SAP being used in various industries,
+	and listing various generalities about SAP, I will not report them here, since they are
+	not really relevant to the exam (in my opinion).
+}
+
 
 \end{document}
 
