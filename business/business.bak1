@@ -1982,24 +1982,24 @@ in hospitals and shopping malls, chemical industries and banks, it is \emph{ever
 \chapter{Big Data Analytics}
 
 Big data analytics is the science of \emph{managing very large amount of data
-	and extracting value and knowledge from them}.
+and extracting value and knowledge from them}.
 
 There is no \emph{single} definition of big data, the term being a loose description
 on the nature of data in the information age, however, we can try and give one.
 
 \begin{definition}
-	`\textcolor{red}{Big Data}' is data whose scale, diversity, and
-	complexity require new architectures, techniques,
-	algorithms, and analytics to manage it and
-	extract value and hidden knowledge from it\dots
+  `\textcolor{red}{Big Data}' is data whose scale, diversity, and
+  complexity require new architectures, techniques,
+  algorithms, and analytics to manage it and
+  extract value and hidden knowledge from it\dots
 \end{definition}
 
 It is characterized by three V's:
 
 \begin{enumerate}
-	\item Volume --- the amount of data
-	\item Velocity --- the speed at which data is generated
-	\item Variety --- the different types of data
+  \item Volume --- the amount of data
+  \item Velocity --- the speed at which data is generated
+  \item Variety --- the different types of data
 \end{enumerate}
 
 \paragraph{Volume}
@@ -2066,12 +2066,12 @@ As said, cloud computing is the delivery of computing services over the internet
 these services can be:
 
 \begin{itemize}
-	\item Computational power
-	\item Storage
-	\item Databases
-	\item Networking
-	\item Hosting
-	\item And much, much\footnote{Too much\dots} more\dots
+  \item Computational power
+  \item Storage
+  \item Databases
+  \item Networking
+  \item Hosting
+  \item And much, much\footnote{Too much\dots} more\dots
 \end{itemize}
 
 These cloud platforms are usually operated by tech giants such as Microsoft, Amazon,
@@ -2080,9 +2080,9 @@ Google, etc\dots\@ and are usually \emph{paid} services, billed on a utilization
 We can identify the following macro-categories of service-based models:
 
 \begin{itemize}
-	\item \textbf{SaaS} --- Software as a Service
-	\item \textbf{PaaS} --- Platform as a Service
-	\item \textbf{IaaS} --- Infrastructure as a Service
+  \item \textbf{SaaS} --- Software as a Service
+  \item \textbf{PaaS} --- Platform as a Service
+  \item \textbf{IaaS} --- Infrastructure as a Service
 \end{itemize}
 
 \paragraph{SaaS}
@@ -2102,13 +2102,13 @@ to the full infrastructure stack, from the hardware to the software.
 The benefits of cloud computing are:
 
 \begin{itemize}
-	\item \textbf{Cost \& Management} --- The cost of the infrastructure is offloaded to a third party,
-	      which is also responsible for its management, hence, the company can focus on
-	      its core business.
-	\item \textbf{Reduced deployment times}
-	\item \textbf{Scalability} --- The infrastructure can be scaled up or down depending on the needs
-	      of the company, this is a key feature of cloud computing.
-	\item \textbf{Reliability} --- Parallelism leads to \emph{redundancy}, which leads to \emph{reliability}.
+  \item \textbf{Cost \& Management} --- The cost of the infrastructure is offloaded to a third party,
+        which is also responsible for its management, hence, the company can focus on
+        its core business.
+  \item \textbf{Reduced deployment times}
+  \item \textbf{Scalability} --- The infrastructure can be scaled up or down depending on the needs
+        of the company, this is a key feature of cloud computing.
+  \item \textbf{Reliability} --- Parallelism leads to \emph{redundancy}, which leads to \emph{reliability}.
 \end{itemize}
 
 \paragraph{Types of cloud computing}
@@ -2116,8 +2116,8 @@ The benefits of cloud computing are:
 Cloud computing can be of many types:
 
 \begin{itemize}
-	\item  \textbf{Public Cloud} --- The cloud infrastructure is \emph{shared} between multiple companies, this is the most common type of cloud computing.
-	\item  \textbf{Private Cloud} --- The cloud infrastructure is \emph{dedicated} to clients, and not shared between multiple companies
+  \item  \textbf{Public Cloud} --- The cloud infrastructure is \emph{shared} between multiple companies, this is the most common type of cloud computing.
+  \item  \textbf{Private Cloud} --- The cloud infrastructure is \emph{dedicated} to clients, and not shared between multiple companies
 \end{itemize}
 
 \subsection{Parallel vs. Distributed Computing}
@@ -2136,7 +2136,7 @@ he is using, and not with the underlying infrastructure.
 \paragraph{Grid Computing}
 Grid computing is the set of patterns, tools and frameworks used to
 distribute computing resources or data, \emph{The cloud can be
-	a platform to run grid computing applications}.
+a platform to run grid computing applications}.
 
 \subsection{Supercomputing and Cloud Computing}
 Cloud computing can be seen as a strategy to implement supercomputers, classic
