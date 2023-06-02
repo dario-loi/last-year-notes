@@ -46,7 +46,7 @@ jobs:
           draft: false
           title: "Notes Release"
           files: |
-            business/main.pdf
+            business/business.pdf
             hci/humancomputer.pdf
 
           
